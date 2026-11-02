@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:e984856a46686a4caf90cb1db18a396b5b9d3a5bb606504e97d572dfa8e29656",
+  "pageVersion": "sha256:0721b3e21f817c7f489b54686bb506ef038cb444ce85f64a0cd9a1d61a60da45",
   "claims": [
     {
       "id": "claim_dfd9d7314159454895e689b16d2820ae",
@@ -67,10 +67,28 @@
           "version": "repo-file-v1:sha256:91f488695735277024c636533430fcd436fae5853f6cca89ce73a5e619e65315"
         }
       ]
+    },
+    {
+      "id": "claim_84e641314aca40a981cb5f453cfbdc34",
+      "statement": "Poster med ukendt periode bevares ved vellykket hentning og kræver include-unknown for at blive vist i søgning.",
+      "evidence": [
+        {
+          "resource": "repo://src/bilkatogo.rs",
+          "version": "repo-file-v1:sha256:66b614deb4598000caf1dea53efa91aa177ed5ed2218f33be4fb23c1dc860707"
+        },
+        {
+          "resource": "repo://src/engine.rs#L85-L100",
+          "version": "repo-lines-v1:sha256:363a3637c2a4ca4cf1ba18f52b2e1a970f6fcb99778ccee86734e3af3a122983:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMjM4NjQyNWUwNDI0OGM5ZWFmNzNlYzNjZTU3NmE2Y2Q1YzFjNDVmZDMwNWM4YzY3NGE3NmNkMWJiMjg5ODgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE4ZjdhMDEzNTlkYzdmYmUzOWUzODYwOTk1ODNiYzA1N2NmODBhNTkyYmZiN2ZhZGNlZDNjNWRjODA2OTIwMDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE3Njc4NGFkMzEzNThlZjE2MDc5MDI1NThkZjYzMGQ2YmEyNTgxNjlhOTU1NjlmYzZkYjBjZjBjZjgwMjE3OGEifQ"
+        },
+        {
+          "resource": "repo://src/main.rs#L247-L279",
+          "version": "repo-lines-v1:sha256:aa4c82c6c1ce8213d2cd333347855f837121d64095d6dbceb81bf5394029b583:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2MDE1ZWNmM2MzOWQxMWFlMDIxMjM2M2NhNzU5YTBlODY3NzAwOTFiYzkzM2NkOTQ3MjczZjI0NWNmY2Q3NDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhkYjMzOWMxN2Q0Y2M1NGU3MGM0ZmNmZWNiNjExYmI5ZTdkMzYzZjI1YjE4ZTA5MjNhMWQzMDZjYzk1OTI0ZTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM1ZmY0MmQ4NjY0OTY2M2ZlZjJjZjk2YzY5NTM5NDEwMmZmMmMyOTA5ZGRiMmFjYWZiM2U5YTMwYmUzNWRiMTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjViYTYwOWIyNjMwY2RlNGI3M2RlOTlhYmQ4YjgxMDVlODE3OTQxODgxM2VhNWJhNmYwNzcyNTIzYzIxZWFlNjkifQ"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.3",
-    "at": "2026-11-02T15:45:43.206Z"
+    "at": "2026-11-02T16:08:33.221Z"
   }
 }

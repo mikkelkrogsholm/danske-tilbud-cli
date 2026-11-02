@@ -6,14 +6,16 @@ tags: [tjek, source-adapter, pagination]
 sources:
   - id: openwiki-source-138c2e8e14eae17ee441a093
     resource: repo://docs/tjek.md
+  - id: openwiki-source-ccfe8cc4504f25c304787a46
+    resource: repo://src/engine.rs
   - id: openwiki-source-b55a21a31ede1b56cd31a6a6
     resource: repo://src/main.rs
   - id: openwiki-source-dc57eb67cb7ae0022f82d3af
     resource: repo://src/tjek.rs
-generated: { by: "codex", at: "2026-11-02T15:43:42.669Z" }
+generated: { by: "codex", at: "2026-11-02T16:08:33.221Z" }
 verified:
   - by: openwiki/0.7.3
-    at: 2026-11-02T15:45:43.206Z
+    at: 2026-11-02T16:08:33.221Z
 ---
 
 # Tjek-kilden
@@ -33,6 +35,8 @@ Adapteren kontrollerer dealer og dansk land på hver post, samt katalogtilhørsf
 Standardtimeout er 10 sekunder og højst tre forsøg. Netværksfejl og 5xx genforsøges med kort stigende ventetid. Ved 429 kræves en gyldig `Retry-After`; forsinkelser over fem sekunder returnerer fejl frem for et for tidligt genforsøg. Mangelfulde svar og afvigende dealer, land, katalog eller butiksrelation bliver kildefejl frem for tavs succes.
 
 JSON-priser læses uden binære flydende kommatal. Kildens `pre_price` er en sammenligningspris, ikke nødvendigvis en tidligere normalpris. Størrelse og antal bevares separat, og `pieces.max` behandles ikke som pakkeantal. Medlemskab er ukendt, da kilden ikke giver en verificeret struktureret markering. Beskrivelsen bevares, men øvrige vilkår kan ikke altid udledes struktureret.
+
+Ved vellykket hentning fjernes beviseligt udløbne poster før snapshotet publiceres. [Søgeguiden](../workflows/search.md) beskriver kilde- og kædefiltre, rangering og pagination.
 
 ## Dokumenteret liveobservation
 

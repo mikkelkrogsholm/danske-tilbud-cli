@@ -8,19 +8,29 @@ sources:
     resource: repo://README.md
   - id: openwiki-source-2161525089da862e880baf7a
     resource: repo://scripts/test.sh
+  - id: openwiki-source-ccfe8cc4504f25c304787a46
+    resource: repo://src/engine.rs
+  - id: openwiki-source-35aa34ef351101676460f475
+    resource: repo://src/human.rs
   - id: openwiki-source-b55a21a31ede1b56cd31a6a6
     resource: repo://src/main.rs
   - id: openwiki-source-62eef0b8799186dd9e2faae9
     resource: repo://src/storage.rs
-generated: { by: "codex", at: "2026-11-02T15:43:42.669Z" }
+generated: { by: "codex", at: "2026-11-02T16:08:33.221Z" }
 verified:
   - by: openwiki/0.7.3
-    at: 2026-11-02T15:45:43.206Z
+    at: 2026-11-02T16:08:33.221Z
 ---
 
 # Snapshot-lagring
 
 `storage::publish` gemmer ét aktuelt snapshot pr. kilde; `storage::read` læser det. CLI'ets `hent` offentliggør en fuldført kildekørsel, og `find` søger lokalt i snapshotet. `hent --alle` publicerer kilder uafhængigt: en fejlet kilde bevarer sit tidligere snapshot, mens fuldførte kilder kan offentliggøres. `find` springer manglende snapshots over; ulæselige snapshots giver delvist resultat og ikke-nul exitkode. Et resultat skal udtrykkeligt være komplet og uden kilde- eller valideringsfejl; ellers bevares det seneste snapshot. Komplethed gælder kildens angivne scope: Tjeks Bilka-katalogvej udelader fritstående direkte tilbud efter 1000.
+
+## Udløbsrensning
+
+`hent` validerer hele batchen før rensning og bruger samme referencetid til hentetid og gyldighed. Kun beviseligt udløbne poster fjernes før publicering; `expired_removed` rapporteres i JSON og human-output. Slutdatoen er inklusiv i Europe/Copenhagen. Ukendte og fremtidige perioder samt præcis lighed ved en tidspunktgrænse bevares, medmindre en anden grænse beviser udløb.
+
+Rensning ændrer kun det nye snapshot ved næste vellykkede hentning; der kører ingen baggrundsoprydning. En komplet tom kørsel kan publiceres; en ufuldstændig kørsel eller publiceringsfejl bevarer tidligere snapshot. Se [søgning](../workflows/search.md) for særskilt filtrering af gyldighed.
 
 ## Format og validering
 

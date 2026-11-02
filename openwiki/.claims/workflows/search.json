@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:8852dd4f9b41c781b8ea77161f98eea05383e1fa3182165c1fedea2417d7782c",
+  "claims": [
+    {
+      "id": "claim_6a1ca7c51d394966b68409b050b3f029",
+      "statement": "Søgning matcher alle whitespace-opdelte ord som case-insensitive delstrenge i navn eller beskrivelse og rangerer frase i navn foran alle ord i navn og øvrige match.",
+      "evidence": [
+        {
+          "resource": "repo://src/main.rs#L246-L294",
+          "version": "repo-lines-v1:sha256:ea72a438b269a4cbd8adc6169e4c622c0a896a3cca63a9e0a555e711f1f69661:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgxMjA2ZjZjNjE2YmIzMjAzMjNkMThkOWMzOWFlNDY4ZjFiYjAwYThmNWE5OTBkMGQwYjU1ZWM2YjdlNmY3MTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFiNjExYjk4OWE4YjljZTQ2MjU4M2NlZGVjYTM1YTg5OTczNjg4MzFlOGQzMjg5MjY2M2ZhZWUwMjczMmNlODkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxOGQ1NTViYTVjYTdmMmIwY2U5ZDg5NDE3NWQ0ODBkMDBiM2RlZGQ2NTNmZjI0YTBjZmIxYjBjYzU5Mzk0ZjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjczZDc2MGNkODAyMjEyOTZlNmZiMWRjMDYxMTVmZmQ5MzFkODk4ZjU3ZDAxMTY5MWI5OGRkYTcxOTRlNmYyYmQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d94bb2cebfeb40d8b0301a3bbdebdfe7",
+      "statement": "Søgning paginerer med offset og limit og viser total og has_more; compact giver udfladede udvalgte felter og kan ikke kombineres med human.",
+      "evidence": [
+        {
+          "resource": "repo://src/main.rs#L203-L207",
+          "version": "repo-lines-v1:sha256:a5faaba64fc85e7330526d8c230d78bd584702f5415a7810b4c7254ca662a99b:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjY1OTE0YWY5YzQzYzEzM2MyNGYxMjNlNTUxYTA3NWJiMDBkMDJkNTM0YjM0OGFjMmM4NmZkMGYzZGYxNWU1ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjhmNzUxNzEyNzVjMWY2OWVmNDE0MmMzNTA3OTAyMWUyZWIxNDIwMzQxOWYwMjA0NzQ2YTIxYTJkMmNkMzkzOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWMxM2NhMDY0ODk1ZTA4NmQwYzhhOWQzYzhjMWMxOWE3MTlhM2VmZmUwYTkzODEyZGJiY2U0ZmZjZWU1M2I3NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2QxYTcyODNkYWJkOWZkNzUwMzBhNDdjNTZhZjNjYWM3Mzg5YmI1ZDNhM2M2YThhOTRjZjA3NjI4YWE5YmUzZiJ9"
+        },
+        {
+          "resource": "repo://src/main.rs#L295-L305",
+          "version": "repo-lines-v1:sha256:a9b3dd9f85406f3af405030755f9cce5dd80fa9575796a3fa4d9e513a420b33c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmNTA5YzZkNDRhMTIzYWJiMTdkMDEzYjAxZWQyNTExYzZjMTM5NTk4OTkyZjQ4NDYwYzFjNDhhZTNjODFiY2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEyMDY5ZjhmMzYyODNiOWZiMzVkZmRhMjUyMjYyYjA5ZDcwODZhNDIxM2MzNDFhMTZiNTA0MDQyYmVkY2IwZTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwMzMzMWFlZTBmMWZjMjc2NjQ0YTI5ZWZkYTNkNzljZGNlNDc3YTFlMzgzMTI1NmE5NDE5MzBkNzFlNzA2YmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ2OTYyZjZhYTJlNjVjYThiYmJmOTEyNjQ5NDBiOGZlMzkzMzMxY2UzZDEzMGI3MDkxZjA1NzRiMTU3NTQ3OTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_41eb2a1fc2224297b696deaa5d9e3148",
+      "statement": "Søgning udelader katalogposter og viser kun aktuelle tilbud medmindre ukendt gyldighed tilvælges; kildeidentitet bevares.",
+      "evidence": [
+        {
+          "resource": "repo://src/engine.rs#L350-L390",
+          "version": "repo-lines-v1:sha256:0af9fec78005f3a333e53e39a800dbd7dd5d2b65d9728ed77d1c5f88038d8e74:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA0ZjJlNmEzM2U5MDU5OGY0OTc2ZjlhMTJhMDlkMzE3NmM0ZmE5ODI2ZjJmN2NkN2JjZWQwYzg1YWM4OGU4ZDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3ZWM0ZDBiYjBiNGJjYjNjMGY3YmQyNDcyMjI2NTk3MDM2OWFhNmFkNTI5OGQxZGFiZTU1ZDk3YmZlYjFiOGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIwOTE4Mzc5N2VlY2Q0YmE2M2Q5YzEzZDRmNWU4ZTlhMGE3ZTdmMTI1NDY1NzlhNjcyNDRlNDAzMjM1ZmNiZDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJjZTlhZmQwNjU4MmM5OWQ0MWM2NWViY2M5Yjg1YTA1YTA2MWIzYmVhOTg1NjU4OTBmZjUwOGNkZjZkYmQ2ZDgifQ"
+        },
+        {
+          "resource": "repo://src/main.rs#L249-L301",
+          "version": "repo-lines-v1:sha256:437c01a04b78474a3d13471454248b099b46b70fa52cf70623d3e60474c46c18:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMxYTdkMDM1OTRkMThlMzYwN2FkNDU3YWMzNjBjMWJlYTU3NDI2NDAwYTMxMTczMDc3MjlmYjRhYzMwMDkyMDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjNjQ3OWNjMjMwNDQwZmQ0MWU4MjI0MjE4Njc5Njk4NTU5ZDI4OTNiZDY3YjQzODBhZmFiODExYjM4YTU1YWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVjODE3MGQ3Y2Y1YTJiZWM0MmQ4N2U3YWYxMWYwODA5YTRlYTg1Y2ZjNGZkYmJjNTU1ZWViNWViMDNiYzBjYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM5NGM3ZGUzMmI1NzQ2ODhmYjY1M2FjMzQzZmM1OWNjNzk1YWVkMzc0MTE5NzFhMDRlNmY1ODM1MDg0OTg4ODUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1b87e13f290c4394a2c49c1a8df027d2",
+      "statement": "Ved tværkildesøgning giver ulæselige snapshots delresultater og ikke-nul exitkode, mens manglende snapshots springes over.",
+      "evidence": [
+        {
+          "resource": "repo://src/main.rs#L216-L244",
+          "version": "repo-lines-v1:sha256:2e2852aa2c4e087d6f5c72bb630b12ebfa5e8d407621477819bf007fcfa2b7ff:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYwZTY5ZGE3ZDJhMzIxMWU4MDIzZDBlZDk0NmMxZTI2ZjFhMGQwOTRkODYyZjc0OGQ0MTU0YjhjMjU2Y2JiMTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5MTJkZDc5ZWVkMmZkNjdjNDg3NjFlZWZlMjczZjIxODJiMTgyNzcyNDk5OWZmNDg0ZjI5MWNmMmRlOTEzMmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI0NzFmZWIzZmUxZDc2ZTIyYTRmZjY2MTFmNGRiNWFiMWIxMDY1NGNlNjI1ODNkYTNmMzk3MDFjZTEyOTQ0MWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEwNzE2NzU5NDJhNmU1MzhjNGEwNjdiMzVmNWQwZjkwNGZhNTc0ODk4MmQ4NDcyMDFiOTE1MWRkNWZiOWU0YTEifQ"
+        },
+        {
+          "resource": "repo://src/main.rs#L303-L312",
+          "version": "repo-lines-v1:sha256:6b5fd88b3ff5bdacbb709c446620cec284379124a534aa81e7310db4c7876db7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiOGZhYWZmNTJmODI3NzEyZDRlOTQzMTFmOGVjMjE2YzU0MDEwYWIzMTM2ZDM1MDg1NzFmMjdkOTc5OTBjZWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNGZkOThmZDhiODhjMzI5NTAyZjE0Y2M4MzVmNTRjNTA2ZDhlZTM0YWU3MjZjODQwYzI0NmVjY2QxYWM5ZjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMxNTdiYWU5Mjc0MTIwMTc4Y2VlOTg1OWNhOGRkZWIwNDVjNmQ0ODZkYTA3MzAxZjQ5M2U1MDUwZjk0Mzk3YTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2NjU2YTRmMjMwNmY1YzEwZjVhZTllNmEzM2NhOWFlZjdkOWQ3MWQ5ZjliZjFhMTYwOWM3YWQxMmNlMzhjNmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c6897e415f704dcf99c9ae2a4fa3e3ae",
+      "statement": "Release-målingen af 12000 syntetiske poster omfattede to opvarmninger og 30 kald, med median 92,353 ms før og 93,570 ms efter og varm filcache.",
+      "evidence": [
+        {
+          "resource": "repo://docs/search-performance.md",
+          "version": "repo-file-v1:sha256:e8286a50d282f59d2adee0d93cf185a8f181431f1203fa583e14abbe96c123d8"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-02T16:08:33.221Z"
+  }
+}

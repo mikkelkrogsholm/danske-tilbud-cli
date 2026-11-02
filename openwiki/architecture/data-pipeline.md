@@ -5,7 +5,7 @@ description: Kildekontrakten og motorens behandling af tilbud, fejl, identitet o
 tags: [data-pipeline, normalization, offers]
 verified:
   - by: openwiki/0.7.3
-    at: 2026-11-02T15:45:43.206Z
+    at: 2026-11-02T16:08:33.221Z
 sources:
   - id: openwiki-source-23775c3de52f3ab95a13cb8b
     resource: repo://README.md
@@ -21,7 +21,7 @@ sources:
     resource: repo://src/source.rs
   - id: openwiki-source-62eef0b8799186dd9e2faae9
     resource: repo://src/storage.rs
-generated: { by: "codex", at: "2026-11-02T15:43:42.669Z" }
+generated: { by: "codex", at: "2026-11-02T16:08:33.221Z" }
 ---
 
 # Tilbudsdata og normalisering
@@ -45,3 +45,9 @@ Enhedspris beregnes kun, når pris, præcis mængde og mængdegrundlag er kendt.
 Dubletidentiteten består af kilde, kilde-id, kæde-id, hele butiksobjektet og gyldighed. Struktureret serialisering undgår kollisioner fra skilletegn. For samme identitet beholdes det leksikografisk første serialiserede `Offer`; antal dubletter tælles, og resultater samt ugyldige poster ordnes deterministisk uanset inputrækkefølge. EAN og produkt-id indgår ikke i identiteten. Tilbud fra forskellige kilder flettes ikke sammen, selv ved samme navn eller EAN; CLI samler kildevis resultater, og præsentationen kan vælges som JSON eller human.
 
 `storage::publish` gemmer kun komplette resultater uden kilde- eller valideringsfejl. Efter indlæsning genbruges motorens `validity_status` og `unit_price` til at klassificere gyldighed og beregne enhedspris. Se [snapshot-lagring](../operations/storage.md) for format og fejlhåndtering. Se [kom godt i gang](../quickstart.md) for aktuel brug og test. Kontrakten og eksemplerne findes i [offer-v1](../../docs/offer-v1.md); [motortestene](../../tests/engine.rs) dækker blandt andet normalisering, fejl og dubletter.
+
+## Rensning og søgning
+
+Efter fuld validering fjerner `engine::remove_expired` kun tilbud, som er beviseligt udløbne ved hentningens fælles referencetid. Ufuldstændige kørsler ændres ikke af rensningen og kan ikke publiceres; en vellykket hentning erstatter kildens snapshot atomisk. Se [lagring](../operations/storage.md).
+
+CLI’et læser de enkelte snapshots og filtrerer og rangerer resultater i `find`; det er en præsentationsgrænse oven på den fælles datamodel, ikke en sammenfletning af kilder. [Søgeguiden](../workflows/search.md) beskriver ordmatch og output.

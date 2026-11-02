@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:b0c4974af27809116e4ef5b794bf8501b60c73475f07c8f00edda6dbe8333f68",
+  "pageVersion": "sha256:076551e8c534ed6f46a3c0e4122e38cb15bcc251680d5460c42d3be3eaf20b6a",
   "claims": [
     {
       "id": "claim_5d406d857fc84279bedaca4f2421668a",
@@ -67,12 +67,12 @@
       "statement": "Snapshotmanifestets offer_count tæller gemte rækker inklusive katalogrækker; CLI hent oplyser særskilt promotion_count og catalog_count.",
       "evidence": [
         {
-          "resource": "repo://src/main.rs#L308-L316",
-          "version": "repo-lines-v1:sha256:534a7f790096f0ca3ea19b150011bfd7b6f7f3154f735fb48f3651a6371c6c4c:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGYxOTY1OWY4NzJmOWY2OTRkNjVlNWU1YzJjYTQyOGRmMThkZmQ5NzI3NDQzMzcyZmVmYTM0ZTA0ZGRiMjEwNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2M1MTg4MDU2ZTNhZTExZGM0Zjc4OTFkNWNiYzdmMWI1YzI1ZGZkYjNlZWRhMjgwODI2ZmE5ZDlhMDcyZTgwZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTVhZDBlNmNhODA4NDFlNTljMWE0NGU1NTY1NTZmYzEzMGNlZGRkMDk2ZTJiNDAyMjhjZDcyN2Y2YjYxOGQ2MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjYwNzJiNmQ1ODkzNTU5NTk2YjFiYzVjOGE1YjEyYWE1M2E3N2E1ZjA3ZTBhMjM0NWJiM2IxOWUxYmFhYzM1NCJ9"
+          "resource": "repo://src/main.rs#L330-L342",
+          "version": "repo-lines-v1:sha256:1d4eb6ad26f8f1fbf32039d258c21e5a2dc1fc0c45ae59396bfba9e331d54063:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4MWJhOTg1Nzc0ZWY0NjQ0ZjYzNWQ0ZTBkMDllZTM0ZDg3ZDViMDcxYjQ0MTYwNDEwNjFmZjk5NzkzMDhiYjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3ZjMyNjQzZWU5YzY4YjUzMTJlNjA5ODNlYzUyM2Y2NTE4ZTQ3MDdhMWVlYWU5ZWUwMmQxNDI4M2E2MmE5NmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU4YzBlZDk2ZDhkY2U4NWJkYWU3ZDRkNzNhNzVjNmY4NmU0ZDNiNTQ0MzUyZWRkYWFiZTIwYmNlMDdmYmJjZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2MDcyYjZkNTg5MzU1OTU5NmIxYmM1YzhhNWIxMmFhNTNhNzdhNWYwN2UwYTIzNDViYjNiMTllMWJhYWMzNTQifQ"
         },
         {
-          "resource": "repo://src/storage.rs#L240-L250",
-          "version": "repo-lines-v1:sha256:fb43b4851fcf9c2d59e2d1934c8173785291c19b18336dba7b47e237d7a23741:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1YzcxYTgyYjRlYjIwYTI1OTUwZGJmYjE5Y2MwNjJjYzY2MTE5ZjA1NzFlYTA5MDJmYjdmZjRlNjczMzI5ZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyOGE0MDE2ZWY0YzY3Y2E3MThjNjUyZmZhNGFiMDlhMDk2OTIxZmNkMDY0ZWFhMTYxZTlmYmE2NTUwMWZhNDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2MTRhMmM1OTA0ZmZlODg5ZjM4ODc3ZGQ2NTBkMjJiODBmYzM2NDgxNzM1N2Y1NDNjNTQ3M2JhN2Q3NGM0N2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQwNGU4ZDNiZGMzN2IzNjQ1NmZmY2NhYzVkOGQ4MTdmY2ZmZWU0YzNlZDAyMTU4ZmJjNWMzY2M4ZmJlYzMxMTAifQ"
+          "resource": "repo://src/storage.rs",
+          "version": "repo-file-v1:sha256:ffeaacfe0841a0267cf12e3eb07c51ba3cc05927324af0228dae12d5eab3bf9f"
         }
       ]
     },
@@ -81,8 +81,12 @@
       "statement": "Ved hent --alle publiceres komplette kilder uafhængigt, mens en fejlet kilde bevarer sit eksisterende snapshot.",
       "evidence": [
         {
-          "resource": "repo://src/main.rs#L292-L316",
-          "version": "repo-lines-v1:sha256:207dcabd06708d3f210a90f9bb9285d0849ee48bdf4266e49d9ab80c0aeab81e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdiMTYyMzMyYWU1MGM2Y2M5YzVmNDUwODg5OWQ2NDNkYWUyNTVlNDM2OGUxZjg5ZTVhZTYxNzBhNWY4NzYyZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjNTE4ODA1NmUzYWUxMWRjNGY3ODkxZDVjYmM3ZjFiNWMyNWRmZGIzZWVkYTI4MDgyNmZhOWQ5YTA3MmU4MGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZiNmM0YzgzNjliZWE4NzViMDUwZDI3OTU1NTY1MTViMjIzODYzMmQ3NDlmNjIzMTJmNDMzZDk4ODczZDc4M2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2MDcyYjZkNTg5MzU1OTU5NmIxYmM1YzhhNWIxMmFhNTNhNzdhNWYwN2UwYTIzNDViYjNiMTllMWJhYWMzNTQifQ"
+          "resource": "repo://src/main.rs#L310-L342",
+          "version": "repo-lines-v1:sha256:c28bfb86e6776a8e85613f32ee5dd04ba06b1006adbc9989e5094853eb232797:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwOWVhYzZhODg0YjdmODIyY2VhZDVhYjQwZjlkYTg2ZmUxNDYyNzhkMTdmZDczM2VmMTdjOWE4YTk1YTVmY2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3ZjMyNjQzZWU5YzY4YjUzMTJlNjA5ODNlYzUyM2Y2NTE4ZTQ3MDdhMWVlYWU5ZWUwMmQxNDI4M2E2MmE5NmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQxMTUwZmI3MGU1OTdhZWU4OWE0NGQ3MGNmMzM0YzZiYmFjMjZjYmFkMTVhOTViMGY2MjNiODVmMTJiYTQyYzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2MDcyYjZkNTg5MzU1OTU5NmIxYmM1YzhhNWIxMmFhNTNhNzdhNWYwN2UwYTIzNDViYjNiMTllMWJhYWMzNTQifQ"
+        },
+        {
+          "resource": "repo://src/storage.rs",
+          "version": "repo-file-v1:sha256:ffeaacfe0841a0267cf12e3eb07c51ba3cc05927324af0228dae12d5eab3bf9f"
         }
       ]
     },
@@ -92,17 +96,35 @@
       "evidence": [
         {
           "resource": "repo://README.md",
-          "version": "repo-file-v1:sha256:0861512831466f9b6e1e62b855d50d18c2df401bdb0e71c63a2ca1d665c845c0"
+          "version": "repo-file-v1:sha256:089e21f12ec8c420a564f86b1d6fbad8237019ae6835f0ab5e18a7fc7c4a3a9d"
         },
         {
           "resource": "repo://scripts/test.sh",
           "version": "repo-file-v1:sha256:b5e5c8233c91b01fff74aed83603ad9a681d6789a4c14c6797f6a546891c8cee"
         }
       ]
+    },
+    {
+      "id": "claim_e7d58979821b45afa3aa778ef144d9e4",
+      "statement": "Hentning fjerner først efter komplet validering beviseligt udløbne poster ved samme referencetid og rapporterer expired_removed; rensningen publiceres ved næste vellykkede hentning.",
+      "evidence": [
+        {
+          "resource": "repo://src/engine.rs#L85-L100",
+          "version": "repo-lines-v1:sha256:363a3637c2a4ca4cf1ba18f52b2e1a970f6fcb99778ccee86734e3af3a122983:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMjM4NjQyNWUwNDI0OGM5ZWFmNzNlYzNjZTU3NmE2Y2Q1YzFjNDVmZDMwNWM4YzY3NGE3NmNkMWJiMjg5ODgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE4ZjdhMDEzNTlkYzdmYmUzOWUzODYwOTk1ODNiYzA1N2NmODBhNTkyYmZiN2ZhZGNlZDNjNWRjODA2OTIwMDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE3Njc4NGFkMzEzNThlZjE2MDc5MDI1NThkZjYzMGQ2YmEyNTgxNjlhOTU1NjlmYzZkYjBjZjBjZjgwMjE3OGEifQ"
+        },
+        {
+          "resource": "repo://src/human.rs",
+          "version": "repo-file-v1:sha256:d14228c7a694abb8418c8d7f58cc846a9509e727f4912a9686b5611d435389b9"
+        },
+        {
+          "resource": "repo://src/main.rs#L310-L342",
+          "version": "repo-lines-v1:sha256:c28bfb86e6776a8e85613f32ee5dd04ba06b1006adbc9989e5094853eb232797:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwOWVhYzZhODg0YjdmODIyY2VhZDVhYjQwZjlkYTg2ZmUxNDYyNzhkMTdmZDczM2VmMTdjOWE4YTk1YTVmY2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3ZjMyNjQzZWU5YzY4YjUzMTJlNjA5ODNlYzUyM2Y2NTE4ZTQ3MDdhMWVlYWU5ZWUwMmQxNDI4M2E2MmE5NmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQxMTUwZmI3MGU1OTdhZWU4OWE0NGQ3MGNmMzM0YzZiYmFjMjZjYmFkMTVhOTViMGY2MjNiODVmMTJiYTQyYzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2MDcyYjZkNTg5MzU1OTU5NmIxYmM1YzhhNWIxMmFhNTNhNzdhNWYwN2UwYTIzNDViYjNiMTllMWJhYWMzNTQifQ"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.3",
-    "at": "2026-11-02T15:45:43.206Z"
+    "at": "2026-11-02T16:08:33.221Z"
   }
 }

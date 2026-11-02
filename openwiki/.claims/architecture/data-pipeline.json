@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:768d369460c673c67546292249ac7901c6299660d02b09c675f257b747315c1a",
+  "pageVersion": "sha256:3daa0d88869350cd4b46ed208ec636953c8fef37cd575a45fdd96508c3d7e616",
   "claims": [
     {
       "id": "claim_208aec96bb84466ebb0d5e39f04252db",
@@ -21,7 +21,7 @@
       "statement": "Motoren accepterer DKK og omregner Major-kroner og Minor-øre til ikke-negative hele øre; Major tillader en afrundingsafvigelse på op til 0,00000001 øre, mens Minor kræver hele øre.",
       "evidence": [
         {
-          "resource": "repo://src/engine.rs#L99-L122",
+          "resource": "repo://src/engine.rs#L111-L134",
           "version": "repo-lines-v1:sha256:7a0ae81eee35f99ee7ea1200cad27e9845627c67b0063bd17464b1e652917c87:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1YWNlMWUyOTdhZWYzYmU5OTk3YmQwNWIwMTMyZTlkNzQ1NDVjMjBkODJhNzc4NGY1MGRjMGI0NGRhZmM4YzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5YjE5ODJlOGRkNzQ4MTE4MTQ2YjM5YTJkMDA2MmY0MDgxZTM0Nzc5Yjg2NzVjMjM0YzRmYjEyNGRjMzkzOTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5MDJjNWEzZjcwM2Y5YmQwYzE2NTQyYjI3NzY0NjhmOGQ5YTRkNjQ0MzcwMTAwZDg5NWUzYjJkY2RlZjdmMzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNjYjIxOTcwMDZjZjU5ODI4NmRmZjJlMWY2NjQxYWU3ZjgzYzJkOGEzMTFkZTllZWJmODViNDVjMGJhNzc4YWUifQ"
         },
         {
@@ -35,7 +35,7 @@
       "statement": "Mængder, herunder pcs, normaliseres til kg, liter eller styk; enhedspris kræver præcis mængde og grundlag samt præcist antal ved per-styk-mængde.",
       "evidence": [
         {
-          "resource": "repo://src/engine.rs#L219-L384",
+          "resource": "repo://src/engine.rs#L231-L396",
           "version": "repo-lines-v1:sha256:234aa7c1e4d01d5ab7b6b21bb777d213f84800563f5952d5c60e0446715848e7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTY2LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJhMTQ3NmQ2OWVhY2M3ZjgwZjM4MWRkNDkxNGY5Zjg2NDc4ZWYzNzE2MDU3YjgzZjU1MGU5MGY3NzJjZGMyZjBiIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkMGNmZTRmNDhjYTgzYTc5Yjg4NjEwNjIwNzM5ZTBlODE2NzMxNTFlZjU1ZTg1ZDBiNWM3NWFmOWExMThkNjhlIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
         }
       ]
@@ -45,8 +45,8 @@
       "statement": "Dubletter bestemmes af kilde, kilde-id, kæde-id, butik og gyldighed; en deterministisk serialiseret repræsentation afgør hvilken der beholdes.",
       "evidence": [
         {
-          "resource": "repo://src/engine.rs#L48-L97",
-          "version": "repo-lines-v1:sha256:b3998571b90841208f41f01811bbce16ff4edc89fa437276357471fbaf9c968b:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhYzFhMzgwZTBiNDFjNzM5YTI2Y2YxOTMyMDkwYzg3NDYzODhiYmMxNzVmZDRjNDM4NDQ0ZWQwY2UxZTAxNmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2OTMwZjVjMmNhYTE4YTY1ZjU5YjQ1NDQ0YWQ0ZTFkNDJiYzViZmY1YzlkY2VmNTA0NDc5OTc0NzEyYmQ5YzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzNWU2NDVmZmUzZTVkMjEzZmIxMmNhNTEyODUyMjRjMmU5ZGM4ODJmMzQ2M2Y3YWU2M2EzOWQ3OWU2ZmQ0OWYifQ"
+          "resource": "repo://src/engine.rs#L48-L110",
+          "version": "repo-lines-v1:sha256:6a44c834a331f859c4e30cb6c32bac089f91be672f956b48472b3b178fd35a3f:eyJzZWxlY3RlZExpbmVDb3VudCI6NjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhYzFhMzgwZTBiNDFjNzM5YTI2Y2YxOTMyMDkwYzg3NDYzODhiYmMxNzVmZDRjNDM4NDQ0ZWQwY2UxZTAxNmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2OTMwZjVjMmNhYTE4YTY1ZjU5YjQ1NDQ0YWQ0ZTFkNDJiYzViZmY1YzlkY2VmNTA0NDc5OTc0NzEyYmQ5YzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM5MGZkZGI2NjcxYjgxYTIzZWE2YWI2NDdlMTUxMzc5ZmViMzNiOTMzNDAyMGVhNTU1OGMzZjU5ODE1YmQzNDEifQ"
         }
       ]
     },
@@ -55,11 +55,11 @@
       "statement": "Datoer bevares uden antaget tidszone; gyldighedsgrænser af samme type kontrolleres for omvendt rækkefølge.",
       "evidence": [
         {
-          "resource": "repo://src/engine.rs#L126-L135",
+          "resource": "repo://src/engine.rs#L138-L147",
           "version": "repo-lines-v1:sha256:74e1ce06a4c991e5e022b8721d96bcb0fb68fae56bf0908c3c5116b40c2cc173:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5YjQ3ZTlkOGJiMjQwZDIxNmQyODFlNzRkYWFiZGJiZmYzMGNhOGQzMzUwMDNkNTE1NDc5MWUwMGNkZDg0MmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNjYjIxOTcwMDZjZjU5ODI4NmRmZjJlMWY2NjQxYWU3ZjgzYzJkOGEzMTFkZTllZWJmODViNDVjMGJhNzc4YWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA5ODU5ZTQ0NGFhNDE2NGNjNzVhNjQyMDk1YjE1MzY2OTJkZDJiMjhhZTdiMzI1YjIxYzY4NTk3YmI4MDdjMjQifQ"
         },
         {
-          "resource": "repo://src/engine.rs#L155-L166",
+          "resource": "repo://src/engine.rs#L167-L178",
           "version": "repo-lines-v1:sha256:c8c91ed969b79a670a1939467dd6b8d91a93cbeeb9807f734e3a9bf5e18f417d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRkOWZjNDQxYTdmYmNhYTRmOWNiMzFlZjBlY2VmOWY3OWE0OTUwMDJkYWFjNTk5NGU0OTI5NGEyMDUzMzhhNmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkNGFlOGM0ZjQzNzczNWJhZWZkYjdjNmNmZjZlYzdmZmUyMjljZTMwYTdmMjI1Mzc1MjVhMTkzNTQ4MDA1OTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI5MTY0ODNiN2VkMGViNzViMWFhYmYwNDdiY2NiZDQ5NjQxMDQyMzliMWRhZmRhMWJmODMwZTU5NzRkNWEyY2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiODhiNzE0OTAzYjc2ZDExMzU5ZjI4OTgzMTdiY2IwMWEzYTEwZWI5YmI5MDI3NDM5NjIxMGJmYWE5MzljY2UifQ"
         },
         {
@@ -73,11 +73,11 @@
       "statement": "Overskrift er valgfri, og blanke overskrifter normaliseres til ukendt.",
       "evidence": [
         {
-          "resource": "repo://src/engine.rs#L137-L146",
+          "resource": "repo://src/engine.rs#L149-L158",
           "version": "repo-lines-v1:sha256:fef5e75e7adf2f16fd57e42870794669513b4cf4da698afaac9988cc61941643:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhYzg4ZDdmNmNhN2Q3NTUzYTljNWExMzFkNmYwMmI0Y2UwMGJjOTY0NzM5OWNjYmJjN2ZiYzYwYzJiMmYyY2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIzZGE3YTYzODhlOTI0NDdkNWY1OTA4ZTU1Nzc3NTNiOTQ5YTUzYzJlZTQzNWFmNmE4ZWE4MDA0NTg1MTVjNTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE5M2I1ZmM0MjNmYmNjNzNkMTEwMjg0ZTc4Y2I1YWIwOGZjZWQ4NjI3MzNmMGEyMjFiNTRjMzQ4Yzk3M2MzMTcifQ"
         },
         {
-          "resource": "repo://src/engine.rs#L188-L194",
+          "resource": "repo://src/engine.rs#L200-L206",
           "version": "repo-lines-v1:sha256:fcf14f9ad91708a8b6dea06a9555ac2766e435284a96de9f607f58c12d96e0c6:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWZkMjhhNDdkYzBjZTVkNGU1YmRhM2NkMTljMzhkZjdmMjM0Mzc4YjU2NjhkYzYyODA0OTJiYTFmOGU5MjIzYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQ1NGZiMzRiODkxNjBlNThmOWQzNTYwNzExZDMxYWYwODM3YjI4NTg3ZjMzNTBmNmM1NGYyYzE4YzM1NWQ5YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjJlY2ZkMWY3ZGIyNmM1MzVhYjZmZDZjODdmNzRiM2JjNjQ2MTBkM2E3YTJmMjMwMzI5ZjIzMjU2OGNkZGZiZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjA1OWQ0MWVkOWI2YmFmYWU1ZDhmYjdjMmIwYWQ3Y2YwMjBhNzllMzUxNGRhODc4ZjQwNWRjOTVhMTIzZmVmMyJ9"
         }
       ]
@@ -101,7 +101,7 @@
       "statement": "Lagring offentliggør kun komplette resultater uden kilde- eller valideringsfejl, og motoren tilbyder fælles hjælpere til gyldighed og enhedspris for gemte tilbud.",
       "evidence": [
         {
-          "resource": "repo://src/engine.rs#L335-L384",
+          "resource": "repo://src/engine.rs#L347-L396",
           "version": "repo-lines-v1:sha256:6570a23400b0ad968fc50bf9f98a02626bf33fed06a94aff25481b385244878e:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5N2VmZjczNWE3YTcyYWZiYzVlOGNjZjQ3YTFjMWU5MDU4MjU2OWJjNDYzZDhhYTA3ZGU5NjEzNmY2NzkyNGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1ZjZmNDY2ZTU5Y2ZjMzA3MDNjNDVmNzJhZjY1ZGU1NGFjMzYzZDM1NGNjMWEzMzMwMzUwYWNkNDUyNDM0YzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         },
         {
@@ -115,7 +115,7 @@
       "statement": "Kildeejede metadata angiver kæder, kapabiliteter og dækningsbegrænsning; CLI dispatches gennem en fælles Source enum.",
       "evidence": [
         {
-          "resource": "repo://src/main.rs#L84-L114",
+          "resource": "repo://src/main.rs#L91-L121",
           "version": "repo-lines-v1:sha256:05d5496c1e35533db46b137d565ae507babf57b07c99026a84645f8fa3be86c9:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2NDA5OGU2MWY5OWMyNjUwZTYzMTM0ZTcxNzdkZjRjYWRmNjUxOGQ0MDAzZTNhNWI4ODQ4Yzk1YzVmNDBhMmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ0YjBiMDI5MDNmYjQ1YWJmNTc3OGMxZTY2NTJkZmNhM2VlNmU2OGM4NzM5MzMxYThmOTEyYmUwNzY2YzFjNDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZhYmM1N2Q4NmEzMWNiOTI2ODY1NDVjNDhkNDdjNTU4YTkxZDk2MDQ5MTgzMjFhNGVkYjkzYTgzZGY0MDU5ZDkifQ"
         },
         {
@@ -129,7 +129,7 @@
       "statement": "Ved præcis lighed med en tidsgrænse er gyldighed ukendt, medmindre en anden grænse afgør udløb eller fremtid; datogrænser bruger Copenhagen og inklusiv slutdato.",
       "evidence": [
         {
-          "resource": "repo://src/engine.rs#L335-L373",
+          "resource": "repo://src/engine.rs#L347-L385",
           "version": "repo-lines-v1:sha256:e5c0d3f0ab3ef5f9e1137b6ea770f8d672569d73e18051cb3419c65b6e5acacd:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5N2VmZjczNWE3YTcyYWZiYzVlOGNjZjQ3YTFjMWU5MDU4MjU2OWJjNDYzZDhhYTA3ZGU5NjEzNmY2NzkyNGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1ZjZmNDY2ZTU5Y2ZjMzA3MDNjNDVmNzJhZjY1ZGU1NGFjMzYzZDM1NGNjMWEzMzMwMzUwYWNkNDUyNDM0YzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY1OWIzYzA0ZmJkYTNkMjc0OWZlYTEwNDcwODJhODg1ZGViYmExZGFlYmY1ODNiM2E3YmY4Mjg1ODU1MjUyYmEifQ"
         }
       ]
@@ -154,13 +154,27 @@
       "evidence": [
         {
           "resource": "repo://README.md",
-          "version": "repo-file-v1:sha256:0861512831466f9b6e1e62b855d50d18c2df401bdb0e71c63a2ca1d665c845c0"
+          "version": "repo-file-v1:sha256:089e21f12ec8c420a564f86b1d6fbad8237019ae6835f0ab5e18a7fc7c4a3a9d"
+        }
+      ]
+    },
+    {
+      "id": "claim_7112e0dcd5f4427ea0334826babe4578",
+      "statement": "Efter fuld validering fjerner hentning kun beviseligt udløbne tilbud ved en fælles referencetid; ufuldstændige kørsler renses ikke og publiceres ikke.",
+      "evidence": [
+        {
+          "resource": "repo://src/engine.rs#L80-L100",
+          "version": "repo-lines-v1:sha256:87aec9bceb1b9f4b41eaf018282ecb3b74dac63bf32b2923359f76643ba6bedc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU4MDJmYTI0ZDg0NDE4M2MzM2ZjNzAyOTFkMzcxMWUzYWI0ZGNhZDkzYzU5MmNjYWYzZTg2NGJkMTc1NjNkOTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMjM4NjQyNWUwNDI0OGM5ZWFmNzNlYzNjZTU3NmE2Y2Q1YzFjNDVmZDMwNWM4YzY3NGE3NmNkMWJiMjg5ODgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0ZjU5NDk4MzhlMTFkM2JiMzNhNTQ2ODZkNzdjMTQ4N2NlOTY1YzFhNDY2NmIyODNlZjYwNjE2MjBjNDFkYTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE3Njc4NGFkMzEzNThlZjE2MDc5MDI1NThkZjYzMGQ2YmEyNTgxNjlhOTU1NjlmYzZkYjBjZjBjZjgwMjE3OGEifQ"
+        },
+        {
+          "resource": "repo://src/main.rs#L328-L342",
+          "version": "repo-lines-v1:sha256:1212db1f6d2f97c648afb97c8f027986319f3c5dec976f8469ca211e4376ea16:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUxNWFjNjA5NDNlZDQzM2Q1Y2VhNWZlMjgxNjk2MTNmOWRmNjNjMzMzNzA5NWI3MTJmMDZmMmZlZmE1MDg0YTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3ZjMyNjQzZWU5YzY4YjUzMTJlNjA5ODNlYzUyM2Y2NTE4ZTQ3MDdhMWVlYWU5ZWUwMmQxNDI4M2E2MmE5NmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlYzcyYmZmNjgzMDk3NWIzYzAzZTY1YzBkZWNmM2NmNjc2NDNlZDAyNDE0MGNkY2JiYTVkZWQ5NTEyNTk5NjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2MDcyYjZkNTg5MzU1OTU5NmIxYmM1YzhhNWIxMmFhNTNhNzdhNWYwN2UwYTIzNDViYjNiMTllMWJhYWMzNTQifQ"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.3",
-    "at": "2026-11-02T15:45:43.206Z"
+    "at": "2026-11-02T16:08:33.221Z"
   }
 }

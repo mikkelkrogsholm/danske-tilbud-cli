@@ -8,12 +8,16 @@ sources:
     resource: repo://docs/verification.md
   - id: openwiki-source-37441fc6d42f7dc6f56c109e
     resource: repo://src/bilkatogo.rs
+  - id: openwiki-source-ccfe8cc4504f25c304787a46
+    resource: repo://src/engine.rs
+  - id: openwiki-source-b55a21a31ede1b56cd31a6a6
+    resource: repo://src/main.rs
   - id: openwiki-source-62eef0b8799186dd9e2faae9
     resource: repo://src/storage.rs
-generated: { by: "codex", at: "2026-11-02T15:43:42.669Z" }
+generated: { by: "codex", at: "2026-11-02T16:08:33.221Z" }
 verified:
   - by: openwiki/0.7.3
-    at: 2026-11-02T15:45:43.206Z
+    at: 2026-11-02T16:08:33.221Z
 ---
 
 # BilkaToGo-kilden
@@ -29,6 +33,8 @@ Søgningen pagineres med op til 100 sider à 1000 varer. Den kræver et udtømme
 ## Pris og gyldighed
 
 Pris og eventuel førpris læses fra det valgte scopes `storeData`; nul i `beforePrice` betyder ukendt førpris. Kildens priser er øre og sendes som `Minor` til motoren, som kræver hele øre. Uklare indholdstekster og oplyste vilkår bevares som beskrivelse. Tilbudsperiode og medlemskab antages ikke. `tilbud find kaffe --kilde bilkatogo --include-unknown` medtager derfor poster med ukendt gyldighed; uden flaget kræves beviseligt aktuelle tilbud.
+
+Ved næste vellykkede hentning bevares poster med ukendt periode i snapshotet; der antages ingen udløbsalder. Se [søgning](../workflows/search.md) for gyldighedsfilter og pagination.
 
 ## Dateret observation
 
