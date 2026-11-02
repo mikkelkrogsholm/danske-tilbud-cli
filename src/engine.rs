@@ -317,3 +317,51 @@ pub fn validate_offer(offer: &Offer) -> Result<(), String> {
     }
     Ok(())
 }
+
+/// Classify validity at an instant. Date boundaries use Copenhagen's local date;
+/// the end date includes its entire local day. Unknown boundaries cannot certify currentness.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
+#[serde(rename_all = "snake_case")]
+pub enum ValidityStatus {
+    Current,
+    Future,
+    Expired,
+    Unknown,
+}
+
+pub fn validity_status(validity: &Validity, now: chrono::DateTime<chrono::Utc>) -> ValidityStatus {
+    let today = now
+        .with_timezone(&chrono_tz::Europe::Copenhagen)
+        .date_naive();
+    let future = match &validity.starts {
+        TimeBoundary::Instant(v) => *v > now,
+        TimeBoundary::Date(v) => *v > today,
+        TimeBoundary::Unknown => false,
+    };
+    let expired = match &validity.ends {
+        TimeBoundary::Instant(v) => *v < now,
+        TimeBoundary::Date(v) => *v < today,
+        TimeBoundary::Unknown => false,
+    };
+    if expired {
+        ValidityStatus::Expired
+    } else if future {
+        ValidityStatus::Future
+    } else if matches!(validity.starts, TimeBoundary::Unknown)
+        || matches!(validity.ends, TimeBoundary::Unknown)
+    {
+        ValidityStatus::Unknown
+    } else {
+        ValidityStatus::Current
+    }
+}
+
+/// Calculate a unit price from a canonical stored offer.
+pub fn unit_price(offer: &Offer) -> Option<UnitPrice> {
+    calculate_unit_price(
+        offer.price.amount_ore,
+        offer.quantity.as_ref(),
+        offer.quantity_basis.as_ref(),
+        offer.pieces.as_ref(),
+    )
+}

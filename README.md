@@ -1,12 +1,31 @@
 # Tilbud
 
-Et dansk dagligvare-CLI i en tidlig grundversion. Programmet kan vise hjælp
-og oplyser, at tilbudssøgning endnu ikke er implementeret. CLI’et har endnu ingen lagring eller visning af tilbud. Biblioteket kan gemme komplette [JSONL-snapshots](docs/storage.md). En biblioteksadapter
-kan hente katalogtilbud fra Tjek; se [kildens dækning og begrænsninger](docs/tjek.md).
+Et dansk dagligvare-CLI med lokale snapshots fra Tjek. Søgning foretager
+ingen netværkskald; hent først en komplet kilde. Kilden henter direkte tilbud for de fleste angivne kæder, ikke nødvendigvis alle tilbud;
+Bilka bruger katalog-fallback, hvor selvstændige direkte tilbud ud over 1000 udelades. Se [kildens begrænsninger](docs/tjek.md).
 
 ```sh
-cargo run -- --help
+cargo run -- kilder
+cargo run -- beskriv tjek
+cargo run -- hent --kilde tjek
+cargo run -- find kaffe --butik netto --limit 20
+cargo run -- find mælk --include-unknown --data-dir /sti/til/data
 ```
+
+Alle kommandoer giver et JSON-objekt med `schema_version`, `command` og `data`
+på stdout. Fejl giver en ikke-nul exitkode og diagnosticering på stderr.
+`--data-dir` placeres efter kommandoen og tilsidesætter `TILBUD_DATA_DIR` og
+platformens standardmappe, som beskrevet i [lagerkontrakten](docs/storage.md).
+`kilder` og `beskriv` viser metadata, kendte kæde-ID'er og seneste snapshot,
+hvis det findes. `hent` henter hele kilden og erstatter kun et eksisterende
+snapshot efter en fuldført kørsel. `find` søger uden hensyn til store og små
+bogstaver i navn og beskrivelse. Den viser kun tilbud, der er beviseligt
+aktuelle; `--include-unknown` medtager også poster med ukendte datoer, men
+ikke poster der vides at være fremtidige eller udløbne. Datoer bruger
+Europe/Copenhagen og slutdatoen er inklusiv; tidspunkter sammenlignes præcist.
+Resultater indeholder original gyldighed, gyldighedsstatus og enhedspris, når
+den kan beregnes. `total` er antal match før `limit` (standard 20). Katalogpriser
+udelades. `fetched_at` fortæller, hvornår snapshot blev hentet.
 
 Den fælles serde-model og dokumenterede JSON-eksempler findes i
 [tilbudskontrakten](docs/offer-v1.md). CLI-argumenter og hjælp håndteres af

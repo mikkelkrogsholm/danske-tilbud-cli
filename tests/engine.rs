@@ -247,3 +247,76 @@ fn completeness_requires_affirmative_batch_without_errors_or_invalid_records() {
     assert!(!normalize_batch(metadata(), b).complete);
     assert!(!normalize_batch(metadata(), SourceBatch::default()).complete);
 }
+
+#[test]
+fn validity_uses_copenhagen_calendar_and_precise_instants() {
+    use chrono::{NaiveDate, TimeZone, Utc};
+    use tilbud::{
+        engine::{ValidityStatus, validity_status},
+        offer::{TimeBoundary, Validity},
+    };
+    let now = Utc.with_ymd_and_hms(2026, 1, 1, 23, 30, 0).unwrap();
+    let date = |d| TimeBoundary::Date(NaiveDate::from_ymd_opt(2026, 1, d).unwrap());
+    assert_eq!(
+        validity_status(
+            &Validity {
+                starts: date(2),
+                ends: date(2)
+            },
+            now
+        ),
+        ValidityStatus::Current
+    );
+    assert_eq!(
+        validity_status(
+            &Validity {
+                starts: date(1),
+                ends: date(1)
+            },
+            now
+        ),
+        ValidityStatus::Expired
+    );
+    assert_eq!(
+        validity_status(
+            &Validity {
+                starts: date(3),
+                ends: TimeBoundary::Unknown
+            },
+            now
+        ),
+        ValidityStatus::Future
+    );
+    assert_eq!(
+        validity_status(
+            &Validity {
+                starts: TimeBoundary::Unknown,
+                ends: date(2)
+            },
+            now
+        ),
+        ValidityStatus::Unknown
+    );
+    let instant =
+        |seconds| TimeBoundary::Instant((now + chrono::Duration::seconds(seconds)).fixed_offset());
+    assert_eq!(
+        validity_status(
+            &Validity {
+                starts: instant(-1),
+                ends: instant(0)
+            },
+            now
+        ),
+        ValidityStatus::Current
+    );
+    assert_eq!(
+        validity_status(
+            &Validity {
+                starts: instant(-2),
+                ends: instant(-1)
+            },
+            now
+        ),
+        ValidityStatus::Expired
+    );
+}
