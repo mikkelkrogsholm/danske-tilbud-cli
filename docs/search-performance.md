@@ -33,3 +33,20 @@ sker fortsat ved hvert kald; koden deserialiserer hver post to gange og sorterer
 alle match før pagination. Det er sandsynlige omkostninger, men ingen separat
 profilering identificerer deres andel. Målingen viser ingen stor ændring i
 svartiden og begrunder ikke et større lagrings- eller indekseringsarbejde her.
+
+## Gentag målingen
+
+Byg først den ønskede revision som release-binær, og kør derefter:
+
+```sh
+python3 scripts/benchmark-search.py /absolut/sti/til/tilbud
+```
+
+Hjælperen genererer 12.000 poster fra kontraktens første eksempel i sin egen
+midlertidige mappe, kontrollerer at CLI'en finder 3.000 match, og måler samme
+singleword-kald med to opvarmninger og 30 gentagelser. Den rapporterer
+input- og outputbytes, median og p95 og sletter sine data og låsefiler efter
+kørslen. Datoerne i det genererede snapshot beregnes fra kørselsdagen, så
+antal bytes og resultaternes metadata ikke nødvendigvis er identiske med den
+oprindelige måling. Anvend samme genererede bytes og belastningsforhold til en
+strengt sammenlignelig før/efter-måling.
