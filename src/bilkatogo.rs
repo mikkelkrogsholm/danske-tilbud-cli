@@ -324,18 +324,18 @@ fn map_product(v: &Value, store: &str, now: &str) -> Result<RawOffer, String> {
     if let Some(s) = text(&v["netcontent"]) {
         desc.push(format!("Indhold: {s}"));
     }
-    for field in [
-        "offerDescription",
-        "offerMax",
-        "offerMaxDescription",
-        "offerCount",
-        "multipromo",
-        "multiPromoPrice",
+    for (field, label) in [
+        ("offerDescription", "Tilbudsvilkår"),
+        ("offerMax", "Maksimumsantal"),
+        ("offerMaxDescription", "Maksimumsvilkår"),
+        ("offerCount", "Kildens antal"),
+        ("multipromo", "Flerkøb"),
+        ("multiPromoPrice", "Flerkøbspris, kildens værdi"),
     ] {
         let value = &selected[field];
         if !value.is_null() && value != "" && value != 0 {
             desc.push(format!(
-                "{field}: {}",
+                "{label}: {}",
                 value
                     .as_str()
                     .map(str::to_owned)
@@ -344,9 +344,12 @@ fn map_product(v: &Value, store: &str, now: &str) -> Result<RawOffer, String> {
         }
     }
     // Preserve source validity text without assuming timezone or inclusivity.
-    for field in ["offerFrom", "offerUntil"] {
+    for (field, label) in [
+        ("offerFrom", "Kildens startdato"),
+        ("offerUntil", "Kildens slutdato"),
+    ] {
         if let Some(s) = text(&selected[field]) {
-            desc.push(format!("{field}: {s}"));
+            desc.push(format!("{label}: {s}"));
         }
     }
     let q = v["netcontent"].as_str().and_then(quantity);

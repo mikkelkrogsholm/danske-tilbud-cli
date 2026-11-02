@@ -249,3 +249,51 @@ async fn missing_config_and_invalid_selected_price_fail_without_snapshot() {
     assert!(!batch.complete);
     assert!(batch.errors[0].contains("invalid selected-store price"));
 }
+
+#[tokio::test(flavor = "current_thread")]
+async fn source_conditions_use_readable_labels_and_preserve_values() {
+    let mut product = row(1);
+    let store = &mut product["storeData"]["1653"];
+    store["offerDescription"] = json!("Skarp pris");
+    store["offerMax"] = json!(2);
+    store["offerMaxDescription"] = json!("per kunde");
+    store["offerCount"] = json!(3);
+    store["multipromo"] = json!("2 for 50");
+    store["multiPromoPrice"] = json!("5000");
+    store["offerFrom"] = json!("dato fra kilden");
+    store["offerUntil"] = json!("dato til kilden");
+    let mut responses = config();
+    responses.push(page(vec![product], 0, 1));
+    let (url, task) = server(responses);
+    let result = engine::run(&adapter(&url), &FetchOptions::default()).await;
+    task.join().unwrap();
+    assert!(result.complete);
+    let offer = &result.offers[0].offer;
+    let description = offer.description.as_deref().unwrap();
+    for expected in [
+        "Tilbudsvilkår: Skarp pris",
+        "Maksimumsantal: 2",
+        "Maksimumsvilkår: per kunde",
+        "Kildens antal: 3",
+        "Flerkøb: 2 for 50",
+        "Flerkøbspris, kildens værdi: 5000",
+        "Kildens startdato: dato fra kilden",
+        "Kildens slutdato: dato til kilden",
+    ] {
+        assert!(description.contains(expected), "{description}");
+    }
+    for raw in [
+        "offerDescription",
+        "offerMax",
+        "offerMaxDescription",
+        "offerCount",
+        "multipromo",
+        "multiPromoPrice",
+        "offerFrom",
+        "offerUntil",
+    ] {
+        assert!(!description.contains(raw), "{description}");
+    }
+    assert_eq!(offer.validity.starts, TimeBoundary::Unknown);
+    assert_eq!(offer.validity.ends, TimeBoundary::Unknown);
+}
