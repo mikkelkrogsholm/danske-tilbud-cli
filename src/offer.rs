@@ -11,7 +11,7 @@ pub struct Offer {
     pub source_id: String,
     pub chain_id: String,
     pub store: Option<Store>,
-    pub heading: String,
+    pub heading: Option<String>,
     pub description: Option<String>,
     pub price: Price,
     pub quantity: Option<Quantity>,

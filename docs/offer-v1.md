@@ -2,7 +2,7 @@
 
 Et JSON-objekt repræsenterer én kildepost. `schema_version` er `1`, og
 `source` + `source_id` identificerer posten hos kilden. `chain_id` identificerer
-kæden; butik og lokation kan være `null`. Teksten i `description` bør bevare
+kæden; `heading`, butik og lokation kan være `null`, når kilden ikke oplyser dem. Teksten i `description` bør bevare
 kildens betingelser, f.eks. mængdebegrænsninger. `source_reference` er en
 reference til den oprindelige post, og `fetched_at` er et tidspunkt med eksplicit
 UTC-offset. EAN og produkt-ID er strenge, så foranstillede nuller bevares.
@@ -85,12 +85,14 @@ En kildeadapter beskriver metadata og filtreringsmuligheder og modtager
 omregne priser eller enheder. `SourceBatch` kan indeholde både poster,
 dækningsbeskrivelse og kildefejl, så et delvist resultat ikke ligner et
 fuldstændigt resultat. Engine returnerer gyldige tilbud, afviste råposter med
-årsager, kildefejl og antal dubletter. Netværk og konkrete adaptere indgår ikke
-endnu.
+årsager, kildefejl og antal dubletter. Tjek-adapterens kildedækning er
+beskrevet i [Tjek-kilden](tjek.md).
 
 Engine accepterer DKK som eksakte decimalstrenge og kræver hele, ikke-negative
-øre. Den normaliserer gram til kg, ml og cl til liter samt kendte styk-aliaser
-til `stk`; ukendte enheder og valutaer afvises. Enhedsprisen angives i decimal
+øre. Decimalafvigelser på højst 0,00000001 øre fra nærmeste hele øre
+rundes til dette øretal for at håndtere observeret kildestøj; større
+afvigelser afvises. Den normaliserer gram til kg, ml og cl til liter samt
+kendte styk-aliaser, herunder Tjeks `pcs`, til `stk`; ukendte enheder og valutaer afvises. Enhedsprisen angives i decimal
 øre pr. kg, liter eller stk. og beregnes kun ved kendt pris og præcis, positiv
 samlet mængde. Ved `per_piece` kræves et præcist antal dele. Intervaller og
 ukendt basis giver ingen enhedspris. Decimaldivision kan afrundes til

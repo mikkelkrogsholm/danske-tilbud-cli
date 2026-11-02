@@ -97,10 +97,11 @@ fn money(value: &Option<String>) -> Result<Option<u64>, String> {
         .map(|s| {
             let d = Decimal::from_str_exact(s).map_err(|_| format!("invalid price: {s}"))?;
             let ore = d.checked_mul(Decimal::from(100)).ok_or("price overflow")?;
-            if ore.is_sign_negative() || !ore.fract().is_zero() {
+            let rounded = ore.round();
+            if ore.is_sign_negative() || (ore - rounded).abs() > Decimal::new(1, 8) {
                 return Err("price must be nonnegative whole øre".into());
             }
-            ore.to_u64().ok_or_else(|| "price overflow".into())
+            rounded.to_u64().ok_or_else(|| "price overflow".into())
         })
         .transpose()
 }
@@ -121,17 +122,11 @@ fn normalize(source: &str, r: &RawOffer) -> Result<NormalizedOffer, String> {
     if r.schema_version != 1 {
         return Err("unsupported schema version".into());
     }
-    if [
-        source,
-        &r.source_id,
-        &r.chain_id,
-        &r.heading,
-        &r.source_reference,
-    ]
-    .iter()
-    .any(|s| s.trim().is_empty())
+    if [source, &r.source_id, &r.chain_id, &r.source_reference]
+        .iter()
+        .any(|s| s.trim().is_empty())
     {
-        return Err("identity, heading and source reference must be nonempty".into());
+        return Err("identity and source reference must be nonempty".into());
     }
     if r.currency != "DKK" {
         return Err(format!("unsupported currency: {}", r.currency));
@@ -179,7 +174,7 @@ fn normalize(source: &str, r: &RawOffer) -> Result<NormalizedOffer, String> {
         source_id: r.source_id.clone(),
         chain_id: r.chain_id.clone(),
         store: r.store.clone(),
-        heading: r.heading.clone(),
+        heading: r.heading.as_ref().filter(|s| !s.trim().is_empty()).cloned(),
         description: r.description.clone(),
         price,
         quantity,
@@ -212,7 +207,7 @@ fn normalize_quantity(q: &Quantity) -> Result<Quantity, String> {
             "l" | "liter" | "litre" => Ok(("l", Decimal::ONE)),
             "cl" => Ok(("l", Decimal::new(1, 2))),
             "ml" => Ok(("l", Decimal::new(1, 3))),
-            "stk" | "stk." | "styk" | "stykker" => Ok(("stk", Decimal::ONE)),
+            "stk" | "stk." | "styk" | "stykker" | "pcs" => Ok(("stk", Decimal::ONE)),
             _ => Err(format!("unsupported unit: {unit}")),
         }
     };

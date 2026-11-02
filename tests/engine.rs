@@ -26,7 +26,7 @@ fn raw(id: &str) -> RawOffer {
         source_id: id.into(),
         chain_id: "kæde".into(),
         store: None,
-        heading: "Æbler og øl".into(),
+        heading: Some("Æbler og øl".into()),
         description: None,
         currency: "DKK".into(),
         amount: Some("10.00".into()),
@@ -84,7 +84,7 @@ fn offline_adapter_normalizes_and_preserves_partial_failure() {
     assert_eq!(result.coverage.as_deref(), Some("første side"));
     assert_eq!(result.source_errors, ["side to fejlede"]);
     let o = &result.offers[0];
-    assert_eq!(o.offer.heading, "Æbler og øl");
+    assert_eq!(o.offer.heading.as_deref(), Some("Æbler og øl"));
     assert_eq!(o.offer.price.amount_ore, Some(1000));
     assert_eq!(
         o.offer.quantity,
@@ -179,7 +179,7 @@ fn invalid_records_are_visible_and_do_not_suppress_valid_records() {
 fn dedup_is_order_independent_and_keeps_store_and_period_distinct() {
     let a = raw("same");
     let mut duplicate = a.clone();
-    duplicate.heading = "Andet".into();
+    duplicate.heading = Some("Andet".into());
     let mut store = a.clone();
     store.store = Some(Store {
         store_id: Some("1".into()),
@@ -203,4 +203,27 @@ fn dedup_is_order_independent_and_keeps_store_and_period_distinct() {
             .offer
             .source
     );
+}
+
+#[test]
+fn fractional_ore_noise_has_a_small_exact_tolerance() {
+    let mut noisy = raw("noise");
+    noisy.before = Some("38.760000000000005".into());
+    let mut fractional = raw("fractional");
+    fractional.amount = Some("1.001".into());
+    let result = normalize_batch(metadata(), batch(vec![noisy, fractional]));
+    assert_eq!(result.offers.len(), 1);
+    assert_eq!(result.offers[0].offer.price.amount_ore, Some(1000));
+    assert_eq!(result.offers[0].offer.price.before_ore, Some(3876));
+    assert_eq!(result.invalid_records.len(), 1);
+}
+
+#[test]
+fn unknown_heading_preserves_the_identified_offer() {
+    let mut no_heading = raw("untitled");
+    no_heading.heading = None;
+    let result = normalize_batch(metadata(), batch(vec![no_heading]));
+    assert_eq!(result.offers.len(), 1);
+    assert_eq!(result.offers[0].offer.heading, None);
+    assert!(result.invalid_records.is_empty());
 }

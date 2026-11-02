@@ -1,8 +1,8 @@
 # Tilbud
 
 Et dansk dagligvare-CLI i en tidlig grundversion. Programmet kan vise hjælp
-og oplyser, at tilbudssøgning endnu ikke er implementeret. Der er endnu ingen
-HTTP-hentning, lagring eller visning af tilbud.
+og oplyser, at tilbudssøgning endnu ikke er implementeret. CLI’et har endnu ingen lagring eller visning af tilbud. En biblioteksadapter
+kan hente katalogtilbud fra Tjek; se [kildens dækning og begrænsninger](docs/tjek.md).
 
 ```sh
 cargo run -- --help
