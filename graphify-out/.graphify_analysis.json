@@ -262,32 +262,27 @@
   "questions": [
     {
       "type": "bridge_node",
-      "question": "Why does `RawOffer` connect `Community 0` to `Community 1`, `Community 2`, `Community 3`, `Community 4`, `Community 7`, `Community 8`?",
+      "question": "Why does `RawOffer` connect `Batch processing and tests` to `Offer data contract`, `Normalization and validation`, `Source adapter interface`, `Membership contract tests`, `Quantity representation`, `Source time boundaries`?",
       "why": "High betweenness centrality (0.087) - this node is a cross-community bridge."
     },
     {
-      "type": "verify_inferred",
-      "question": "Are the 3 inferred relationships involving `normalize_batch()` (e.g. with `dedup_is_order_independent_and_keeps_store_and_period_distinct()` and `invalid_records_are_visible_and_do_not_suppress_valid_records()`) actually correct?",
-      "why": "`normalize_batch()` has 3 INFERRED edges - model-reasoned connections that need verification."
-    },
-    {
       "type": "isolated_nodes",
-      "question": "What connects `tilbud`, `TMPDIR`, `TILBUD_TEST_TMPDIR` to the rest of the system?",
+      "question": "What connects `Exact`, `Range`, `Catalog` to the rest of the system?",
       "why": "20 weakly-connected nodes found - possible documentation gaps or missing edges."
     },
     {
       "type": "low_cohesion",
-      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "question": "Should `Offer data contract` be split into smaller, more focused modules?",
       "why": "Cohesion score 0.13438735177865613 - nodes in this community are weakly interconnected."
     },
     {
       "type": "bridge_node",
-      "question": "Why does `Membership` connect `Community 4` to `Community 0`, `Community 1`, `Community 3`?",
+      "question": "Why does `Membership` connect `Membership contract tests` to `Batch processing and tests`, `Offer data contract`, `Source adapter interface`?",
       "why": "High betweenness centrality (0.077) - this node is a cross-community bridge."
     },
     {
       "type": "bridge_node",
-      "question": "Why does `TimeBoundary` connect `Community 1` to `Community 2`, `Community 4`?",
+      "question": "Why does `TimeBoundary` connect `Offer data contract` to `Normalization and validation`, `Membership contract tests`?",
       "why": "High betweenness centrality (0.073) - this node is a cross-community bridge."
     }
   ]

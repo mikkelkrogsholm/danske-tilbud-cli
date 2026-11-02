@@ -14,16 +14,16 @@
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- Community 0
-- Community 1
-- Community 2
-- Community 3
-- Community 4
-- Community 5
-- Community 6
-- Community 7
-- Community 8
-- Community 10
+- Batch processing and tests
+- Offer data contract
+- Normalization and validation
+- Source adapter interface
+- Membership contract tests
+- Isolated test workflow
+- CLI entry point
+- Quantity representation
+- Source time boundaries
+- Cargo package
 
 ## God Nodes (most connected - your core abstractions)
 1. `Offer` - 15 edges
@@ -54,55 +54,53 @@
 
 ## Communities (12 total, 4 thin omitted)
 
-### Community 0 - "Community 0"
+### Community 0 - "Batch processing and tests"
 Cohesion: 0.15
 Nodes (11): normalize_batch(), RawOffer, SourceBatch, batch(), block_on(), dedup_is_order_independent_and_keeps_store_and_period_distinct(), invalid_records_are_visible_and_do_not_suppress_valid_records(), metadata() (+3 more)
 
-### Community 1 - "Community 1"
+### Community 1 - "Offer data contract"
 Cohesion: 0.13
 Nodes (17): Offer, PieceCount, Exact, Range, Price, PriceKind, Catalog, Offer (+9 more)
 
-### Community 2 - "Community 2"
+### Community 2 - "Normalization and validation"
 Cohesion: 0.17
 Nodes (12): boundary(), calculate_unit_price(), exact_product(), identity(), InvalidRecord, money(), normalize(), normalize_quantity() (+4 more)
 
-### Community 3 - "Community 3"
+### Community 3 - "Source adapter interface"
 Cohesion: 0.23
 Nodes (5): FetchOptions, SourceAdapter, SourceCapabilities, SourceMetadata, Offline
 
-### Community 4 - "Community 4"
+### Community 4 - "Membership contract tests"
 Cohesion: 0.22
 Nodes (4): Membership, NotRequired, Required, Unknown
 
-### Community 5 - "Community 5"
+### Community 5 - "Isolated test workflow"
 Cohesion: 0.40
 Nodes (3): test.sh script, TILBUD_TEST_TMPDIR, TMPDIR
 
-### Community 7 - "Community 7"
+### Community 7 - "Quantity representation"
 Cohesion: 0.50
 Nodes (3): Quantity, Exact, Range
 
-### Community 8 - "Community 8"
+### Community 8 - "Source time boundaries"
 Cohesion: 0.50
 Nodes (4): RawBoundary, Date, Instant, Unknown
 
 ## Knowledge Gaps
-- **20 isolated node(s):** `tilbud`, `TMPDIR`, `TILBUD_TEST_TMPDIR`, `Exact`, `Range` (+15 more)
+- **20 isolated node(s):** `Exact`, `Range`, `Catalog`, `Offer`, `PerPiece` (+15 more)
   These have ≤1 connection - possible missing edges. (Counts symbols only; 53 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `RawOffer` connect `Community 0` to `Community 1`, `Community 2`, `Community 3`, `Community 4`, `Community 7`, `Community 8`?**
+- **Why does `RawOffer` connect `Batch processing and tests` to `Offer data contract`, `Normalization and validation`, `Source adapter interface`, `Membership contract tests`, `Quantity representation`, `Source time boundaries`?**
   _High betweenness centrality (0.087) - this node is a cross-community bridge._
-- **Are the 3 inferred relationships involving `normalize_batch()` (e.g. with `dedup_is_order_independent_and_keeps_store_and_period_distinct()` and `invalid_records_are_visible_and_do_not_suppress_valid_records()`) actually correct?**
-  _`normalize_batch()` has 3 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `tilbud`, `TMPDIR`, `TILBUD_TEST_TMPDIR` to the rest of the system?**
+- **What connects `Exact`, `Range`, `Catalog` to the rest of the system?**
   _20 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Community 1` be split into smaller, more focused modules?**
+- **Should `Offer data contract` be split into smaller, more focused modules?**
   _Cohesion score 0.13438735177865613 - nodes in this community are weakly interconnected._
-- **Why does `Membership` connect `Community 4` to `Community 0`, `Community 1`, `Community 3`?**
+- **Why does `Membership` connect `Membership contract tests` to `Batch processing and tests`, `Offer data contract`, `Source adapter interface`?**
   _High betweenness centrality (0.077) - this node is a cross-community bridge._
-- **Why does `TimeBoundary` connect `Community 1` to `Community 2`, `Community 4`?**
+- **Why does `TimeBoundary` connect `Offer data contract` to `Normalization and validation`, `Membership contract tests`?**
   _High betweenness centrality (0.073) - this node is a cross-community bridge._

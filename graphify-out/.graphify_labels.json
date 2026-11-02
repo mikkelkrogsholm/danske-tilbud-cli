@@ -1,0 +1,14 @@
+{
+  "0": "Batch processing and tests",
+  "1": "Offer data contract",
+  "2": "Normalization and validation",
+  "3": "Source adapter interface",
+  "4": "Membership contract tests",
+  "5": "Isolated test workflow",
+  "6": "CLI entry point",
+  "7": "Quantity representation",
+  "8": "Source time boundaries",
+  "9": "CLI argument tests",
+  "10": "Cargo package",
+  "11": "Library module exports"
+}
