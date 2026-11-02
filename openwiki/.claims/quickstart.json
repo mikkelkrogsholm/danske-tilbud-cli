@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:7dfc20085ebb5bdeb86b9a40e6555f34bbcfcccc674b8f7bec53817d76d7b0b8",
+  "claims": [
+    {
+      "id": "claim_621170f9aa1941089d86fdefcc19e7eb",
+      "statement": "CLI viser hjælp og meddeler, at tilbudssøgning endnu ikke er implementeret.",
+      "evidence": [
+        {
+          "resource": "repo://src/main.rs#L1-L11",
+          "version": "repo-lines-v1:sha256:4847d416ff49f1c01465f56dc2067b18bba540d960df13ab8771266f9abdf72f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlM2QxZWRmN2IzN2JmYzQ2YTIxMGQ0NzIzN2IxNTZlNzdiNmQ1MGMxNDFkYjcyMzgzNzY0YmIzMjE1NWY0ZGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_29721cf2d9e044758f618f708934d52e",
+      "statement": "Testwrapperen opretter en særskilt mappe til build og testdata, videresender argumenter til cargo test og håndterer oprydning ved normal afslutning og HUP, INT og TERM.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/test.sh#L5-L34",
+          "version": "repo-lines-v1:sha256:d4ba4dbc8d50d09c658d7ce45ebf8d04b508e68d80d0de2913e38e272785833d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxOWFmYTAwNDdmMTQ3NTQ3YTQxZjBlNGNhMTYyODgyZTQ2ZDZmOWY3NWQ0NGUyMTcyYzhkY2JiZGZhYzRlOWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3NTQxNTg0ZDljOTI3NmE4YzQ0NDQ5ZjRjN2EzYTJkNzYyOTEwZWZiNDk5NjAxY2E3MTQ2ODE4M2Y5MGNlZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFhOGZhNTk0M2ZmMjllNmQ5N2U1NTk4MDljNmM5ZThkZTg2YzcyYTM4NmNlZGNhMzBiNjU0ZWQyOGE5ODQ2NWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9596b507513249e4980b6f508812420d",
+      "statement": "Projektet kræver Rust 1.91 og deaktiverer debuginformation og incremental compilation i udviklings- og testprofiler.",
+      "evidence": [
+        {
+          "resource": "repo://.cargo/config.toml",
+          "version": "repo-file-v1:sha256:e2c2f60e1352cddbb4843612494f9d7c953d4acbd36d7149f444d271fa86108c"
+        },
+        {
+          "resource": "repo://Cargo.toml#L1-L5",
+          "version": "repo-lines-v1:sha256:d869e2493ab3b832091442b6709bd0478d099337198c873bb8f64119bf47a057:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGEzY2Q1YTgxYjNmOWE2MjFhYTQ5M2Q5MGM0NWY0MmFiNTcxZDRlNDJiOGFlNWFmZjM1MWNiMGEwMmQwNmQ4MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDQ3OGVmYTFhZThiZDhhMzFkMjNhZGI2ZWUyNmU3NDcyMWYzYWRmOGJmYzc3MzI5ZjhhMzg1NWVmMDdiN2UzMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTJmZGI4MmIxNmUwMGFlZWQ1NzViNGVjODFiM2YwZDVlODljY2I4MzUzZTU3NmRkM2QwM2ZlMjU0NTQ2OWQ5NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-02T14:34:45.539Z"
+  }
+}

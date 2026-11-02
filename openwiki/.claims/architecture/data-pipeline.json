@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:8d01876b0f117aa189bc0ca6f752d917acdd68a71deb5e2499e6ddbb7664b39b",
+  "claims": [
+    {
+      "id": "claim_208aec96bb84466ebb0d5e39f04252db",
+      "statement": "SourceAdapter returnerer en batch, som kan rumme både poster, dækning og kildefejl; motoren bevarer kildefejl og behandler posterne enkeltvis.",
+      "evidence": [
+        {
+          "resource": "repo://src/engine.rs#L41-L79",
+          "version": "repo-lines-v1:sha256:37ae617470026fcb4d073b55107d79190cc3a8df5b47c0e696060a38a40f8458:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRhYWM3NDQ2Y2E4MDk5OTRlOWQzMGQwMjQwNmM0ZWU4YzQ4YWFhZmY5YzBiYzU4OTYxZGE2NjJiMjE3MmE4ZWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUyMTE5NWZlNjkyZGEyMWEzODNhMDc1NWMyYzE3NGZiNzgzODY4ZGFjODE3MGZhZjI3MjkwMzBiMjczODFiZDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU1ZGJlNzQyODJhOWMzMGExY2ViYWRjZDVkZDZhZTEzNzg3NTdjZGRmOWYyNGJiMzFmNWNlMTdiMGJmZTA5N2MifQ"
+        },
+        {
+          "resource": "repo://src/source.rs#L25-L37",
+          "version": "repo-lines-v1:sha256:abde75cb01030c68163cec892ed73db676699d27f421c8e8f4ea17aaa3e05dd9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2ZDdhYzFmYWFhZDI0Mjg4YTFmMDZlOTMxYmRjYzMyNjcwM2RjZmFiZmI3NWRmNDhlZGNkMWRlMjI2MWZmYzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIyMzE0YjJiNWYzZDJmODViMzEzNTA1NGQ1OWU2Yjg2MjYyZTRkODM2ZTBmNzMwYjkxYmEyNjdhODllNmRmN2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFkNTE4MTgzZDBlZDk0NDI0ZGYwMDIwM2YxNzYwMDliYmY1MTlkZWU2NTliNTJiODIxMDVjYjcyODFkYTA3NTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9f78b3089a1a411f97d1a85707d28928",
+      "statement": "Motoren accepterer DKK og konverterer decimalstrenge til ikke-negative hele øre uden binær flydende kommatal.",
+      "evidence": [
+        {
+          "resource": "repo://src/engine.rs#L120-L142",
+          "version": "repo-lines-v1:sha256:39956709b1711ceccb5c26365e5c84df9fc413d15af4d4184aa875e5230ee00f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViYzg0OWQ1YmM2NzZiYmJiZTUzOWJlZjY2MzlkZmUwNTllNzA0MjZiZGVjN2RiNGQ5OTNhOWRjZjU3NGRjZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkOWUxMjU0NjQyNTU3NmQzZGVhZThjOWI5ZGJmMTI4ZDVkNmRkYWY1ZDdmZTg1NzkzNDkyN2RlZmZhM2I5ZGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE5ZTc2MzU1Y2YxMTk5NDgwYzNmOTk4MzZiMTQ4NmM4NDFkODkxZmFhZDkwNGM2MDhlMDkzMDIyZDM3NTdhZWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZhODBhNGEzNmY4YTQ4Yzk5ODFiZjczZWM5YzFkNzg0ODI4NTJjMmFjOWI4NmE1YmEzOGMyMDBkNjAyMWE1ODUifQ"
+        },
+        {
+          "resource": "repo://src/engine.rs#L94-L106",
+          "version": "repo-lines-v1:sha256:3981e9d6a54698bd28f8e7b89e78be9f1c2dba44b1decadedbbb00be038f36d3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1NWNjZTlhOWQ4Njg0Zjg0MGZkNTE1YzdjMWVhMTAzOTk2ZWU1YTU5MTE0ZTQ4MTlhYjZlNjMxOGQxZjBjODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5MDJjNWEzZjcwM2Y5YmQwYzE2NTQyYjI3NzY0NjhmOGQ5YTRkNjQ0MzcwMTAwZDg5NWUzYjJkY2RlZjdmMzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI5M2NjOTM5OWJlZmNkNWU3ODdiZTc1NWE2Y2ZjMzMwZTg5OGZjNTJmNzZhNTlhMTU3NjAzN2Q4YTkyNTk0YWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a37d94fa4e1242628022d2a14ea55e17",
+      "statement": "Mængder normaliseres til kg, liter eller styk; enhedspris kræver præcis mængde og grundlag samt præcist antal ved per-styk-mængde.",
+      "evidence": [
+        {
+          "resource": "repo://src/engine.rs#L207-L270",
+          "version": "repo-lines-v1:sha256:c3fecffa107c7d45d354fb1248c609ff9e51f5f3d5ab8ce0422fa82e9b26a221:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImExNDc2ZDY5ZWFjYzdmODBmMzgxZGQ0OTE0ZjlmODY0NzhlZjM3MTYwNTdiODNmNTUwZTkwZjc3MmNkYzJmMGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQwY2ZlNGY0OGNhODNhNzliODg2MTA2MjA3MzllMGU4MTY3MzE1MWVmNTVlODVkMGI1Yzc1YWY5YTExOGQ2OGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d7d419d37f4b47aeb17c077320be909f",
+      "statement": "Dubletter bestemmes af kilde, kilde-id, kæde-id, butik og gyldighed; en deterministisk serialiseret repræsentation afgør hvilken der beholdes.",
+      "evidence": [
+        {
+          "resource": "repo://src/engine.rs#L45-L92",
+          "version": "repo-lines-v1:sha256:4c1a13ae664889554fae7e4d5c5cc35b377fff61b21d0ee27b84b37eb1f5e36a:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhYzFhMzgwZTBiNDFjNzM5YTI2Y2YxOTMyMDkwYzg3NDYzODhiYmMxNzVmZDRjNDM4NDQ0ZWQwY2UxZTAxNmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2OTMwZjVjMmNhYTE4YTY1ZjU5YjQ1NDQ0YWQ0ZTFkNDJiYzViZmY1YzlkY2VmNTA0NDc5OTc0NzEyYmQ5YzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzNWU2NDVmZmUzZTVkMjEzZmIxMmNhNTEyODUyMjRjMmU5ZGM4ODJmMzQ2M2Y3YWU2M2EzOWQ3OWU2ZmQ0OWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fd1678fdd84844b1aec391c07e6bb66b",
+      "statement": "Datoer bevares uden antaget tidszone; gyldighedsgrænser af samme type kontrolleres for omvendt rækkefølge.",
+      "evidence": [
+        {
+          "resource": "repo://src/engine.rs#L108-L117",
+          "version": "repo-lines-v1:sha256:74e1ce06a4c991e5e022b8721d96bcb0fb68fae56bf0908c3c5116b40c2cc173:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5YjQ3ZTlkOGJiMjQwZDIxNmQyODFlNzRkYWFiZGJiZmYzMGNhOGQzMzUwMDNkNTE1NDc5MWUwMGNkZDg0MmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNjYjIxOTcwMDZjZjU5ODI4NmRmZjJlMWY2NjQxYWU3ZjgzYzJkOGEzMTFkZTllZWJmODViNDVjMGJhNzc4YWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA5ODU5ZTQ0NGFhNDE2NGNjNzVhNjQyMDk1YjE1MzY2OTJkZDJiMjhhZTdiMzI1YjIxYzY4NTk3YmI4MDdjMjQifQ"
+        },
+        {
+          "resource": "repo://src/engine.rs#L143-L154",
+          "version": "repo-lines-v1:sha256:c8c91ed969b79a670a1939467dd6b8d91a93cbeeb9807f734e3a9bf5e18f417d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRkOWZjNDQxYTdmYmNhYTRmOWNiMzFlZjBlY2VmOWY3OWE0OTUwMDJkYWFjNTk5NGU0OTI5NGEyMDUzMzhhNmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkNGFlOGM0ZjQzNzczNWJhZWZkYjdjNmNmZjZlYzdmZmUyMjljZTMwYTdmMjI1Mzc1MjVhMTkzNTQ4MDA1OTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI5MTY0ODNiN2VkMGViNzViMWFhYmYwNDdiY2NiZDQ5NjQxMDQyMzliMWRhZmRhMWJmODMwZTU5NzRkNWEyY2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiODhiNzE0OTAzYjc2ZDExMzU5ZjI4OTgzMTdiY2IwMWEzYTEwZWI5YmI5MDI3NDM5NjIxMGJmYWE5MzljY2UifQ"
+        },
+        {
+          "resource": "repo://src/offer.rs#L90-L97",
+          "version": "repo-lines-v1:sha256:64ae1b38768b117ba757a04b4f28974195768d8ee14ae3109f37260c74106001:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWVhYmZmY2FlOTk1MTY4ZTFlYWFhNTJjMDM0NjcwOGM4NjE3YjI3ZDIxZmUzYWI5MjgzNjQzOWRmZDljMTZlYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjZlNGYwYjA3MGJhM2MwNTNlOTRkODE3M2Q0NGY4MDBjZjdjYjhlZGYwNDcyM2U2ZDM5ZGUyMWE0MzI0Y2IwZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTYyNGEyOTEzNzJmOTBkYTNkMDk5ODIwZmJlZGI1MjM3M2UxNjJjZDc4NzAwYTZkODZmNTY1Y2JmOGY5Y2JkYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmZiMGQ4NTgwYzBhYTFiN2MxNDQxZDI5NmFmMGY0ODgxMTc0YjA0MmQyYWYzYTQxZWRlMjE2NmFhN2YxMDE3OCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-02T14:34:45.539Z"
+  }
+}

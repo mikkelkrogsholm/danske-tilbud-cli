@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/architecture/data-pipeline.md": {
+      "pageVersion": "sha256:8d01876b0f117aa189bc0ca6f752d917acdd68a71deb5e2499e6ddbb7664b39b",
+      "completedBy": "codex",
+      "completedRunId": "72a2d418-f9a3-4115-a1d8-89d074c6f516",
+      "gitHead": "4d10d3504961bf5d68b7ed317bb2549a5a40f1d2",
+      "sourceFingerprint": "sha256:90028c5ffbc999a3cbdfea1b9923e37a6834420c053d93c7ff3ab3d67ae4b81a"
+    },
+    "/openwiki/quickstart.md": {
+      "pageVersion": "sha256:7dfc20085ebb5bdeb86b9a40e6555f34bbcfcccc674b8f7bec53817d76d7b0b8",
+      "completedBy": "codex",
+      "completedRunId": "72a2d418-f9a3-4115-a1d8-89d074c6f516",
+      "gitHead": "4d10d3504961bf5d68b7ed317bb2549a5a40f1d2",
+      "sourceFingerprint": "sha256:90028c5ffbc999a3cbdfea1b9923e37a6834420c053d93c7ff3ab3d67ae4b81a"
+    }
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "communities": {
+    "0": [
+      "context",
+      "decimal",
+      "f",
+      "normalize_batch",
+      "piececount",
+      "pin",
+      "poll",
+      "quantitybasis",
+      "run",
+      "sourcecapabilities",
+      "src_engine_normalize_batch",
+      "src_source_rawoffer",
+      "src_source_sourcebatch",
+      "tests_engine",
+      "tests_engine_batch",
+      "tests_engine_block_on",
+      "tests_engine_dedup_is_order_independent_and_keeps_store_and_period_distinct",
+      "tests_engine_invalid_records_are_visible_and_do_not_suppress_valid_records",
+      "tests_engine_metadata",
+      "tests_engine_offline_adapter_normalizes_and_preserves_partial_failure",
+      "tests_engine_pack_ranges_missing_and_zero_price",
+      "tests_engine_raw",
+      "tests_engine_rs_output",
+      "waker"
+    ],
+    "1": [
+      "datetime",
+      "deserialize",
+      "fixedoffset",
+      "serialize",
+      "src_offer",
+      "src_offer_offer",
+      "src_offer_piececount",
+      "src_offer_piececount_exact",
+      "src_offer_piececount_range",
+      "src_offer_price",
+      "src_offer_pricekind",
+      "src_offer_pricekind_catalog",
+      "src_offer_pricekind_offer",
+      "src_offer_quantitybasis",
+      "src_offer_quantitybasis_perpiece",
+      "src_offer_quantitybasis_total",
+      "src_offer_rs_naivedate",
+      "src_offer_store",
+      "src_offer_timeboundary",
+      "src_offer_timeboundary_date",
+      "src_offer_timeboundary_instant",
+      "src_offer_timeboundary_unknown",
+      "src_offer_validity"
+    ],
+    "2": [
+      "a",
+      "btreemap",
+      "naivedate",
+      "price",
+      "src_engine",
+      "src_engine_boundary",
+      "src_engine_calculate_unit_price",
+      "src_engine_exact_product",
+      "src_engine_identity",
+      "src_engine_invalidrecord",
+      "src_engine_money",
+      "src_engine_normalize",
+      "src_engine_normalize_quantity",
+      "src_engine_normalizedoffer",
+      "src_engine_rs_decimal",
+      "src_engine_run",
+      "src_engine_runresult",
+      "src_engine_unitprice",
+      "toprimitive",
+      "validity"
+    ],
+    "3": [
+      "future",
+      "src_source",
+      "src_source_fetchoptions",
+      "src_source_rs_naivedate",
+      "src_source_rs_output",
+      "src_source_sourceadapter",
+      "src_source_sourceadapter_fetch",
+      "src_source_sourceadapter_metadata",
+      "src_source_sourcecapabilities",
+      "src_source_sourcemetadata",
+      "tests_engine_offline",
+      "tests_engine_offline_fetch",
+      "tests_engine_offline_metadata"
+    ],
+    "4": [
+      "quantity",
+      "src_offer_membership",
+      "src_offer_membership_notrequired",
+      "src_offer_membership_required",
+      "src_offer_membership_unknown",
+      "tests_contract",
+      "tests_contract_documented_examples_round_trip_without_losing_precision_or_unknowns",
+      "tests_contract_unknown_membership_is_distinct_from_required_and_not_required",
+      "tests_contract_unknown_price_and_package_count_round_trip_without_becoming_zero"
+    ],
+    "5": [
+      "scripts_test",
+      "scripts_test_cleanup",
+      "scripts_test_sh__entry",
+      "scripts_test_tilbud_test_tmpdir",
+      "scripts_test_tmpdir"
+    ],
+    "6": [
+      "cli",
+      "src_main",
+      "src_main_main",
+      "src_main_tilbud"
+    ],
+    "7": [
+      "src_offer_quantity",
+      "src_offer_quantity_exact",
+      "src_offer_quantity_range",
+      "src_offer_rs_decimal"
+    ],
+    "8": [
+      "src_source_rawboundary",
+      "src_source_rawboundary_date",
+      "src_source_rawboundary_instant",
+      "src_source_rawboundary_unknown"
+    ],
+    "9": [
+      "command",
+      "tests_cli",
+      "tests_cli_help_and_invalid_arguments_are_handled_by_the_parser"
+    ],
+    "10": [
+      "pkg_tilbud"
+    ],
+    "11": [
+      "src_lib"
+    ]
+  },
+  "cohesion": {
+    "0": 0.15217391304347827,
+    "1": 0.13438735177865613,
+    "2": 0.16842105263157894,
+    "3": 0.23076923076923078,
+    "4": 0.2222222222222222,
+    "5": 0.4,
+    "6": 0.5,
+    "7": 0.5,
+    "8": 0.5,
+    "9": 0.6666666666666666,
+    "10": 1.0,
+    "11": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_offer_offer",
+      "label": "Offer",
+      "degree": 15
+    },
+    {
+      "id": "src_source_rawoffer",
+      "label": "RawOffer",
+      "degree": 15
+    },
+    {
+      "id": "src_offer_timeboundary",
+      "label": "TimeBoundary",
+      "degree": 11
+    },
+    {
+      "id": "src_engine_normalize_batch",
+      "label": "normalize_batch()",
+      "degree": 10
+    },
+    {
+      "id": "src_offer_quantity",
+      "label": "Quantity",
+      "degree": 10
+    },
+    {
+      "id": "src_source_sourcemetadata",
+      "label": "SourceMetadata",
+      "degree": 10
+    },
+    {
+      "id": "src_offer_membership",
+      "label": "Membership",
+      "degree": 9
+    },
+    {
+      "id": "src_source_sourcebatch",
+      "label": "SourceBatch",
+      "degree": 9
+    },
+    {
+      "id": "src_offer_quantitybasis",
+      "label": "QuantityBasis",
+      "degree": 8
+    },
+    {
+      "id": "src_offer_piececount",
+      "label": "PieceCount",
+      "degree": 8
+    }
+  ],
+  "surprises": [
+    {
+      "source": "dedup_is_order_independent_and_keeps_store_and_period_distinct()",
+      "target": "normalize_batch()",
+      "source_files": [
+        "tests/engine.rs",
+        "src/engine.rs"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "invalid_records_are_visible_and_do_not_suppress_valid_records()",
+      "target": "normalize_batch()",
+      "source_files": [
+        "tests/engine.rs",
+        "src/engine.rs"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "pack_ranges_missing_and_zero_price()",
+      "target": "normalize_batch()",
+      "source_files": [
+        "tests/engine.rs",
+        "src/engine.rs"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "metadata()",
+      "target": "SourceMetadata",
+      "source_files": [
+        "tests/engine.rs",
+        "src/source.rs"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "Offline",
+      "target": "SourceBatch",
+      "source_files": [
+        "tests/engine.rs",
+        "src/source.rs"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `RawOffer` connect `Community 0` to `Community 1`, `Community 2`, `Community 3`, `Community 4`, `Community 7`, `Community 8`?",
+      "why": "High betweenness centrality (0.087) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 3 inferred relationships involving `normalize_batch()` (e.g. with `dedup_is_order_independent_and_keeps_store_and_period_distinct()` and `invalid_records_are_visible_and_do_not_suppress_valid_records()`) actually correct?",
+      "why": "`normalize_batch()` has 3 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `tilbud`, `TMPDIR`, `TILBUD_TEST_TMPDIR` to the rest of the system?",
+      "why": "20 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.13438735177865613 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Membership` connect `Community 4` to `Community 0`, `Community 1`, `Community 3`?",
+      "why": "High betweenness centrality (0.077) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `TimeBoundary` connect `Community 1` to `Community 2`, `Community 4`?",
+      "why": "High betweenness centrality (0.073) - this node is a cross-community bridge."
+    }
+  ]
+}
