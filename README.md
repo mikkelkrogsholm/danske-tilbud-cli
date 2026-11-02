@@ -14,6 +14,7 @@ cargo run -- beskriv rema
 cargo run -- hent --kilde rema
 cargo run -- find kirsebærsauce --kilde rema
 cargo run -- hent --kilde tjek
+cargo run -- hent --alle
 cargo run -- find kaffe --butik netto --limit 20
 cargo run -- find mælk --include-unknown --data-dir /sti/til/data
 cargo run -- kilder --human
@@ -23,12 +24,21 @@ cargo run -- find kaffe --butik netto --human
 ```
 
 Som standard giver alle kommandoer et JSON-objekt med `schema_version`, `command` og `data`
-på stdout. Tilføj `--human` efter kommandoen for en læsbar, statisk visning af de samme data. Fejl giver en ikke-nul exitkode og diagnosticering på stderr.
+på stdout. Tilføj `--human` efter kommandoen for en læsbar, statisk visning af de samme data. Fejl giver en ikke-nul exitkode og diagnosticering på stderr; delvise resultater vises også på stdout.
 `--data-dir` placeres efter kommandoen og tilsidesætter `TILBUD_DATA_DIR` og
 platformens standardmappe, som beskrevet i [lagerkontrakten](docs/storage.md).
 `kilder` og `beskriv` viser metadata, kendte kæde-ID'er og seneste snapshot,
 hvis det findes. `hent` henter hele kilden og erstatter kun et eksisterende
-snapshot efter en fuldført kørsel. `find` søger uden hensyn til store og små
+snapshot efter en fuldført kørsel. Vælg præcis én af `--alle` og `--kilde`: med
+`--alle` publiceres hver fuldført kilde uafhængigt, og et delvist resultat vises
+på stdout med status for hver kilde, fejl på stderr og ikke-nul exitkode.
+Ved delvis `hent --alle --human` vises JSON på stdout og den læsbare
+kildeoversigt på stderr, så resultatet også kan behandles maskinelt.
+`find` søger som standard i alle tilgængelige snapshots uden netværkskald;
+`--kilde` vælger én. Manglende snapshots springes over, mens ulæselige snapshots
+giver et delvist resultat og ikke-nul exitkode. `--butik` filtrerer på kendte
+kæde-ID’er, og `limit` gælder samlet. Tilbud fra forskellige kilder bevares
+separat, også ved samme navn eller EAN. `find` søger uden hensyn til store og små
 bogstaver i navn og beskrivelse. Den viser kun tilbud, der er beviseligt
 aktuelle; `--include-unknown` medtager også poster med ukendte datoer, men
 ikke poster der vides at være fremtidige eller udløbne. Datoer bruger
@@ -36,7 +46,8 @@ Europe/Copenhagen og slutdatoen er inklusiv. Ved præcis lighed med en
 tidspunktgrænse er gyldigheden ukendt, medmindre den anden grænse afgør den.
 Resultater indeholder original gyldighed, gyldighedsstatus og enhedspris, når
 den kan beregnes. `total` er antal match før `limit` (standard 20). Katalogpriser
-udelades. `fetched_at` fortæller, hvornår snapshot blev hentet.
+udelades. `sources` viser hentetid og status for hvert snapshot; en fælles
+hentetid angives kun ved valg af én kilde.
 
 Den fælles serde-model og dokumenterede JSON-eksempler findes i
 [tilbudskontrakten](docs/offer-v1.md). CLI-argumenter og hjælp håndteres af

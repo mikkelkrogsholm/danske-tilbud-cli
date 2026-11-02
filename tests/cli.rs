@@ -144,6 +144,11 @@ fn local_search_filters_and_reports_snapshot() {
 fn missing_and_corrupt_snapshots_fail_usefully() {
     let dir = Temp::new();
     assert!(success(dir.run(&["kilder"]))["data"]["sources"][0]["snapshot"].is_null());
+    for args in [&["hent"][..], &["hent", "--alle", "--kilde", "tjek"][..]] {
+        let invalid = dir.run(args);
+        assert!(!invalid.status.success());
+        assert!(String::from_utf8_lossy(&invalid.stderr).contains("præcis én"));
+    }
     let missing = dir.run(&["find", "kaffe"]);
     assert!(!missing.status.success());
     assert!(String::from_utf8_lossy(&missing.stderr).contains("hent"));
@@ -287,4 +292,111 @@ fn rema_and_tjek_snapshots_coexist_and_catalog_does_not_leak_into_search() {
     assert!(text.contains("2 poster"));
     assert!(text.contains("1 tilbud"));
     assert_eq!(fs::read(dir.0.join("tjek.jsonl")).unwrap(), tjek_before);
+}
+
+#[test]
+fn combined_search_preserves_sources_and_reports_partial_failure() {
+    let dir = Temp::new();
+    dir.seed();
+    let text = fs::read_to_string(dir.0.join("tjek.jsonl")).unwrap();
+    let mut lines = text.lines();
+    let manifest: Value = serde_json::from_str(lines.next().unwrap()).unwrap();
+    let base: Value = serde_json::from_str(lines.next().unwrap()).unwrap();
+    let mut tjek_lines: Vec<Value> = text
+        .lines()
+        .map(|line| serde_json::from_str(line).unwrap())
+        .collect();
+    tjek_lines[1]["ean"] = json!("1234567890123");
+    fs::write(
+        dir.0.join("tjek.jsonl"),
+        tjek_lines
+            .iter()
+            .map(|r| format!("{r}\n"))
+            .collect::<String>(),
+    )
+    .unwrap();
+    for (id, chain, membership) in [
+        ("rema", "rema1000", "required"),
+        ("bilkatogo", "bilka", "not_required"),
+    ] {
+        let mut m = manifest.clone();
+        m["source"] = json!(id);
+        m["offer_count"] = json!(1);
+        let mut o = base.clone();
+        o["source"] = json!(id);
+        o["chain_id"] = json!(chain);
+        o["source_id"] = json!("same-id");
+        o["ean"] = json!("1234567890123");
+        o["membership"] = json!(membership);
+        if id == "bilkatogo" {
+            let earlier = Utc::now()
+                .with_timezone(&chrono_tz::Europe::Copenhagen)
+                .date_naive()
+                - Duration::days(2);
+            o["validity"]["starts"]["value"] = json!(earlier.to_string());
+        }
+        o["store"] = json!({"store_id":id,"name":id,"location":"Danmark"});
+        fs::write(dir.0.join(format!("{id}.jsonl")), format!("{m}\n{o}\n")).unwrap();
+    }
+    let found = success(dir.run(&["find", "kaffe"]));
+    assert_eq!(found["data"]["total"], 4);
+    let sources = found["data"]["results"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|r| r["offer"]["source"].as_str().unwrap())
+        .collect::<std::collections::HashSet<_>>();
+    assert_eq!(sources.len(), 3);
+    let matched: Vec<_> = found["data"]["results"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .filter(|r| r["offer"]["ean"] == "1234567890123")
+        .collect();
+    assert_eq!(matched.len(), 3);
+    assert_ne!(
+        matched
+            .iter()
+            .find(|r| r["offer"]["source"] == "bilkatogo")
+            .unwrap()["offer"]["validity"],
+        matched
+            .iter()
+            .find(|r| r["offer"]["source"] == "rema")
+            .unwrap()["offer"]["validity"]
+    );
+    assert!(matched.iter().any(
+        |r| r["offer"]["membership"] == "required" && r["offer"]["store"]["store_id"] == "rema"
+    ));
+    assert!(
+        matched
+            .iter()
+            .any(|r| r["offer"]["membership"] == "not_required"
+                && r["offer"]["store"]["store_id"] == "bilkatogo")
+    );
+    assert_eq!(
+        success(dir.run(&["find", "kaffe", "--butik", "rema1000"]))["data"]["total"],
+        1
+    );
+    assert_eq!(
+        success(dir.run(&["find", "kaffe", "--kilde", "bilkatogo"]))["data"]["total"],
+        1
+    );
+    assert_eq!(
+        success(dir.run(&["find", "kaffe", "--limit", "2"]))["data"]["results"]
+            .as_array()
+            .unwrap()
+            .len(),
+        2
+    );
+    fs::write(dir.0.join("rema.jsonl"), "broken\n").unwrap();
+    let out = dir.run(&["find", "kaffe"]);
+    assert!(!out.status.success());
+    assert!(!out.stderr.is_empty());
+    let value: Value = serde_json::from_slice(&out.stdout).unwrap();
+    assert_eq!(value["error"], "partial_result");
+    assert_eq!(value["data"]["total"], 3);
+    assert_eq!(value["data"]["sources"][1]["status"], "failed");
+    let human = dir.run(&["find", "kaffe", "--human"]);
+    assert!(!human.status.success());
+    assert!(String::from_utf8_lossy(&human.stdout).contains("rema"));
 }

@@ -91,7 +91,7 @@ fn document(value: &Value) -> (String, Vec<String>) {
     let cmd = string(&value["command"]);
     let data = &value["data"];
     let mut lines = Vec::new();
-    if value["error"].is_string() {
+    if value["error"].is_string() && value["error"] != "partial_result" {
         if string(&value["error"]) == "incomplete_run" {
             lines.push(format!(
                 "Hentning af {} er ufuldstændig. Intet nyt snapshot er gemt.",
@@ -108,6 +108,9 @@ fn document(value: &Value) -> (String, Vec<String>) {
                     let prefix = string(e).split(':').next().unwrap_or("");
                     lines.push(format!("Kunne ikke hente eller læse: {prefix}"));
                 }
+            }
+            if let Some(message) = value["message"].as_str() {
+                lines.push(format!("Kunne ikke gemme snapshot: {message}"));
             }
             limitation(&value["coverage_limitation"], &mut lines);
             coverage(&value["coverage"], &mut lines);
@@ -130,6 +133,32 @@ fn document(value: &Value) -> (String, Vec<String>) {
             }
         }
         "beskriv" => description(data, &mut lines),
+        "hent" if data["sources"].is_array() => {
+            for source in data["sources"].as_array().unwrap() {
+                lines.push(format!(
+                    "{}: {} · {} poster · forsøgt {}",
+                    string(&source["source"]),
+                    string(&source["status"]),
+                    source["offer_count"],
+                    age(&source["fetched_at"])
+                ));
+                if let Some(message) = source["message"].as_str() {
+                    lines.push(format!("Fejl: {message}"));
+                }
+                if let Some(errors) = source["source_errors"].as_array() {
+                    for e in errors {
+                        lines.push(format!("Fejl: {}", string(e)));
+                    }
+                }
+                if let Some(errors) = source["invalid_records"].as_array() {
+                    for e in errors {
+                        lines.push(format!("Ugyldig post: {}", string(e)));
+                    }
+                }
+                limitation(&source["coverage_limitation"], &mut lines);
+                coverage(&source["coverage"], &mut lines);
+            }
+        }
         "hent" => {
             lines.push(format!("{}: hentning fuldført", string(&data["source"])));
             lines.push(format!(
@@ -154,7 +183,29 @@ fn document(value: &Value) -> (String, Vec<String>) {
                 data["total"],
                 results.map_or(0, Vec::len)
             ));
-            lines.push(format!("Kildedata hentet: {}", age(&data["fetched_at"])));
+            if let Some(sources) = data["sources"].as_array() {
+                for source in sources {
+                    match string(&source["status"]) {
+                        "available" => lines.push(format!(
+                            "Kildedata hentet: {} · {}",
+                            string(&source["source"]),
+                            age(&source["fetched_at"])
+                        )),
+                        "failed" => lines.push(format!(
+                            "Kilde {}: {}",
+                            string(&source["source"]),
+                            string(&source["message"])
+                        )),
+                        "missing" => lines.push(format!(
+                            "Kilde {}: endnu ikke hentet",
+                            string(&source["source"])
+                        )),
+                        _ => (),
+                    }
+                }
+            } else {
+                lines.push(format!("Kildedata hentet: {}", age(&data["fetched_at"])));
+            }
             if let Some(results) = results {
                 if results.is_empty() {
                     lines.push(
