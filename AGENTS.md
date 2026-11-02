@@ -36,6 +36,11 @@ reviewer; én worker ad gangen implementerer i et isoleret arbejdsområde.
 
 ## Graphify og OpenWiki
 
+- Aktuelt mandat: brugeren har bedt om løbende opdatering af Graphify og OpenWiki
+  under gennemførelsen af EPIC #1. Opdatér dem ved meningsfulde kodeleverancer;
+  wiki vedligeholdes efter at den relevante kildekode er stabil. MAIN ejer plan
+  og review; workers udfører filændringer og værktøjskørsler, uden underdelegation.
+
 - Graphify er installeret på brugerniveau. Ved `/graphify` skal den installerede
   skill følges. Projektet har endnu ingen genereret graf.
 - Brug en eksisterende `graphify-out/graph.json` til relevante spørgsmål om
