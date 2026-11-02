@@ -1,8 +1,16 @@
 # Tilbud
 
-Forberedelse til et dansk dagligvare-CLI i ren Rust. Projektet har endnu ingen
-`Cargo.toml` eller programkode; testwrapperen kan først køre projektets tests,
-når en Cargo-pakke er oprettet.
+Et dansk dagligvare-CLI i en tidlig grundversion. Programmet kan vise hjælp
+og oplyser, at tilbudssøgning endnu ikke er implementeret. Der er endnu ingen
+HTTP-hentning, lagring eller visning af tilbud.
+
+```sh
+cargo run -- --help
+```
+
+Den fælles serde-model og dokumenterede JSON-eksempler findes i
+[tilbudskontrakten](docs/offer-v1.md). CLI-argumenter og hjælp håndteres af
+`usage-rs`.
 
 ## Pladsbesparende udvikling
 
@@ -10,7 +18,7 @@ Cargo-konfigurationen slår debuginformation og incremental compilation fra for
 dev/test, også for build-afhængigheder. Mindre diskforbrug koster ekstra
 kompileringstid ved gentagne builds.
 
-Kør fra projektets rod, når Cargo-pakken findes:
+Kør fra projektets rod:
 
 ```sh
 ./scripts/test.sh
