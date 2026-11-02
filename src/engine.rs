@@ -30,6 +30,7 @@ pub struct InvalidRecord {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RunResult {
+    pub complete: bool,
     pub source: SourceMetadata,
     pub coverage: Option<String>,
     pub source_errors: Vec<String>,
@@ -69,7 +70,9 @@ pub fn normalize_batch(source: SourceMetadata, batch: SourceBatch) -> RunResult 
         }
     }
     invalid.sort_by_cached_key(|r| serde_json::to_string(&r.record).expect("record serializes"));
+    let complete = batch.complete && batch.errors.is_empty() && invalid.is_empty();
     RunResult {
+        complete,
         source,
         coverage: batch.coverage,
         source_errors: batch.errors,
@@ -262,4 +265,55 @@ fn calculate_unit_price(
         ore: Decimal::from(price?).checked_div(total)?,
         unit: unit.clone(),
     })
+}
+
+/// Validate a canonical offer without converting its already-normalized quantities.
+pub fn validate_offer(offer: &Offer) -> Result<(), String> {
+    if offer.schema_version != 1 {
+        return Err("unsupported offer schema version".into());
+    }
+    if [
+        &offer.source,
+        &offer.source_id,
+        &offer.chain_id,
+        &offer.source_reference,
+    ]
+    .iter()
+    .any(|s| s.trim().is_empty())
+    {
+        return Err("identity and source reference must be nonempty".into());
+    }
+    match &offer.quantity {
+        Some(Quantity::Exact { amount, unit }) => {
+            if *amount <= Decimal::ZERO || !matches!(unit.as_str(), "kg" | "l" | "stk") {
+                return Err("invalid canonical quantity".into());
+            }
+        }
+        Some(Quantity::Range { min, max, unit }) => {
+            if *min <= Decimal::ZERO || min > max || !matches!(unit.as_str(), "kg" | "l" | "stk") {
+                return Err("invalid canonical quantity range".into());
+            }
+        }
+        None if offer.quantity_basis.is_some() => {
+            return Err("quantity basis without quantity".into());
+        }
+        None => {}
+    }
+    match &offer.pieces {
+        Some(PieceCount::Exact { count: 0 }) => return Err("piece count must be positive".into()),
+        Some(PieceCount::Range { min, max }) if *min == 0 || min > max => {
+            return Err("invalid piece count range".into());
+        }
+        _ => {}
+    }
+    match (&offer.validity.starts, &offer.validity.ends) {
+        (TimeBoundary::Date(a), TimeBoundary::Date(b)) if a > b => {
+            return Err("validity starts after it ends".into());
+        }
+        (TimeBoundary::Instant(a), TimeBoundary::Instant(b)) if a > b => {
+            return Err("validity starts after it ends".into());
+        }
+        _ => {}
+    }
+    Ok(())
 }

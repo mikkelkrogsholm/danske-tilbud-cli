@@ -1,7 +1,7 @@
 # Tilbud
 
 Et dansk dagligvare-CLI i en tidlig grundversion. Programmet kan vise hjælp
-og oplyser, at tilbudssøgning endnu ikke er implementeret. CLI’et har endnu ingen lagring eller visning af tilbud. En biblioteksadapter
+og oplyser, at tilbudssøgning endnu ikke er implementeret. CLI’et har endnu ingen lagring eller visning af tilbud. Biblioteket kan gemme komplette [JSONL-snapshots](docs/storage.md). En biblioteksadapter
 kan hente katalogtilbud fra Tjek; se [kildens dækning og begrænsninger](docs/tjek.md).
 
 ```sh

@@ -339,6 +339,15 @@ impl SourceAdapter for TjekAdapter {
                 }
             ));
         }
+        batch.complete = !self.chains.is_empty() && batch.errors.is_empty();
+        if let Some(store) = &options.store_id {
+            statuses.push(format!(
+                "store filter: {store} (offers with unknown store included)"
+            ));
+        }
+        if let Some(date) = options.date {
+            statuses.push(format!("date filter: {date} (Europe/Copenhagen)"));
+        }
         batch.coverage = Some(statuses.join("; "));
         batch
     }

@@ -31,6 +31,8 @@ pub trait SourceAdapter {
 
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct SourceBatch {
+    /// True only when every selected scope has been fetched successfully.
+    pub complete: bool,
     pub records: Vec<RawOffer>,
     pub coverage: Option<String>,
     pub errors: Vec<String>,

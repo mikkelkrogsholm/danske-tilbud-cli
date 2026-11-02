@@ -49,6 +49,7 @@ fn raw(id: &str) -> RawOffer {
 }
 fn batch(records: Vec<RawOffer>) -> SourceBatch {
     SourceBatch {
+        complete: true,
         records,
         coverage: Some("første side".into()),
         errors: vec!["side to fejlede".into()],
@@ -226,4 +227,23 @@ fn unknown_heading_preserves_the_identified_offer() {
     assert_eq!(result.offers.len(), 1);
     assert_eq!(result.offers[0].offer.heading, None);
     assert!(result.invalid_records.is_empty());
+}
+
+#[test]
+fn completeness_requires_affirmative_batch_without_errors_or_invalid_records() {
+    let mut b = SourceBatch {
+        complete: true,
+        records: vec![raw("1")],
+        ..Default::default()
+    };
+    assert!(normalize_batch(metadata(), b.clone()).complete);
+    b.complete = false;
+    assert!(!normalize_batch(metadata(), b.clone()).complete);
+    b.complete = true;
+    b.errors.push("fetch failed".into());
+    assert!(!normalize_batch(metadata(), b.clone()).complete);
+    b.errors.clear();
+    b.records[0].schema_version = 2;
+    assert!(!normalize_batch(metadata(), b).complete);
+    assert!(!normalize_batch(metadata(), SourceBatch::default()).complete);
 }

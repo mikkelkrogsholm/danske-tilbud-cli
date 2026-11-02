@@ -85,7 +85,9 @@ En kildeadapter beskriver metadata og filtreringsmuligheder og modtager
 omregne priser eller enheder. `SourceBatch` kan indeholde både poster,
 dækningsbeskrivelse og kildefejl, så et delvist resultat ikke ligner et
 fuldstændigt resultat. Engine returnerer gyldige tilbud, afviste råposter med
-årsager, kildefejl og antal dubletter. Tjek-adapterens kildedækning er
+årsager, kildefejl og antal dubletter. `SourceBatch.complete` er som standard
+false og skal bekræftes af kilden; motorens `RunResult.complete` kræver desuden,
+at der ikke er kildefejl eller ugyldige poster. Tjek-adapterens kildedækning er
 beskrevet i [Tjek-kilden](tjek.md).
 
 Engine accepterer DKK som eksakte decimalstrenge og kræver hele, ikke-negative

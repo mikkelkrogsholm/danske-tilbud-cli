@@ -80,6 +80,7 @@ async fn pagination_and_engine_preserve_exact_source_values() {
     assert!(paths[0].contains("dealer_id=11deC") && paths[1].contains("offset=100"));
     assert_eq!(result.offers.len(), 101);
     assert!(result.source_errors.is_empty());
+    assert!(result.complete);
     assert!(result.invalid_records.is_empty());
     let offer = &result.offers[0].offer;
     assert_eq!(offer.price.amount_ore, Some(1023));
@@ -109,6 +110,9 @@ async fn filtering_store_date_and_country() {
     server.join().unwrap();
     assert_eq!(batch.records.len(), 1);
     assert!(batch.errors.is_empty());
+    let coverage = batch.coverage.as_deref().unwrap();
+    assert!(coverage.contains("store filter: chosen"));
+    assert!(coverage.contains("date filter: 2026-11-01"));
     let mut foreign = row("foreign");
     foreign["dealer"]["country"]["id"] = json!("SE");
     let (url, server) = fixture_server(vec![ok(vec![foreign])]);
@@ -151,6 +155,7 @@ async fn timeouts_and_repeated_pages_are_partial_errors() {
     let batch = adapter(&url, 30).fetch(&FetchOptions::default()).await;
     server.join().unwrap();
     assert!(!batch.errors.is_empty());
+    assert!(!batch.complete);
     let rows: Vec<_> = (0..100).map(|i| row(&format!("{i}"))).collect();
     let (url, server) = fixture_server(vec![ok(rows.clone()), ok(rows)]);
     let batch = adapter(&url, 1000).fetch(&FetchOptions::default()).await;
