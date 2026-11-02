@@ -42,7 +42,7 @@ reviewer; én worker ad gangen implementerer i et isoleret arbejdsområde.
   og review; workers udfører filændringer og værktøjskørsler, uden underdelegation.
 
 - Graphify er installeret på brugerniveau. Ved `/graphify` skal den installerede
-  skill følges. Projektet har endnu ingen genereret graf.
+  skill følges. Projektets kodegraf ligger i `graphify-out/`.
 - Brug en eksisterende `graphify-out/graph.json` til relevante spørgsmål om
   arkitektur og relationer; verificér vigtige fund i den aktuelle kildekode.
   Almindelige lokale kodeopslag kan bruge direkte søgning og læsning.
@@ -52,7 +52,7 @@ reviewer; én worker ad gangen implementerer i et isoleret arbejdsområde.
 - OpenWiki er installeret som Codex-integration på brugerniveau via
   `openwiki integrations install codex`. Integrationen omfatter skill og MCP;
   Codex skal genstartes for at indlæse den nye integration.
-- Projektet har endnu ingen genereret OpenWiki. Ved initialisering eller
+- Projektets wiki ligger i `openwiki/`. Ved initialisering eller
   opdatering skal den installerede OpenWiki-skill og dens MCP-livscyklus følges.
   Eksisterende wiki bruges ved relevante spørgsmål og kontrolleres mod kilder.
 
