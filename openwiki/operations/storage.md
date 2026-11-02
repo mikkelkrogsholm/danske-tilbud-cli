@@ -3,13 +3,15 @@ type: operations
 title: Snapshot-lagring
 description: Lokal JSONL-lagring, komplethed, låsning, atomisk offentliggørelse og valg af datamappe.
 tags: [storage, snapshots, jsonl]
-verified:
-  - by: openwiki/0.7.3
-    at: 2026-11-02T14:59:18.920Z
 sources:
+  - id: openwiki-source-b55a21a31ede1b56cd31a6a6
+    resource: repo://src/main.rs
   - id: openwiki-source-62eef0b8799186dd9e2faae9
     resource: repo://src/storage.rs
-generated: { by: "codex", at: "2026-11-02T14:59:18.920Z" }
+generated: { by: "codex", at: "2026-11-02T15:16:00.359Z" }
+verified:
+  - by: openwiki/0.7.3
+    at: 2026-11-02T15:16:00.359Z
 ---
 
 # Snapshot-lagring
@@ -18,7 +20,7 @@ generated: { by: "codex", at: "2026-11-02T14:59:18.920Z" }
 
 ## Format og validering
 
-`<source>.jsonl` begynder med et manifest (`record_type: "snapshot"`, `schema_version: 1`, kilde, `fetched_at`, `written_at`, dækning, `complete` og `offer_count`). Derefter følger ét kanonisk `Offer` pr. linje, ikke rå svar eller beregnede enhedspriser. Et komplet tomt snapshot består kun af manifestet med antal 0. Hver linje skal afsluttes med newline. Læseren afviser tomme, beskadigede, afbrudte, inkomplette eller ukendte formater, kildemismatch og uoverensstemmende antal; tilbuddene valideres igen.
+`<source>.jsonl` begynder med et manifest (`record_type: "snapshot"`, `schema_version: 1`, kilde, `fetched_at`, `written_at`, dækning, `complete` og `offer_count`). Derefter følger ét kanonisk `Offer` pr. linje, ikke rå svar eller beregnede enhedspriser. `offer_count` tæller alle gemte rækker, herunder katalogrækker; CLI’ets `promotion_count` og `catalog_count` viser fordelingen ved hentning. Et komplet tomt snapshot består kun af manifestet med antal 0. Hver linje skal afsluttes med newline. Læseren afviser tomme, beskadigede, afbrudte, inkomplette eller ukendte formater, kildemismatch og uoverensstemmende antal; tilbuddene valideres igen.
 
 ## Lås, skrivning og fejl
 

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:e9c564c112a7f773a65b4fec8f3513b6910a98585895484f1ab3bcb348070246",
+  "pageVersion": "sha256:f55b1dbe0460289a86646f5e898e6b4ead9758ea9d9b78c4feee231704988f89",
   "claims": [
     {
       "id": "claim_5d406d857fc84279bedaca4f2421668a",
@@ -61,10 +61,24 @@
           "version": "repo-lines-v1:sha256:be72f544586b14bd5ce365c358a620d9d5db1eff2856fd899ac3df7e141402f1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkODcwYzRhZmQ3ODc1NWQwNjE3N2QzNzA1YjY1YzA5ODJmMzBiMWE3YWJkOGQ3MWJjYTMwZjBjYWU5ODExZDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1ZjZmNDY2ZTU5Y2ZjMzA3MDNjNDVmNzJhZjY1ZGU1NGFjMzYzZDM1NGNjMWEzMzMwMzUwYWNkNDUyNDM0YzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxNDM3MzQyNjE3NTYxYzgzNjk3YTFjYjk1MjJjMWI4NjRhODAwNDg4ZWViYzE4MGI0Zjg0MDJmZDZiN2MwYWIifQ"
         }
       ]
+    },
+    {
+      "id": "claim_b19ea5722f3044d0b1dd1b82a14a8381",
+      "statement": "Snapshotmanifestets offer_count tæller gemte rækker inklusive katalogrækker; CLI hent oplyser særskilt promotion_count og catalog_count.",
+      "evidence": [
+        {
+          "resource": "repo://src/main.rs#L139-L153",
+          "version": "repo-lines-v1:sha256:f6db4a169fdb748395dcbbf5f751bf5d9fed395e3c4ef0c7145e130f5b73fc7d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkYWQyOTkxZDhiYzJhZjliZTkyYzJmMmQzY2I0MTRkYjY2Nzk2MmNkYmM1NmU1MWIyOTM3MGQ0ZDkxZGRkZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJkNWYxMjI0YzZkNDJlNjVhZWMzNmY2ZGNiMGIxNzZjYWQwYmNiNTQzZTVmMzcwMzM4ZDhmNjNmOTRkYTBlYzciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUzYjdjZmIwMzY3Yjk5NDY1YWFmNjliYWIyZDU2NzdhMTdiNDc1MDI3OGY3NzM2YzFhYzdhYTM2MTlmMWQ2MmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhlYmJkNjdhM2VlYTkzZjMzNzM2NjhkNTQwN2NkM2E3ODA4OTgxMjA3NjQ4ODI5Y2Q1MmQ3NmJhYWZhMzc2ZDEifQ"
+        },
+        {
+          "resource": "repo://src/storage.rs#L240-L269",
+          "version": "repo-lines-v1:sha256:a89d6e408059dc6f8007f11a559b0e8d0a6e1c7cce0b5a8ff78b4c741811654f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1YzcxYTgyYjRlYjIwYTI1OTUwZGJmYjE5Y2MwNjJjYzY2MTE5ZjA1NzFlYTA5MDJmYjdmZjRlNjczMzI5ZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2MTRhMmM1OTA0ZmZlODg5ZjM4ODc3ZGQ2NTBkMjJiODBmYzM2NDgxNzM1N2Y1NDNjNTQ3M2JhN2Q3NGM0N2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJiNWJjOTM0YzEyMTFjMWZlYTA0ZGQ5ZjA4YzY2NmI3MjE1NGJhOThiOWQxMmY4NTMzMjEyMzIxMDc0NzkzNGQifQ"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.3",
-    "at": "2026-11-02T14:59:18.920Z"
+    "at": "2026-11-02T15:16:00.359Z"
   }
 }

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:ba2cf9cd1e5ebcde944eecc7c779dcca14a74db68fce252444d8752f6d8bfca3",
+  "claims": [
+    {
+      "id": "claim_3ec672b0fc354042b8bdf49540e4232b",
+      "statement": "REMA læser et offentligt produktkatalog og understøtter ikke butiks- eller datofilter ved hentning; butik er ukendt og EAN bevares kun når én er oplyst.",
+      "evidence": [
+        {
+          "resource": "repo://src/rema.rs#L26-L49",
+          "version": "repo-lines-v1:sha256:ffd5f51057738c2a60a93382e0233989eb5be3a90b96b389789250b669e8e335:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkZmFlMGU1OTQxZjcwYmZiMWRmZmYxZDI2NGIwOTg0MGExNDlmZjRmMWE2Yzg2YzgyNzhmMzNlYjMzMTRlMmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjZmU3NTAyYzQ3OGI5ZGVkNWQyNTg4Y2RkZWZiNDkwYTEyOTk2NmMxM2RmYjRhYzhiMGJlMjE3MmVkMDhlZmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg4MmVhY2IwMjIzYWMwMDMwMjA3YTM1ZWJhNzIxZjExMzFhODRjZmU3YzZhNDM4YzczNmZjNjBlYWYyM2NlYzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhhMTEzN2E4MTUzMjgzMTI5Y2I0OWI3ZjljMDg3ZTc3NWQ5MjVlOTI2YzkzNWRjM2Q1NGEyNTc0ZmI5NTVmMjkifQ"
+        },
+        {
+          "resource": "repo://src/rema.rs#L288-L314",
+          "version": "repo-lines-v1:sha256:569e4c0de512b95c714d07c88391e2b0a8c28e36caaaa5dcfe2b715e85f10579:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjZjZiYWIyMzI2MzUxZDA2MGViZDkwMGRhOGM3NGI4YTllZDE3NDc1Mjc1YjI2NWI4YzAwZDNmNWQ5MmJkZjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2MWQ0MTk3YjgzYWVjNDNkMmE5ZTE1Y2YzNmI5MDhjNGZlZDMzMTMyNDkxMzMyYWUyMTY2YjhjZjVkYmVkMTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkxMmNkODhiMjdlZjM2ZmJkNTg1YzJiNTAyMDgxZDdlMjAxNzA0MGNkMjc3ZWE5MjBhN2IyYjI0YTJkOTYwZGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdjODFjYmY3N2RjZjk4NTNkZTAzMDdiZmU3NzVkN2E0ZGVmZWRlMDk3OGI0OTRhNmJjYzM1OWZkMTg4ZTAyN2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1f5e15e7bcd64a928c54d7bff387d99c",
+      "statement": "Pagineringen kontrollerer sidetal, totaler, gentagelser og antal; fejl giver en ufuldstændig batch.",
+      "evidence": [
+        {
+          "resource": "repo://src/rema.rs#L57-L166",
+          "version": "repo-lines-v1:sha256:b9d354d386d55575ec31c2c21e429cb82737486cb582353e7bc0cfa0ba79dd15:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJiNTc1YjZlYzJlNTY2YjU3N2Y0ZmYzZDJlMDU2NmQ2ODc5ODM5NjI4MWVlMGQ5NTQ3MjIwZGRhYjE4ZjA0MDZiIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI3YjQzZGEwYmM2YzJjMjQ1OGZkNWM2YmEyYTZiNGRhODFjZDk2MWNiMGE3ZTU3NjExZTc2ZTJlZjhlYWM4ZWQ0IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI3MDMzODZiYWZkZTdmMzI1OGE3NTllOThlN2M4ZTI4NDU0NjM3OGMxZTNmNGFiMDBhZmRjM2ZlODBlNDcyZWI5IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI3ZTFkZjg0ZDllZTdlYTEyOWQyOWE2ODZmMGFhMjhkMTVmOTc5YzFlNmUwZjBmNThhOTQ1NTUzYjhhNDdhMzQ1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_4a0956502f5642c694f6fec1941ca5a7",
+      "statement": "Kun priser med begge grænser og hentetidspunktet strengt mellem dem vælges; kampagner prioriteres, seneste start vinder, og modstridende beløb med samme prioritet og start giver ukendt pris.",
+      "evidence": [
+        {
+          "resource": "repo://src/rema.rs#L215-L270",
+          "version": "repo-lines-v1:sha256:fbc0b1542d73320003409b9cd33591b936e0aa2032e5ffb50d35be5242b1fa06:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3ZTk0MmUxZjJlZDUzNWUzNjI1MTE1YzYyZTZkMzY2ZGM4MjdjMWQ0MGM1YzMyZWM1YjA3MGJlMzllYWFmOTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhmZDgzOGE0MjVkMzdlOWRjMjY3NTU0ZGYyZjE3ZjgzM2U4NTU3YTA1NzI3ZTljMWJjZjcyY2YyODJiMWE2OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlMGY3NWY0NDQ4Y2ZlYWM2YzE0YzhmNjk4OWQxN2ZkZmZkZGU3YjE0OWUyNGE3MWRmNTVmYmJiNmNiMjRiYzEifQ"
+        },
+        {
+          "resource": "repo://src/rema.rs#L291-L304",
+          "version": "repo-lines-v1:sha256:4428b1538fa44a277b1a466d2fcdd1b5a83bad61054673cd87fde23b0c57de28:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjODg0MDFkNzcxYjMzNWI1YzI4NDU5NzNkZTFiNzQwNWM1MmEwOTNmNGE5YjhhMzJhNTY4MzZjOGE0MDkxMTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1MDQxYjIxOTE3ZTlhZjk1YTdiNjY3YWFmZjljMjA3ZmJlOGFkYjYyOTM4OWM1OGFjZDMzZGQ2ZWMzY2E0ZTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ0NDQ1MmZhNjYwNmQ3NDUyMDI4M2YyMmZkZTRhYmQ4MGZlZjgyZTgxMmYwNmFjNTA0ZDViNjkxOWY1NjliYTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVmNGQ5NjgxZjc4N2U3ZGNjMzhjNDdmNzg1MjhlYTQ2MjAwMjg1NTJkMGQyNjA0MmViZTgzYzBlMzE5NjU0Y2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fd890f5da3994131afa131fbcc36a69e",
+      "statement": "Førpris sættes ukendt; betingelser og en entydig indledende mængde bevares, når tilgængelige.",
+      "evidence": [
+        {
+          "resource": "repo://src/rema.rs#L181-L200",
+          "version": "repo-lines-v1:sha256:526782a5314d14e8f4a3c87d9949195bdaa1688f9373bb7dc48993573843b490:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwNzJmN2M3ZTAwZTgxYTJlNjViODQwN2NmM2VlY2MxN2E4MmEwODJjYjE0ZDJhMTcxZWJjMDg2NDlhMWZiM2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0NzVlOTRhOTA0YWM0OWIzMTU0ZDQ2NzJhNjZlODYyOWI4NmRhYzc0ZTNlMjkzN2JlNjkyN2FlM2RhMTFjNTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjczODE5OTE2MWM3NWNmMDFjOTZhZDgwNzdiZmY5ODljZmRkMGM4N2UwN2FjYzYwMDBmMDhkMDRkZDY2NTRlZmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZlYzhlMmYxMDJiZWQ0NGYzNTM0N2IzZDUzMjE4N2UyMDRlZDZkNGZhOTcwNTcyZGVmOTk2MjBkYjRmZGY0OTUifQ"
+        },
+        {
+          "resource": "repo://src/rema.rs#L271-L307",
+          "version": "repo-lines-v1:sha256:d3c0a38290207a2d33755b4ff3b2cf4fafe5457d50348b2d54b36234ea7b6585:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3ZDUzM2ZkYTQ0NDI3ZWM2MGJkYWIzNGEwM2IzYzM1ZGRkZjRiZjE2ZmY1ZTQzYzk5NjdiYWY2NmYyMTQ0YTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUwM2RhNjdlNjkzYTk5MWQ1NjExYTYzNGNiMjY2MzFmY2FlN2JjYTZmNTFmZDEzZmFhOTRiNmU1ZTg0ODMzNGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI1NTdlNjY5OTc3NmZmMmVjZDYyMDY1MTA4MDRiNjA3YTdmMTMxMWI3Yzc1NGIzMGM4OWQ3N2EwMGU0NzFlZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU1MTAzYzk4ODE2MGI4YjdjMDg0MGNlYjcwNTVkN2VkODA2NmNiZmE1ZDA0MDA2NDc1ZmFlZjM3ZjAyMDFhYTgifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-02T15:16:00.359Z"
+  }
+}

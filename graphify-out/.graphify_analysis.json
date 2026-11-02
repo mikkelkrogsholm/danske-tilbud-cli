@@ -1,17 +1,15 @@
 {
   "communities": {
     "0": [
+      "a",
       "btreemap",
       "deserialize",
-      "future",
       "naivedate",
       "price",
-      "serialize",
       "src_engine",
       "src_engine_boundary",
       "src_engine_calculate_unit_price",
       "src_engine_exact_product",
-      "src_engine_identity",
       "src_engine_invalidrecord",
       "src_engine_money",
       "src_engine_normalize",
@@ -19,6 +17,9 @@
       "src_engine_normalizedoffer",
       "src_engine_rs_datetime",
       "src_engine_rs_decimal",
+      "src_engine_rs_utc",
+      "src_engine_run",
+      "src_engine_runresult",
       "src_engine_unit_price",
       "src_engine_unitprice",
       "src_engine_validity_status",
@@ -28,10 +29,6 @@
       "src_engine_validitystatus_future",
       "src_engine_validitystatus_unknown",
       "src_offer",
-      "src_offer_membership",
-      "src_offer_membership_notrequired",
-      "src_offer_membership_required",
-      "src_offer_membership_unknown",
       "src_offer_offer",
       "src_offer_piececount",
       "src_offer_piececount_exact",
@@ -56,14 +53,8 @@
       "src_offer_timeboundary_instant",
       "src_offer_timeboundary_unknown",
       "src_offer_validity",
-      "src_source",
-      "src_source_rawboundary",
-      "src_source_rawboundary_date",
-      "src_source_rawboundary_instant",
-      "src_source_rawboundary_unknown",
       "src_source_rawoffer",
-      "toprimitive",
-      "utc"
+      "toprimitive"
     ],
     "1": [
       "atomicu64",
@@ -74,12 +65,11 @@
       "instant",
       "io",
       "mutex",
-      "normalize_batch",
       "normalizedoffer",
       "openoptions",
+      "serialize",
       "sourcebatch",
       "sourcemetadata",
-      "src_engine_runresult",
       "src_engine_validate_offer",
       "src_storage",
       "src_storage_concurrent_process_writer_is_rejected",
@@ -114,58 +104,45 @@
       "src_storage_time",
       "src_storage_unknown_prices_and_heading_survive_roundtrip",
       "stdio",
-      "super",
       "validate_offer"
     ],
     "2": [
-      "a",
-      "context",
-      "f",
-      "pin",
-      "poll",
-      "rawboundary",
-      "run",
-      "src_engine_normalize_batch",
-      "src_engine_run",
-      "src_source_fetchoptions",
-      "src_source_rs_naivedate",
-      "src_source_rs_output",
-      "src_source_sourceadapter",
-      "src_source_sourceadapter_fetch",
-      "src_source_sourceadapter_metadata",
-      "src_source_sourcebatch",
-      "src_source_sourcecapabilities",
-      "src_source_sourcemetadata",
+      "hashset",
+      "piececount",
+      "quantitybasis",
+      "src_source_rawboundary",
+      "src_source_rawboundary_date",
+      "src_source_rawboundary_instant",
+      "src_source_rawboundary_unknown",
+      "src_tjek",
+      "src_tjek_boundary",
+      "src_tjek_chains",
+      "src_tjek_limit",
+      "src_tjek_map_offer",
+      "src_tjek_max_pages",
+      "src_tjek_nullable_string",
+      "src_tjek_number",
+      "src_tjek_parse_time",
+      "src_tjek_rs_client",
+      "src_tjek_rs_datetime",
+      "src_tjek_rs_fixedoffset",
+      "src_tjek_rs_value",
+      "src_tjek_string",
+      "src_tjek_tjekadapter",
+      "src_tjek_tjekadapter_default",
+      "src_tjek_tjekadapter_fetch",
       "src_tjek_tjekadapter_metadata",
-      "tests_engine",
-      "tests_engine_batch",
-      "tests_engine_block_on",
-      "tests_engine_completeness_requires_affirmative_batch_without_errors_or_invalid_records",
-      "tests_engine_dedup_is_order_independent_and_keeps_store_and_period_distinct",
-      "tests_engine_fractional_ore_noise_has_a_small_exact_tolerance",
-      "tests_engine_invalid_records_are_visible_and_do_not_suppress_valid_records",
-      "tests_engine_metadata",
-      "tests_engine_offline",
-      "tests_engine_offline_adapter_normalizes_and_preserves_partial_failure",
-      "tests_engine_offline_fetch",
-      "tests_engine_offline_metadata",
-      "tests_engine_pack_ranges_missing_and_zero_price",
-      "tests_engine_raw",
-      "tests_engine_rs_output",
-      "tests_engine_unknown_heading_preserves_the_identified_offer",
-      "tests_engine_validity_uses_copenhagen_calendar_and_precise_instants",
-      "waker"
+      "src_tjek_tjekadapter_new",
+      "src_tjek_tjekadapter_page",
+      "src_tjek_tjekadapter_pages",
+      "src_tjek_tjekadapter_select_chains",
+      "src_tjek_tjekadapter_with_base",
+      "timezone"
     ],
     "3": [
       "args",
-      "chains",
       "cli",
-      "engine",
-      "examples_tjek_smoke",
-      "examples_tjek_smoke_main",
-      "fetchoptions",
       "path",
-      "sourceadapter",
       "src_main",
       "src_main_beskriv",
       "src_main_command",
@@ -183,47 +160,146 @@
       "src_main_kilder",
       "src_main_main",
       "src_main_rs_value",
-      "src_main_source",
+      "src_main_source_metadata",
       "src_main_tilbud",
       "storage",
       "subcommands",
-      "tjekadapter",
+      "utc",
       "validitystatus"
     ],
     "4": [
-      "client",
       "decimal",
-      "hashset",
-      "piececount",
-      "quantitybasis",
+      "offer",
+      "quantity",
+      "rawboundary",
       "sourcecapabilities",
-      "src_tjek",
-      "src_tjek_boundary",
-      "src_tjek_chains",
-      "src_tjek_limit",
-      "src_tjek_map_offer",
-      "src_tjek_max_pages",
-      "src_tjek_nullable_string",
-      "src_tjek_number",
-      "src_tjek_parse_time",
-      "src_tjek_rs_datetime",
-      "src_tjek_rs_fixedoffset",
-      "src_tjek_rs_value",
-      "src_tjek_string",
-      "src_tjek_tjekadapter",
-      "src_tjek_tjekadapter_default",
-      "src_tjek_tjekadapter_fetch",
-      "src_tjek_tjekadapter_new",
-      "src_tjek_tjekadapter_page",
-      "src_tjek_tjekadapter_pages",
-      "src_tjek_tjekadapter_select_chains",
-      "src_tjek_tjekadapter_with_base",
-      "timezone"
+      "src_offer_membership",
+      "src_offer_membership_notrequired",
+      "src_offer_membership_required",
+      "src_offer_membership_unknown",
+      "src_rema",
+      "src_rema_exact_boundary_and_unparseable_price_are_not_invented",
+      "src_rema_limit",
+      "src_rema_map_product",
+      "src_rema_max_pages",
+      "src_rema_newest_campaign_wins_and_equal_decimal_values_are_not_conflicts",
+      "src_rema_number",
+      "src_rema_quantity",
+      "src_rema_rs_datetime",
+      "src_rema_rs_utc",
+      "src_rema_rs_value",
+      "src_rema_text",
+      "super",
+      "tests_contract",
+      "tests_contract_documented_examples_round_trip_without_losing_precision_or_unknowns",
+      "tests_contract_unknown_membership_is_distinct_from_required_and_not_required",
+      "tests_contract_unknown_price_and_package_count_round_trip_without_becoming_zero"
     ],
     "5": [
-      "joinhandle",
+      "future",
+      "src_main_source",
+      "src_main_source_fetch",
+      "src_main_source_rema",
+      "src_main_source_tjek",
+      "src_rema_remaadapter",
+      "src_rema_remaadapter_default",
+      "src_rema_remaadapter_fetch",
+      "src_rema_remaadapter_metadata",
+      "src_rema_remaadapter_new",
+      "src_rema_remaadapter_with_base",
+      "src_rema_rs_client",
+      "src_source",
+      "src_source_fetchoptions",
+      "src_source_rs_naivedate",
+      "src_source_rs_output",
+      "src_source_sourceadapter",
+      "src_source_sourceadapter_fetch",
+      "src_source_sourceadapter_metadata",
+      "src_source_sourcebatch",
+      "src_source_sourcecapabilities",
+      "src_source_sourcemetadata",
+      "tests_engine_offline",
+      "tests_engine_offline_fetch",
+      "tests_engine_offline_metadata"
+    ],
+    "6": [
+      "chains",
+      "duration_as_cduration",
+      "engine",
+      "examples_tjek_smoke",
+      "examples_tjek_smoke_main",
+      "fetchoptions",
       "read",
+      "sourceadapter",
       "tcplistener",
+      "tests_rema",
+      "tests_rema_adapter",
+      "tests_rema_ambiguous_price_and_missing_fields_stay_unknown",
+      "tests_rema_errors_and_unsupported_options_are_incomplete",
+      "tests_rema_page",
+      "tests_rema_pages_map_current_prices_and_exact_quantities",
+      "tests_rema_price",
+      "tests_rema_product",
+      "tests_rema_repeated_page_is_incomplete",
+      "tests_rema_rs_joinhandle",
+      "tests_rema_rs_value",
+      "tests_rema_server",
+      "thread",
+      "tjekadapter",
+      "write"
+    ],
+    "7": [
+      "context",
+      "f",
+      "normalize_batch",
+      "pin",
+      "poll",
+      "run",
+      "src_engine_identity",
+      "src_engine_normalize_batch",
+      "tests_engine",
+      "tests_engine_batch",
+      "tests_engine_block_on",
+      "tests_engine_completeness_requires_affirmative_batch_without_errors_or_invalid_records",
+      "tests_engine_dedup_is_order_independent_and_keeps_store_and_period_distinct",
+      "tests_engine_exact_instant_boundaries_are_unknown_unless_another_bound_decides",
+      "tests_engine_fractional_ore_noise_has_a_small_exact_tolerance",
+      "tests_engine_invalid_records_are_visible_and_do_not_suppress_valid_records",
+      "tests_engine_metadata",
+      "tests_engine_offline_adapter_normalizes_and_preserves_partial_failure",
+      "tests_engine_pack_ranges_missing_and_zero_price",
+      "tests_engine_raw",
+      "tests_engine_rs_output",
+      "tests_engine_unknown_heading_preserves_the_identified_offer",
+      "tests_engine_validity_uses_copenhagen_calendar_and_precise_instants",
+      "waker"
+    ],
+    "8": [
+      "atomicusize",
+      "command",
+      "duration",
+      "fs",
+      "json",
+      "ordering",
+      "pathbuf",
+      "tests_cli",
+      "tests_cli_help_and_invalid_arguments_are_handled_by_the_parser",
+      "tests_cli_human_narrow_search_keeps_long_names_conditions_and_unknown_prices",
+      "tests_cli_human_uses_same_filtered_results_and_is_plain_when_piped",
+      "tests_cli_local_search_filters_and_reports_snapshot",
+      "tests_cli_missing_and_corrupt_snapshots_fail_usefully",
+      "tests_cli_next",
+      "tests_cli_rema_and_tjek_snapshots_coexist_and_catalog_does_not_leak_into_search",
+      "tests_cli_rs_output",
+      "tests_cli_rs_value",
+      "tests_cli_success",
+      "tests_cli_temp",
+      "tests_cli_temp_drop",
+      "tests_cli_temp_new",
+      "tests_cli_temp_run",
+      "tests_cli_temp_seed"
+    ],
+    "9": [
       "tests_tjek",
       "tests_tjek_adapter",
       "tests_tjek_bad_row_is_reported_but_following_offer_is_kept",
@@ -240,83 +316,83 @@
       "tests_tjek_retry_after_and_bad_responses_are_visible",
       "tests_tjek_retry_after_is_not_retried_early",
       "tests_tjek_row",
+      "tests_tjek_rs_joinhandle",
       "tests_tjek_rs_value",
-      "tests_tjek_timeouts_and_repeated_pages_are_partial_errors",
-      "thread",
-      "write"
+      "tests_tjek_timeouts_and_repeated_pages_are_partial_errors"
     ],
-    "6": [
-      "atomicusize",
-      "command",
-      "duration",
-      "fs",
-      "json",
-      "ordering",
-      "pathbuf",
-      "tests_cli",
-      "tests_cli_help_and_invalid_arguments_are_handled_by_the_parser",
-      "tests_cli_local_search_filters_and_reports_snapshot",
-      "tests_cli_missing_and_corrupt_snapshots_fail_usefully",
-      "tests_cli_next",
-      "tests_cli_rs_output",
-      "tests_cli_rs_value",
-      "tests_cli_success",
-      "tests_cli_temp",
-      "tests_cli_temp_drop",
-      "tests_cli_temp_new",
-      "tests_cli_temp_run",
-      "tests_cli_temp_seed"
+    "10": [
+      "datetime",
+      "isterminal",
+      "prelude",
+      "src_human",
+      "src_human_age",
+      "src_human_boundary",
+      "src_human_coverage",
+      "src_human_description",
+      "src_human_document",
+      "src_human_fetch_uses_the_supplied_source_limitation",
+      "src_human_limitation",
+      "src_human_money",
+      "src_human_rs_value",
+      "src_human_string",
+      "src_human_unknown_values_and_partial_errors_are_explained",
+      "src_human_write"
     ],
-    "7": [
-      "offer",
-      "quantity",
-      "tests_contract",
-      "tests_contract_documented_examples_round_trip_without_losing_precision_or_unknowns",
-      "tests_contract_unknown_membership_is_distinct_from_required_and_not_required",
-      "tests_contract_unknown_price_and_package_count_round_trip_without_becoming_zero"
-    ],
-    "8": [
+    "11": [
       "scripts_test",
       "scripts_test_cleanup",
       "scripts_test_sh__entry",
       "scripts_test_tilbud_test_tmpdir",
       "scripts_test_tmpdir"
     ],
-    "9": [
+    "12": [
       "pkg_tilbud"
     ],
-    "10": [
+    "13": [
       "src_lib"
     ]
   },
   "cohesion": {
-    "0": 0.06246799795186892,
-    "1": 0.08816326530612245,
-    "2": 0.10810810810810811,
-    "3": 0.0967741935483871,
-    "4": 0.12962962962962962,
-    "5": 0.23715415019762845,
-    "6": 0.14736842105263157,
-    "7": 0.3333333333333333,
-    "8": 0.4,
-    "9": 1.0,
-    "10": 1.0
+    "0": 0.0726764500349406,
+    "1": 0.09131205673758866,
+    "2": 0.11397849462365592,
+    "3": 0.12307692307692308,
+    "4": 0.1076923076923077,
+    "5": 0.14,
+    "6": 0.14130434782608695,
+    "7": 0.16304347826086957,
+    "8": 0.16205533596837945,
+    "9": 0.32748538011695905,
+    "10": 0.275,
+    "11": 0.4,
+    "12": 1.0,
+    "13": 1.0
   },
   "gods": [
+    {
+      "id": "src_source_rawoffer",
+      "label": "RawOffer",
+      "degree": 19
+    },
     {
       "id": "src_offer_offer",
       "label": "Offer",
       "degree": 18
     },
     {
-      "id": "src_source_rawoffer",
-      "label": "RawOffer",
-      "degree": 17
+      "id": "src_source_sourcemetadata",
+      "label": "SourceMetadata",
+      "degree": 18
     },
     {
       "id": "src_tjek_tjekadapter",
       "label": "TjekAdapter",
-      "degree": 17
+      "degree": 16
+    },
+    {
+      "id": "src_source_sourcebatch",
+      "label": "SourceBatch",
+      "degree": 15
     },
     {
       "id": "src_engine_normalize_batch",
@@ -324,34 +400,24 @@
       "degree": 13
     },
     {
-      "id": "src_source_sourcemetadata",
-      "label": "SourceMetadata",
+      "id": "src_offer_membership",
+      "label": "Membership",
       "degree": 13
     },
     {
-      "id": "tests_tjek_adapter",
-      "label": "adapter()",
+      "id": "src_rema_remaadapter",
+      "label": "RemaAdapter",
+      "degree": 13
+    },
+    {
+      "id": "src_source_fetchoptions",
+      "label": "FetchOptions",
+      "degree": 13
+    },
+    {
+      "id": "src_source_sourceadapter",
+      "label": "SourceAdapter",
       "degree": 12
-    },
-    {
-      "id": "src_main_command",
-      "label": "Command",
-      "degree": 11
-    },
-    {
-      "id": "src_offer_timeboundary",
-      "label": "TimeBoundary",
-      "degree": 11
-    },
-    {
-      "id": "src_offer_membership",
-      "label": "Membership",
-      "degree": 11
-    },
-    {
-      "id": "src_source_sourcebatch",
-      "label": "SourceBatch",
-      "degree": 11
     }
   ],
   "surprises": [
@@ -414,38 +480,38 @@
   "questions": [
     {
       "type": "bridge_node",
-      "question": "Why does `Offer` connect `Offer models and normalization` to `Snapshot storage and validation`?",
-      "why": "High betweenness centrality (0.092) - this node is a cross-community bridge."
-    },
-    {
-      "type": "verify_inferred",
-      "question": "Are the 6 inferred relationships involving `normalize_batch()` (e.g. with `run()` and `dedup_is_order_independent_and_keeps_store_and_period_distinct()`) actually correct?",
-      "why": "`normalize_batch()` has 6 INFERRED edges - model-reasoned connections that need verification."
+      "question": "Why does `SourceMetadata` connect `Source adapter dispatch` to `Offer models and normalization`, `Tjek fetch and mapping`, `CLI and source discovery`, `REMA mapping and contract`, `Engine and validity tests`?",
+      "why": "High betweenness centrality (0.077) - this node is a cross-community bridge."
     },
     {
       "type": "isolated_nodes",
       "question": "What connects `Current`, `Expired`, `Future` to the rest of the system?",
-      "why": "28 weakly-connected nodes found - possible documentation gaps or missing edges."
+      "why": "30 weakly-connected nodes found - possible documentation gaps or missing edges."
     },
     {
       "type": "low_cohesion",
       "question": "Should `Offer models and normalization` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.06246799795186892 - nodes in this community are weakly interconnected."
+      "why": "Cohesion score 0.0726764500349406 - nodes in this community are weakly interconnected."
     },
     {
       "type": "bridge_node",
-      "question": "Why does `TjekAdapter` connect `Tjek fetch and mapping` to `Source batches and engine tests`, `CLI and source discovery`, `Tjek adapter tests`?",
-      "why": "High betweenness centrality (0.090) - this node is a cross-community bridge."
+      "question": "Why does `Offer` connect `Offer models and normalization` to `Snapshot storage and validation`, `REMA mapping and contract`, `Engine and validity tests`?",
+      "why": "High betweenness centrality (0.072) - this node is a cross-community bridge."
     },
     {
       "type": "low_cohesion",
       "question": "Should `Snapshot storage and validation` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.08816326530612245 - nodes in this community are weakly interconnected."
+      "why": "Cohesion score 0.09131205673758866 - nodes in this community are weakly interconnected."
     },
     {
       "type": "bridge_node",
-      "question": "Why does `Membership` connect `Offer models and normalization` to `Source batches and engine tests`, `Tjek fetch and mapping`, `Tjek adapter tests`, `Offer contract tests`?",
-      "why": "High betweenness centrality (0.075) - this node is a cross-community bridge."
+      "question": "Why does `Membership` connect `REMA mapping and contract` to `Offer models and normalization`, `Tjek fetch and mapping`, `Source adapter dispatch`, `REMA adapter tests`, `Engine and validity tests`, `Tjek adapter tests`?",
+      "why": "High betweenness centrality (0.070) - this node is a cross-community bridge."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Tjek fetch and mapping` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.11397849462365592 - nodes in this community are weakly interconnected."
     }
   ]
 }

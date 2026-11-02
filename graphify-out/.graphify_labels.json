@@ -1,13 +1,16 @@
 {
   "0": "Offer models and normalization",
   "1": "Snapshot storage and validation",
-  "2": "Source batches and engine tests",
+  "2": "Tjek fetch and mapping",
   "3": "CLI and source discovery",
-  "4": "Tjek fetch and mapping",
-  "5": "Tjek adapter tests",
-  "6": "CLI search and tests",
-  "7": "Offer contract tests",
-  "8": "Isolated test workflow",
-  "9": "Cargo package",
-  "10": "Library module exports"
+  "4": "REMA mapping and contract",
+  "5": "Source adapter dispatch",
+  "6": "REMA adapter tests",
+  "7": "Engine and validity tests",
+  "8": "CLI search and tests",
+  "9": "Tjek adapter tests",
+  "10": "Human output rendering",
+  "11": "Isolated test workflow",
+  "12": "Cargo package",
+  "13": "Library module exports"
 }

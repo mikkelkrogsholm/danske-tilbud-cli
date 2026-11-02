@@ -10,10 +10,10 @@ sources:
     resource: repo://src/main.rs
   - id: openwiki-source-dc57eb67cb7ae0022f82d3af
     resource: repo://src/tjek.rs
-generated: { by: "codex", at: "2026-11-02T14:58:10.972Z" }
+generated: { by: "codex", at: "2026-11-02T15:16:00.359Z" }
 verified:
   - by: openwiki/0.7.3
-    at: 2026-11-02T14:58:10.972Z
+    at: 2026-11-02T15:16:00.359Z
 ---
 
 # Tjek-kilden
@@ -38,4 +38,4 @@ JSON-priser læses uden binære flydende kommatal. Kildens `pre_price` er en sam
 
 En fuld hybridkørsel den 2. november 2026 ca. 14:44 UTC gav ifølge [kildedokumentationen](../../docs/tjek.md) 5.568 normaliserede tilbud, ingen dubletter, afvisninger eller kildefejl. Bilka brugte katalogvejen med ovenstående dækningsgrænse; tre føtex-poster uden overskrift blev bevaret. En separat stikprøve samme dag omfattede 14 kæder. Observationerne er tidsbundne, ikke garantier for aktuel eller fuld dækning.
 
-Kør `cargo run --example tjek_smoke` for en ny livekørsel eller tilføj `-- rema1000` for én kæde. Se [kom godt i gang](../quickstart.md) for almindelig build og test; [offline tests](../../tests/tjek.rs) dækker adapterens grænser og fejlveje.
+Kør `cargo run --example tjek_smoke` for en ny livekørsel eller tilføj `-- rema1000` for én kæde. Se [REMA-kilden](rema.md) for et separat produktfeed og [kom godt i gang](../quickstart.md) for almindelig build og test; [offline tests](../../tests/tjek.rs) dækker adapterens grænser og fejlveje.
