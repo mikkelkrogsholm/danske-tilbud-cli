@@ -43,7 +43,7 @@ periode, butik og snapshot-alder; hvert snapshot havde en nylig hentetid.
 Netto-filteret gav kun Tjek-resultater for Netto. Tjek-kildens historiske
 14-kæde-afprøvning og dækningsforbehold står i [tjek.md](tjek.md).
 
-Testwrapperens egne mapper blev fjernet. Oprydning af den særskilte mappe med
-installation, build og live-data blev afvist af miljøets `deny.machine_wipe`-
-regel; mappen blev derfor efterladt til afklaring. Globale caches og brugerdata
-blev ikke ryddet.
+Testwrapperens egne mapper samt den særskilte mappe med installation, build og
+live-data blev fjernet. Miljøets `deny.machine_wipe`-regel afviste først
+rekursiv sletning; målrettet oprydning lykkedes uden ændring af hooks. Globale
+caches og brugerdata blev ikke ryddet.
