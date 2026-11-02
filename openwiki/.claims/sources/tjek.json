@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:23298004a4b8cc44d8ecf2a235126493df959dc26f509260ff7ab88f32aca5cf",
+  "pageVersion": "sha256:95f0313d335319bfbe96076516cbd53d221d5314489ce7fcac27dbb15b1b045b",
   "claims": [
     {
       "id": "claim_7653593113bb43aba908b4699d3b6ed1",
@@ -67,10 +67,24 @@
           "version": "repo-lines-v1:sha256:d5bf557d7213ad1b184d55c799aa19f9f6b2d4f3f20dbc26b59e120421b7f6d1:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWU1OTkxMDgxZGU4NWRlOTcxYmU0NTIzMzZjNjNlODgyODM0NTAyOWRjODZjZGQwNjYzYjNjNmRmYTczNTY0MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTBiN2FiNjQxYjlmYmRhYjc1ODkzMjdkZTQ1MWM0ZmRkYzE5Y2M4YzBmYzUyODE2YWI0N2I2NzA5MmE3MGU5YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjg3YWRjNTZlZDIzOTQ4M2E3ZDZjODkwNzZlMTQzMmExMWRmMTNmYmFlNTI5NzVmZDU4ODc5NjNiOWVkNjE3OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODkzOWU5NDdiYjkwMDNlNjkzZmE4ZTVjMWJiYWU1MjMwMjRmMjc2ZjQ1ZmNlNDUyNDJiYjRiZjI2ZmVmMGM4YSJ9"
         }
       ]
+    },
+    {
+      "id": "claim_a6600b1d32b84a7b902dedcf53a945d5",
+      "statement": "CLI hent bruger Tjek-adapteren og offentliggør kun en komplet kørsel.",
+      "evidence": [
+        {
+          "resource": "repo://src/main.rs#L106-L120",
+          "version": "repo-lines-v1:sha256:d8e24e958d1fefe59f996ee9831006f3fcb73cc86e912e58673abf68885bae11:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkYWQyOTkxZDhiYzJhZjliZTkyYzJmMmQzY2I0MTRkYjY2Nzk2MmNkYmM1NmU1MWIyOTM3MGQ0ZDkxZGRkZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJkNWYxMjI0YzZkNDJlNjVhZWMzNmY2ZGNiMGIxNzZjYWQwYmNiNTQzZTVmMzcwMzM4ZDhmNjNmOTRkYTBlYzciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUzYjdjZmIwMzY3Yjk5NDY1YWFmNjliYWIyZDU2NzdhMTdiNDc1MDI3OGY3NzM2YzFhYzdhYTM2MTlmMWQ2MmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhlYmJkNjdhM2VlYTkzZjMzNzM2NjhkNTQwN2NkM2E3ODA4OTgxMjA3NjQ4ODI5Y2Q1MmQ3NmJhYWZhMzc2ZDEifQ"
+        },
+        {
+          "resource": "repo://src/main.rs#L65-L70",
+          "version": "repo-lines-v1:sha256:9c847a02a355e1f30976cc7e58ad1a0126f3425e4f3e619d44037956c9c03879:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWRiOWI5N2M0NDRjYzY5MWFmZjQxMzVkZjczZjI2ZDY2NWMyOTMxNGNkNmNlNDQyNTYxMjFjNjc4ODgyYzdhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDRiMGIwMjkwM2ZiNDVhYmY1Nzc4YzFlNjY1MmRmY2EzZWU2ZTY4Yzg3MzkzMzFhOGY5MTJiZTA3NjZjMWM0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmE5NzU2OTI3MGVhYTViZjlmODA3Yzk5MGY5MmQ0YzE4NzlmNWUyMjRhODQ0NWZkZjZkODI1ZDE0NDA5YmNlNyJ9"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.3",
-    "at": "2026-11-02T14:48:25.742Z"
+    "at": "2026-11-02T14:58:10.972Z"
   }
 }

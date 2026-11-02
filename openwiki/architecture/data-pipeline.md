@@ -5,7 +5,7 @@ description: Kildekontrakten og motorens behandling af tilbud, fejl, identitet o
 tags: [data-pipeline, normalization, offers]
 verified:
   - by: openwiki/0.7.3
-    at: 2026-11-02T14:46:29.006Z
+    at: 2026-11-02T14:58:10.972Z
 sources:
   - id: openwiki-source-ccfe8cc4504f25c304787a46
     resource: repo://src/engine.rs
@@ -13,14 +13,16 @@ sources:
     resource: repo://src/offer.rs
   - id: openwiki-source-4cab5a0ac2324da50f386806
     resource: repo://src/source.rs
-generated: { by: "codex", at: "2026-11-02T14:46:29.006Z" }
+  - id: openwiki-source-62eef0b8799186dd9e2faae9
+    resource: repo://src/storage.rs
+generated: { by: "codex", at: "2026-11-02T14:58:10.972Z" }
 ---
 
 # Tilbudsdata og normalisering
 
-Biblioteket eksponerer en kildekontrakt og en generisk motor. `SourceAdapter` beskriver metadata og en asynkron `fetch` med valgfrie butiks- og datofiltre. Adapteren har ansvaret for transport, paginering og oversættelse af svar til kildenære `RawOffer`-poster; kontrakten angiver også, hvilke filtre kilden understøtter. [Tjek-adapteren](../sources/tjek.md) henter data over HTTP som biblioteksfunktion; den er endnu ikke tilsluttet CLI-søgning.
+Biblioteket eksponerer en kildekontrakt og en generisk motor. `SourceAdapter` beskriver metadata og en asynkron `fetch` med valgfrie butiks- og datofiltre. Adapteren har ansvaret for transport, paginering og oversættelse af svar til kildenære `RawOffer`-poster; kontrakten angiver også, hvilke filtre kilden understøtter. [Tjek-adapteren](../sources/tjek.md) henter data over HTTP som biblioteksfunktion; CLI-kommandoen `hent` bruger adapteren, mens `find` søger i lagrede snapshots.
 
-`fetch` returnerer en `SourceBatch` med poster, valgfri dækningsbeskrivelse og kildefejl. `engine::run` henter batchen og sender den sammen med metadata til `normalize_batch`. Resultatet `RunResult` indeholder normaliserede tilbud, ugyldige poster med årsag, kildefejl, dækning og et antal dubletter. En delvis kildefejl forhindrer således ikke, at gyldige poster i samme batch behandles.
+`fetch` returnerer en `SourceBatch` med poster, valgfri dækningsbeskrivelse og kildefejl. `engine::run` henter batchen og sender den sammen med metadata til `normalize_batch`. Resultatet `RunResult` indeholder normaliserede tilbud, ugyldige poster med årsag, kildefejl, dækning og et antal dubletter. En delvis kildefejl forhindrer således ikke, at gyldige poster i samme batch behandles. Batchen skal udtrykkeligt angive `complete`; `RunResult.complete` er kun sand, når batchen er komplet og hverken kilde- eller valideringsfejl forekommer.
 
 ## Validering og præcision
 
@@ -36,4 +38,4 @@ Enhedspris beregnes kun, når pris, præcis mængde og mængdegrundlag er kendt.
 
 Dubletidentiteten består af kilde, kilde-id, kæde-id, hele butiksobjektet og gyldighed. Struktureret serialisering undgår kollisioner fra skilletegn. For samme identitet beholdes det leksikografisk første serialiserede `Offer`; antal dubletter tælles, og resultater samt ugyldige poster ordnes deterministisk uanset inputrækkefølge. EAN og produkt-id indgår ikke i identiteten.
 
-Motoren gemmer ikke data og er ikke tilsluttet CLI'ets tilbudssøgning. Se [kom godt i gang](../quickstart.md) for aktuel brug og test. Kontrakten og eksemplerne findes i [offer-v1](../../docs/offer-v1.md); [motortestene](../../tests/engine.rs) dækker blandt andet normalisering, fejl og dubletter.
+`storage::publish` gemmer kun komplette resultater uden kilde- eller valideringsfejl. Efter indlæsning genbruges motorens `validity_status` og `unit_price` til at klassificere gyldighed og beregne enhedspris. Se [snapshot-lagring](../operations/storage.md) for format og fejlhåndtering. Se [kom godt i gang](../quickstart.md) for aktuel brug og test. Kontrakten og eksemplerne findes i [offer-v1](../../docs/offer-v1.md); [motortestene](../../tests/engine.rs) dækker blandt andet normalisering, fejl og dubletter.

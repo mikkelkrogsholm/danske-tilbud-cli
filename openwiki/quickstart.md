@@ -10,26 +10,35 @@ sources:
     resource: repo://Cargo.toml
   - id: openwiki-source-2161525089da862e880baf7a
     resource: repo://scripts/test.sh
+  - id: openwiki-source-ccfe8cc4504f25c304787a46
+    resource: repo://src/engine.rs
   - id: openwiki-source-b55a21a31ede1b56cd31a6a6
     resource: repo://src/main.rs
-  - id: openwiki-source-dc57eb67cb7ae0022f82d3af
-    resource: repo://src/tjek.rs
-generated: { by: "codex", at: "2026-11-02T14:46:29.006Z" }
+generated: { by: "codex", at: "2026-11-02T14:58:10.972Z" }
 verified:
   - by: openwiki/0.7.3
-    at: 2026-11-02T14:46:29.006Z
+    at: 2026-11-02T14:58:10.972Z
 ---
 
 # Kom godt i gang
 
-Tilbud er et dansk dagligvare-CLI i en tidlig grundversion. CLI'et viser hjælp og meddeler ellers, at tilbudssøgning endnu ikke er implementeret. CLI'et henter eller viser endnu ikke tilbud og har ingen lagring. Biblioteket har en tilbudskontrakt, et adapterinterface, en normaliseringsmotor og en Tjek-adapter, der henter tilbud over netværket. Adapteren er endnu ikke koblet til CLI'et.
-
-Projektet kræver Rust 1.91 eller nyere. Fra projektets rod kan du bygge programmet og se hjælpen:
+Tilbud henter Tjek-tilbud til et lokalt snapshot og søger derefter uden netværkskald. Byg og prøv fra projektets rod (Rust 1.91 eller nyere):
 
 ```sh
 cargo build
 cargo run -- --help
+cargo run -- kilder
+cargo run -- beskriv tjek
+cargo run -- hent --kilde tjek
+cargo run -- find kaffe --butik netto --limit 20
+cargo run -- find mælk --include-unknown --data-dir /sti/til/data
 ```
+
+`kilder` og `beskriv` viser metadata og eventuelt seneste snapshot; `hent` erstatter kun et snapshot efter en komplet kørsel. `find` søger uden hensyn til store og små bogstaver i navn og beskrivelse og udelader katalogpriser. `--butik` vælger et kæde-id; `--kilde` vælger kilde og standarden er `tjek`. `total` er match før `--limit`, som er 20 som standard. Resultaterne indeholder original gyldighed, status og beregnet enhedspris, når den kan beregnes.
+
+Som standard vises kun beviseligt aktuelle tilbud. `--include-unknown` medtager også ukendt gyldighed, men ikke poster der vides at være fremtidige eller udløbne. Datogrænser vurderes efter Europe/Copenhagen med inklusiv slutdato; tidsinstanter sammenlignes præcist.
+
+Succesfulde kommandoer skriver et JSON-objekt med `schema_version`, `command` og `data` til stdout. Fejl giver ikke-nul exitkode og diagnostik på stderr. `--data-dir` står efter kommandoen og tilsidesætter `TILBUD_DATA_DIR` og platformens standard. Se [snapshot-lagring](operations/storage.md) for placering, format og fejlhåndtering. Tjek-dækningen er begrænset som beskrevet på [kildesiden](sources/tjek.md).
 
 ## Test
 

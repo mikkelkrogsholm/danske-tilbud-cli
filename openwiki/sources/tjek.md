@@ -3,20 +3,22 @@ type: integration
 title: Tjek-kilden
 description: Tjek-adapterens hentning, dækningsgrænser, filtre, fejl og dokumenterede liveobservationer.
 tags: [tjek, source-adapter, pagination]
-verified:
-  - by: openwiki/0.7.3
-    at: 2026-11-02T14:48:25.742Z
 sources:
   - id: openwiki-source-138c2e8e14eae17ee441a093
     resource: repo://docs/tjek.md
+  - id: openwiki-source-b55a21a31ede1b56cd31a6a6
+    resource: repo://src/main.rs
   - id: openwiki-source-dc57eb67cb7ae0022f82d3af
     resource: repo://src/tjek.rs
-generated: { by: "codex", at: "2026-11-02T14:46:29.006Z" }
+generated: { by: "codex", at: "2026-11-02T14:58:10.972Z" }
+verified:
+  - by: openwiki/0.7.3
+    at: 2026-11-02T14:58:10.972Z
 ---
 
 # Tjek-kilden
 
-`TjekAdapter` er en biblioteksadapter for `https://squid-api.tjek.com/v2`; den er ikke en CLI-kommando. `new()` vælger alle 14 kendte kæder. `select_chains` vælger et udsnit og afviser en tom liste eller ukendte kæde-id'er. `with_base` og en timeout kan bruges til offline fixtures. Adapteren leverer `SourceBatch` til [motoren](../architecture/data-pipeline.md), hvor poster normaliseres og ugyldige poster rapporteres.
+`TjekAdapter` er en biblioteksadapter for `https://squid-api.tjek.com/v2`; CLI-kommandoen `hent --kilde tjek` bruger den til at hente og gemme et komplet snapshot. `new()` vælger alle 14 kendte kæder. `select_chains` vælger et udsnit og afviser en tom liste eller ukendte kæde-id'er. `with_base` og en timeout kan bruges til offline fixtures. Adapteren leverer `SourceBatch` til [motoren](../architecture/data-pipeline.md), hvor poster normaliseres og ugyldige poster rapporteres.
 
 ## Hentning og dækning
 

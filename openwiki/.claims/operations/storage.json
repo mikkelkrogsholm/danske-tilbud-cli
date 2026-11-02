@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e9c564c112a7f773a65b4fec8f3513b6910a98585895484f1ab3bcb348070246",
+  "claims": [
+    {
+      "id": "claim_5d406d857fc84279bedaca4f2421668a",
+      "statement": "Lageret gemmer kun komplette resultater uden kilde- eller valideringsfejl og bevarer eksisterende snapshot ved fejl før rename.",
+      "evidence": [
+        {
+          "resource": "repo://src/storage.rs#L218-L238",
+          "version": "repo-lines-v1:sha256:2a52a36d1c807fd522c12495671170ccd6acf54a17192c9fa49b5dec0aeaae12:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjZGU1MWRlMWViMWE0MTFhYzQ2OGQwZGU3MjEwN2E0MjMxNGFhMDgzNDllODU3ZGZkZmU5YWFkZDgwOTNhZGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE5ZTc2MzU1Y2YxMTk5NDgwYzNmOTk4MzZiMTQ4NmM4NDFkODkxZmFhZDkwNGM2MDhlMDkzMDIyZDM3NTdhZWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdiMGRmOTQxMzZhM2VkMjcwYjVkN2YzODc5MGY3YzYyMDhiZTIwOWE4NDNhMzQ3OWJkMjNjMjA3OTFmM2MxNGYifQ"
+        },
+        {
+          "resource": "repo://src/storage.rs#L262-L285",
+          "version": "repo-lines-v1:sha256:dd3370e4f8d64846c07ecf5b170fc6fe9ad2632c6c28135859c91f72c544cb67:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3ZDcxNmUxNjQ2Yzc3YWE5YjZjYjY0OWIzOWRjM2UxMmFjN2IzOTc3MzNhODJiNDdkMzQ3OTkwMjhmYmJjMjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwNzgwZTdiODAzMzQ5NzllMTJkOTNlYmU0MTgwMTZiOGRkMzM2Y2NlY2VkMzc3Nzg3Yzk4NjFmOGNjYmFiYzEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJiYTQyOWRjM2EwYTdiMzNlYjYzNmM4NTBhZDlmNjM4ODM3NDZmYWYxOWUyYzc0Y2Q4MTNlN2Q1ZTY4M2YxZjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM1ZjZmNDY2ZTU5Y2ZjMzA3MDNjNDVmNzJhZjY1ZGU1NGFjMzYzZDM1NGNjMWEzMzMwMzUwYWNkNDUyNDM0YzQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1bab25f24eea43eb96186ea8c6d95860",
+      "statement": "JSONL starter med et komplet versionsmærket manifest og efterfølges af validerede Offer-poster; tomt snapshot og antal kontrolleres.",
+      "evidence": [
+        {
+          "resource": "repo://src/storage.rs#L102-L146",
+          "version": "repo-lines-v1:sha256:b37416da14a1f3474c2bdaa68e63514b32bc0ddb291c93eee0b93153526222fc:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwODY0YTQ1Yzg2ZWFlZDRhNWEzZmQ1N2JhYjY4OWQ2NWYzMDQ2MGRiNjcxYzFlNzZhYWYzZmNlYmIzOTk5NTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU1YWI3YjZkOWI2ZTE5NTY1M2ZjOGI1NWY2M2YzNjQ2MDY4NTVjNDU0ZmM1NjU4NTFmMzFhMmYwOTQ1ZGE3NDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhhMDI1YWQwOTM1NzM2OTU2OGQ2OWZkNmQ1MjMxODJhN2UyMWQ0MThjM2NiYjJlNDQzYmQ3Y2E5ZmYxNzIzMmIifQ"
+        },
+        {
+          "resource": "repo://src/storage.rs#L147-L199",
+          "version": "repo-lines-v1:sha256:bec4508a1a63db9b2d0bfe277af35f17ea163bec805ab33e7e7d6a42c94c6abd:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhYTU3MWI2ZDVhZWMxM2RjNTRjZGRkNDE4ZjE3OGNlZDVjMTEwZmE0MTIyYWVjODMyNmJlYzQ3NjMxYmQ5ZGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3MjJiNzJkOTg2NTcwYWFiZDIxOTA5YmRjNGUyMzQ5M2IwMTUwNDRjNTE3MmU0MDE3NzA5ZTllNWEyMGM0ODMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyYWM3MDkxNGFiMDI1ODkzZmQ4NjQ5M2NjYzM4ZWZlZmJjMDZmNWI2ZjhmZDkyOTJjZWQzMzFlODdhZmE4NDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc1MGQ0MDg4NTNiMTY1YWI0MDUyMTAwODUwZjJmZmFmYzk1YmY4NGQ2NzM1OThiMjFkNzY5MzQ4OGZkMGUzYzgifQ"
+        },
+        {
+          "resource": "repo://src/storage.rs#L240-L269",
+          "version": "repo-lines-v1:sha256:a89d6e408059dc6f8007f11a559b0e8d0a6e1c7cce0b5a8ff78b4c741811654f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1YzcxYTgyYjRlYjIwYTI1OTUwZGJmYjE5Y2MwNjJjYzY2MTE5ZjA1NzFlYTA5MDJmYjdmZjRlNjczMzI5ZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2MTRhMmM1OTA0ZmZlODg5ZjM4ODc3ZGQ2NTBkMjJiODBmYzM2NDgxNzM1N2Y1NDNjNTQ3M2JhN2Q3NGM0N2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJiNWJjOTM0YzEyMTFjMWZlYTA0ZGQ5ZjA4YzY2NmI3MjE1NGJhOThiOWQxMmY4NTMzMjEyMzIxMDc0NzkzNGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a04c5a2af7cb4a38aabd4257903c1997",
+      "statement": "Læsning og skrivning deler en ikke-blokerende fillås; skrivning flusher, synkroniserer og validerer en unik fil før atomisk rename og rydder sin egen midlertidige fil ved normal fejl.",
+      "evidence": [
+        {
+          "resource": "repo://src/storage.rs#L202-L215",
+          "version": "repo-lines-v1:sha256:ba5664687b0dd55caf3bc9e07b7cadfb36ddd80ed8e5683ac79eb3b1ddde77fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNkZDcxOTUxYzZhNjNjZWU4MzhhZTlhNWI2MmViNjZjZTUyY2YyNzJjMzk4ZThhZTlmODE2NjM1ODI3NmRlNDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgxZjY4YTQxYjZlOGU3ZmNlZDkwZWUyN2I3OGYwOWI2OTZlZDQ3MzA2MmM0Yzk0ODM1NTc5NTQxN2E0N2JjZmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzOTI2YTM0NTRkNjliMWVmYmRiOTNlNjVhMDIwMDBiNmE4YjM3YzEwZmM3ZTJjMjFhOWEzYmY3NzY1MWI1NTQifQ"
+        },
+        {
+          "resource": "repo://src/storage.rs#L239-L285",
+          "version": "repo-lines-v1:sha256:6c959d0128478ca5082021e44d37e84d09149d19dad2931fee553d519b149547:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhYTg5NWM1ZGU2MDAwNGNlODQxM2RhYzg2MDE5NDEyM2NiZTc5ZThlOTgwZjI4MWRkMjNhZjJhZjA2YzMwNDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwNzgwZTdiODAzMzQ5NzllMTJkOTNlYmU0MTgwMTZiOGRkMzM2Y2NlY2VkMzc3Nzg3Yzk4NjFmOGNjYmFiYzEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiYzA0MWE4ZjMxODdiMmIzODZkMjMwYWVhNTBlMTQyZTk5YmFjMGE5MzBmYzQyNjBhYjA4NDQyYWRjZGNhN2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM1ZjZmNDY2ZTU5Y2ZjMzA3MDNjNDVmNzJhZjY1ZGU1NGFjMzYzZDM1NGNjMWEzMzMwMzUwYWNkNDUyNDM0YzQifQ"
+        },
+        {
+          "resource": "repo://src/storage.rs#L74-L85",
+          "version": "repo-lines-v1:sha256:de7f85bb4a794dcc392bdfeb5c27ae652ebcbb126289b9318a4cd39f35cd6cb1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3MmIwMWVjM2E1ZTk2OGY3NDhjODVlMDMxY2Y2Mjc4NDk2MzMzMWQwMWQ3YmM3MzM3Zjk1YjdkZWZmZTFlMzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYxYzA5OGZhMDM5YTVjNTRkNDE3NDYwZjE5YTZjMzFlMWQ0YjlmMjNjZmFkMTJhMDY4NDRhMWNhNjM1YTQxMTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE5ZTc2MzU1Y2YxMTk5NDgwYzNmOTk4MzZiMTQ4NmM4NDFkODkxZmFhZDkwNGM2MDhlMDkzMDIyZDM3NTdhZWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlMGRjYjRhMTFlYmM4YTA3YTk2MzZmMTc2ZTQ5YzY2NzE0NWVkNjkwZGRlYWVkOTJmMzhlODhjODNlMjA1MTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6875555e247d4741b048b169bee69f4e",
+      "statement": "Datamappen vælges ved eksplicit override, derefter TILBUD_DATA_DIR og til sidst platformens standard.",
+      "evidence": [
+        {
+          "resource": "repo://src/storage.rs#L52-L72",
+          "version": "repo-lines-v1:sha256:be72f544586b14bd5ce365c358a620d9d5db1eff2856fd899ac3df7e141402f1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkODcwYzRhZmQ3ODc1NWQwNjE3N2QzNzA1YjY1YzA5ODJmMzBiMWE3YWJkOGQ3MWJjYTMwZjBjYWU5ODExZDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1ZjZmNDY2ZTU5Y2ZjMzA3MDNjNDVmNzJhZjY1ZGU1NGFjMzYzZDM1NGNjMWEzMzMwMzUwYWNkNDUyNDM0YzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxNDM3MzQyNjE3NTYxYzgzNjk3YTFjYjk1MjJjMWI4NjRhODAwNDg4ZWViYzE4MGI0Zjg0MDJmZDZiN2MwYWIifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-02T14:59:18.920Z"
+  }
+}

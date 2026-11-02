@@ -1,17 +1,7 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:0cdc0078bffa3f53ec2dfbadcb946fc18adac498b3c8ef498a2cd272db23cdbf",
+  "pageVersion": "sha256:2d3dbb47803a5d223143d8b1a0408c46db5def12f001309a1b2e778c8edb1b05",
   "claims": [
-    {
-      "id": "claim_621170f9aa1941089d86fdefcc19e7eb",
-      "statement": "CLI viser hjælp og meddeler, at tilbudssøgning endnu ikke er implementeret.",
-      "evidence": [
-        {
-          "resource": "repo://src/main.rs#L1-L11",
-          "version": "repo-lines-v1:sha256:4847d416ff49f1c01465f56dc2067b18bba540d960df13ab8771266f9abdf72f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlM2QxZWRmN2IzN2JmYzQ2YTIxMGQ0NzIzN2IxNTZlNzdiNmQ1MGMxNDFkYjcyMzgzNzY0YmIzMjE1NWY0ZGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
-        }
-      ]
-    },
     {
       "id": "claim_29721cf2d9e044758f618f708934d52e",
       "statement": "Testwrapperen opretter en særskilt mappe til build og testdata, videresender argumenter til cargo test og håndterer oprydning ved normal afslutning og HUP, INT og TERM.",
@@ -37,26 +27,60 @@
       ]
     },
     {
-      "id": "claim_96ea52e22dd041d5af64191f9ccf36e7",
-      "statement": "Biblioteket har en Tjek-adapter, der henter tilbud over netværket, men CLIet er endnu en hjælpestub uden tilbudssøgning.",
+      "id": "claim_d6a87b50160c492093c12803139ca3a9",
+      "statement": "CLI understøtter kilder, beskriv, hent og lokal find; hent bruger Tjek og publicerer kun en komplet kørsel.",
       "evidence": [
         {
-          "resource": "repo://src/main.rs#L1-L11",
-          "version": "repo-lines-v1:sha256:4847d416ff49f1c01465f56dc2067b18bba540d960df13ab8771266f9abdf72f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlM2QxZWRmN2IzN2JmYzQ2YTIxMGQ0NzIzN2IxNTZlNzdiNmQ1MGMxNDFkYjcyMzgzNzY0YmIzMjE1NWY0ZGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "resource": "repo://src/main.rs#L137-L142",
+          "version": "repo-lines-v1:sha256:eb8ec674355ce7f75de33a3bed0d77aea697d0106d8a6768f78d683a24de489f:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjFlZmM3NzhjNjdhMWY1MTBkMGIzNGM4MTIzM2Q3ODVmNGY1NzI3YWJmY2FlYWM1NGFhOThlZDJlNTUwMzYxMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTNiM2M5YWVhNDA2MmQwNjIyODE3OTQ5ZTQyMGI4N2MyMDRjMzFkYTYyYmRlZTFmMTM1ZTcwMzA1ZDBhMTkxMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDQ0NGVjZTdkOGI0YjdjMzU2Y2VmOTY3ZDU1NzJmNDg2NTMwYWVmODM1YzFiZDA4ZGM0ZDg5YmMxMGNiZTQwZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGJlYzk0N2Y4ZTkyZDU1Nzg3YjhiYWRlNGZjNDk1Njc1MzY5NWFkOTcxN2NhODNiYzc4ZmViYWIxMWYwODk5NiJ9"
         },
         {
-          "resource": "repo://src/tjek.rs#L39-L42",
-          "version": "repo-lines-v1:sha256:847b5652b7ca020b2d33cb02bf0758edf2bd987e71da7774ffcb0d3c7fa2b5cc:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTJhODA0N2IyNTlkZmFkNmI2NGFjYWNlZTgxYWRhM2ZlYWRlMTIzZTY1YWIzMGQ5Y2U2NjRkN2EzNDYwMTc2MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDYzNDA3ZWY3NDYwZGRhZWEwYWY1NGMwNmViOGU5NGQwN2Q5NWQ5MDIzYjk2ZGIxZmZmODkwZDc1MmQ5ZWQ0ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTUzNTQ3YWVmZDZkZWY0NDk0ZjBhNTE1NmM5YTlkNTZkYjgyNDI1ZmVjNTA2MjI1YTU3OTljMWU5OWVmNmNiYiJ9"
+          "resource": "repo://src/main.rs#L20-L25",
+          "version": "repo-lines-v1:sha256:6c3d12db62fc9c952ed8e61c31db6fce13869916fce68e85192faab76c16b007:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTg5YmY1MmFlYTA1ZDAyOThiZjc5Yjc2MDRjZTlmNzg5Y2NmMDYwY2Q4NmUwZDlkMjAyOGVmNmIyMDYxYThjMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmFjOTc2ZDA0YzVhMzk0N2RkZWM3MDM1MjRkNzNiN2FiYTlmZGZiZmM1ZGM2NjA4YTc4NjVjYmM3ZGMxZDI0NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDYwNWQ3MDI5NTg0ODU4ZmNjMGMzYjk4ODY3OTU0NzRmYjg0MjJjZGViNWI0OWI1YWJiZmE0MTc2ZjU0NmQ4MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzg4MzcwY2E1YzBlMjFkMjYwZTZkYzU1YTk2MzljYmZiYmUzMTVjNmI5MWI0NjA4NzY2YzU3MmY2ZmQ2OTc2ZCJ9"
         },
         {
-          "resource": "repo://src/tjek.rs#L83-L105",
-          "version": "repo-lines-v1:sha256:5df61eccbbf1031752b5f2123bfdf8a25141edba9f8aee6a97e2f7da179a41b8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmYTgxM2E5NTlmODY0NmJlMDA3ZmE5ZTNiNjA0MTAwMDBmNTY3ZTAwNjU0ODlmNGQ2ZGM1YmVlNTVhMmJjYzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3MmY2NDk2YTNlMjI0Yjc0ZDRkN2JjNTNjNDg1NGRlY2M5ZjM3OGFhYTk1YjVkMmFjNzU5YWEyZTUyMDRjMjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUyYmJjZjBhMjQ1ZDkxMWFhOWI5OGQ5YjIxYWJmODdiYjFmMzA0ZTRiZDY2MWMxNzdmOTczZWM0NjlhN2FjZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ2YzkyZWY5MWNhNmJjMzY0ZDIwN2MyM2Q4NGRhODJkZDE4YTIzOWY0NjlmN2RmNmJmZmJiMjEyYTc0MWE3YjUifQ"
+          "resource": "repo://src/main.rs#L92-L120",
+          "version": "repo-lines-v1:sha256:cf3152fd31319f0c583aeb81bb3d1735a4a369daf120e2020679afc77985f780:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQwOWM2NzQ0NzBkNjhmMDQ5NDc2NTA0ZDM5ZmI4ZTg1YTBhZDZlYjZlODE0YmFkMzQ5MGFjY2E3NjBjYmViMGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJkNWYxMjI0YzZkNDJlNjVhZWMzNmY2ZGNiMGIxNzZjYWQwYmNiNTQzZTVmMzcwMzM4ZDhmNjNmOTRkYTBlYzciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMyNGEwY2ZiYWU1YmFiZWYwNTk4ZTNmYTRlNzkwY2NiZGRiOWE3NDRkYWZjODNkYThjODkzZDM5NTIwY2M3YTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhlYmJkNjdhM2VlYTkzZjMzNzM2NjhkNTQwN2NkM2E3ODA4OTgxMjA3NjQ4ODI5Y2Q1MmQ3NmJhYWZhMzc2ZDEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f1ff0ecccd31439a91240112d2a57460",
+      "statement": "Find søger lokalt i navn og beskrivelse, udelader katalogpriser og viser som standard kun aktuelle tilbud; include-unknown medtager ukendt gyldighed.",
+      "evidence": [
+        {
+          "resource": "repo://src/main.rs#L137-L176",
+          "version": "repo-lines-v1:sha256:fbe0a34f614d6b11650bb89d418c6e547a8f548c35c80ab3654c3eb0526acb44:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxZWZjNzc4YzY3YTFmNTEwZDBiMzRjODEyMzNkNzg1ZjRmNTcyN2FiZmNhZWFjNTRhYTk4ZWQyZTU1MDM2MTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY4ZTI2ZWMyNTVhZmY0OGMwNTFkOThlZTVjNTFmYjFmMDRjNzg5NWU5OTkxZjNmYjhhZGRlNWVhNWRjYWMwM2EiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA0NDRlY2U3ZDhiNGI3YzM1NmNlZjk2N2Q1NTcyZjQ4NjUzMGFlZjgzNWMxYmQwOGRjNGQ4OWJjMTBjYmU0MGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM5YjIyNDBkMzMzM2ZmNjNhYTVlN2U2NzMzMTA3OTkwN2E4YzUxZTc5NTA1NzUxNWY4M2FhNzJkZDBjMjk2MGMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd21ad7a8e7d4785a052dfc7a90c9c5e",
+      "statement": "Vellykkede kommandoer returnerer JSON med schema_version, command og data på stdout; fejl skrives på stderr med ikke-nul exitkode.",
+      "evidence": [
+        {
+          "resource": "repo://src/main.rs#L197-L209",
+          "version": "repo-lines-v1:sha256:ad0c7e4284224266f65db6174bd5afd715bcb2392920b96396fdaf79d9920bf8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3YzQ4MTlmMmUxYmY5MGQ4NWY4OWZkOThhYzY2ZjUzNTQ5ZTRmMjM2MGVkMDZhN2NiNjBhYTczYTdlZWEyYjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI0YTM2NWE5MGVjMTFlOTA0MzI3NTJjZjkzNzZlYzVlZDM2YjgwYmE1ZThlNjg1NGZjZjk4OTcwZDMwNDQ0NjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://src/main.rs#L89-L91",
+          "version": "repo-lines-v1:sha256:324a0cfbae5babef0598e3fa4e790ccbddb9a744dafc83da8c893d39520cc7a0:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTIxNTY5ZTVhNjY2NzQ5OTc4ZjU2MWQ5ODdhZDBkNmFjMTUwOWM0NjViOWYwMWJmNjQyODIzNWUyNzc4MmU4YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTFlMTJlNzIwNGY3ZTVhOTc5ZmIyMzI0NzY1NTIzZWI1NjBlMmQ0ZjQ0MzBjMDRjNTg2YTI1ODBiYzRhZTAxYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTE0YTEyYmFiMmI0ZjhhYzc4YzIyYzU1M2Y4Y2Y2Y2UwM2MwZGQ5NmUxOGU1MGU5YWIyOWJiMGM1NGRhNjhkYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_57e49acafe2f484086f442a1fbfb0399",
+      "statement": "Datogrænser sammenlignes efter Copenhagen-kalenderen med inklusiv slutdato, mens tidsinstanter sammenlignes præcist.",
+      "evidence": [
+        {
+          "resource": "repo://src/engine.rs#L321-L355",
+          "version": "repo-lines-v1:sha256:39498915da85095430e07e1e22b6207d397cee217e87fd07ad7b70201d7b4cf7:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5N2VmZjczNWE3YTcyYWZiYzVlOGNjZjQ3YTFjMWU5MDU4MjU2OWJjNDYzZDhhYTA3ZGU5NjEzNmY2NzkyNGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4ZTIyYjYyZWMyOGE0ZDZlYzMwZDRjNGYwMGIyMTIwZDIwYTE0OTRkYWEyM2NiZTYwNGQxMjJkZGIxYTllZmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1ZjZmNDY2ZTU5Y2ZjMzA3MDNjNDVmNzJhZjY1ZGU1NGFjMzYzZDM1NGNjMWEzMzMwMzUwYWNkNDUyNDM0YzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE5ZTc2MzU1Y2YxMTk5NDgwYzNmOTk4MzZiMTQ4NmM4NDFkODkxZmFhZDkwNGM2MDhlMDkzMDIyZDM3NTdhZWUifQ"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.3",
-    "at": "2026-11-02T14:46:29.006Z"
+    "at": "2026-11-02T14:58:10.972Z"
   }
 }

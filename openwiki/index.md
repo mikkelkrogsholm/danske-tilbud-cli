@@ -9,4 +9,5 @@ okf_version: "0.2"
 # Mapper
 
 - [architecture](architecture/)
+- [operations](operations/)
 - [sources](sources/)

@@ -1,14 +1,13 @@
 {
-  "0": "Offer contract and tests",
-  "1": "Batch normalization tests",
-  "2": "Tjek fetch and mapping",
-  "3": "Tjek adapter tests",
-  "4": "Normalization and validation",
-  "5": "Source and offer types",
-  "6": "Tjek adapter and smoke",
-  "7": "Isolated test workflow",
-  "8": "CLI entry point",
-  "9": "CLI argument tests",
-  "10": "Cargo package",
-  "11": "Library module exports"
+  "0": "Offer models and normalization",
+  "1": "Snapshot storage and validation",
+  "2": "Source batches and engine tests",
+  "3": "CLI and source discovery",
+  "4": "Tjek fetch and mapping",
+  "5": "Tjek adapter tests",
+  "6": "CLI search and tests",
+  "7": "Offer contract tests",
+  "8": "Isolated test workflow",
+  "9": "Cargo package",
+  "10": "Library module exports"
 }
