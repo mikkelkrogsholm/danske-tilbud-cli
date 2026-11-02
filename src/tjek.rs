@@ -452,22 +452,22 @@ fn map_offer(v: &Value, chain: &str, dealer: &str, fetched: &str) -> Result<RawO
     if !q.is_null() {
         let p = &q["pieces"];
         for field in ["min", "max"] {
-            if let Some(value) = p.get(field) {
-                if !value.is_null() {
-                    let n = value
-                        .as_u64()
-                        .ok_or_else(|| format!("invalid pieces.{field}"))?;
-                    let text = description.get_or_insert_with(String::new);
-                    if !text.is_empty() {
-                        text.push('\n');
-                    }
-                    let label = if field == "max" {
-                        "maksimumsgrænse"
-                    } else {
-                        "minimumsgrænse"
-                    };
-                    text.push_str(&format!("Kildens {label}: {n} stk."));
+            if let Some(value) = p.get(field)
+                && !value.is_null()
+            {
+                let n = value
+                    .as_u64()
+                    .ok_or_else(|| format!("invalid pieces.{field}"))?;
+                let text = description.get_or_insert_with(String::new);
+                if !text.is_empty() {
+                    text.push('\n');
                 }
+                let label = if field == "max" {
+                    "maksimumsgrænse"
+                } else {
+                    "minimumsgrænse"
+                };
+                text.push_str(&format!("Kildens {label}: {n} stk."));
             }
         }
     }

@@ -228,16 +228,15 @@ fn document(value: &Value) -> (String, Vec<String>) {
                     if let (Some(ore), Some(unit)) = (
                         result["unit_price"]["ore"].as_str(),
                         result["unit_price"]["unit"].as_str(),
-                    ) {
-                        if let Ok(n) = ore.parse::<rust_decimal::Decimal>() {
-                            price.push_str(&format!(
-                                " · Enhedspris: {} kr./{unit}",
-                                (n / rust_decimal::Decimal::from(100))
-                                    .round_dp(2)
-                                    .to_string()
-                                    .replace('.', ",")
-                            ));
-                        }
+                    ) && let Ok(n) = ore.parse::<rust_decimal::Decimal>()
+                    {
+                        price.push_str(&format!(
+                            " · Enhedspris: {} kr./{unit}",
+                            (n / rust_decimal::Decimal::from(100))
+                                .round_dp(2)
+                                .to_string()
+                                .replace('.', ",")
+                        ));
                     }
                     lines.push(price);
                     if let Some(description) =

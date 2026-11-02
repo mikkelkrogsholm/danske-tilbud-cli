@@ -98,16 +98,14 @@ fn script_paths(page: &str) -> Vec<String> {
     for tag in page.split('<').filter(|s| s.starts_with("script")) {
         let tag = tag.split('>').next().unwrap_or("");
         for quote in ['"', '\''] {
-            if let Some(rest) = tag.split_once(&format!("src={quote}")).map(|x| x.1) {
-                if let Some(path) = rest.split(quote).next() {
-                    if path.starts_with("/_nuxt/")
-                        && path.ends_with(".js")
-                        && !path.contains("..")
-                        && !paths.iter().any(|p| p == path)
-                    {
-                        paths.push(path.to_owned());
-                    }
-                }
+            if let Some(rest) = tag.split_once(&format!("src={quote}")).map(|x| x.1)
+                && let Some(path) = rest.split(quote).next()
+                && path.starts_with("/_nuxt/")
+                && path.ends_with(".js")
+                && !path.contains("..")
+                && !paths.iter().any(|p| p == path)
+            {
+                paths.push(path.to_owned());
             }
         }
     }

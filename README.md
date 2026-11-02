@@ -4,23 +4,51 @@ Et dansk dagligvare-CLI med lokale snapshots fra Tjek, REMA 1000 og BilkaToGo. S
 ingen netværkskald; hent først en komplet kilde. Tjek henter direkte tilbud for de fleste angivne kæder, ikke nødvendigvis alle tilbud;
 Tjeks Bilka-dækning bruger katalog-fallback, hvor selvstændige direkte tilbud ud over 1000 udelades. Se [Tjeks begrænsninger](docs/tjek.md), [REMA-kildens begrænsninger](docs/rema.md) og [BilkaToGo-kildens begrænsninger](docs/bilkatogo.md).
 
+## Lokal installation
+
+Installér fra en lokal kopi af projektet med Rust og Cargo på `PATH`:
+
 ```sh
-cargo run -- kilder
-cargo run -- beskriv tjek
-cargo run -- beskriv bilkatogo
-cargo run -- hent --kilde bilkatogo
-cargo run -- find kaffe --kilde bilkatogo --include-unknown
-cargo run -- beskriv rema
-cargo run -- hent --kilde rema
-cargo run -- find kirsebærsauce --kilde rema
-cargo run -- hent --kilde tjek
-cargo run -- hent --alle
-cargo run -- find kaffe --butik netto --limit 20
-cargo run -- find mælk --include-unknown --data-dir /sti/til/data
-cargo run -- kilder --human
-cargo run -- beskriv tjek --human
-cargo run -- hent --kilde tjek --human
-cargo run -- find kaffe --butik netto --human
+cd /sti/til/tilbud
+cargo install --locked --path .
+tilbud kilder
+```
+
+Cargo installerer normalt binæren i `~/.cargo/bin`, som skal være på `PATH`.
+`cargo install --locked --path . --root /sti/til/installationsmappe` vælger
+en anden destination; binæren ligger da i dens `bin`-undermappe. Projektet
+deklarerer Rust 1.91 som minimum i `Cargo.toml`, men denne version er ikke
+afprøvet; verificeringen nedenfor brugte Rust 1.99.1. Den kompilerede CLI er
+et selvstændigt Rust-program og kræver hverken Cargo, Graphify eller OpenWiki
+ved kørsel. Graphify og OpenWiki er udviklingsværktøjer.
+Se [lokal verifikation](docs/verification.md) for de afprøvede kommandoer og
+en dateret livekontrol.
+
+Kildebeskrivelserne indeholder også tredjepartsreferencer og notitser om den
+undersøgte kode: [Tjek](docs/tjek.md), [REMA](docs/rema.md) og
+[BilkaToGo](docs/bilkatogo.md). Projektets
+Rust-afhængigheder og låste versioner fremgår af [Cargo.toml](Cargo.toml) og
+[Cargo.lock](Cargo.lock); deres egne licenser følger de enkelte pakker.
+
+## Brug
+
+```sh
+tilbud kilder
+tilbud beskriv tjek
+tilbud beskriv bilkatogo
+tilbud hent --kilde bilkatogo
+tilbud find kaffe --kilde bilkatogo --include-unknown
+tilbud beskriv rema
+tilbud hent --kilde rema
+tilbud find kirsebærsauce --kilde rema
+tilbud hent --kilde tjek
+tilbud hent --alle
+tilbud find kaffe --butik netto --limit 20
+tilbud find mælk --include-unknown --data-dir /sti/til/data
+tilbud kilder --human
+tilbud beskriv tjek --human
+tilbud hent --kilde tjek --human
+tilbud find kaffe --butik netto --human
 ```
 
 Som standard giver alle kommandoer et JSON-objekt med `schema_version`, `command` og `data`

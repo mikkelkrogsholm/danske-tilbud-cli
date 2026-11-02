@@ -57,10 +57,10 @@ pub fn data_dir(override_dir: Option<&Path>) -> io::Result<PathBuf> {
     if let Some(p) = std::env::var_os("TILBUD_DATA_DIR").filter(|s| !s.is_empty()) {
         return Ok(p.into());
     }
-    if !cfg!(target_os = "macos") {
-        if let Some(xdg) = std::env::var_os("XDG_DATA_HOME").filter(|s| !s.is_empty()) {
-            return Ok(PathBuf::from(xdg).join("danske-tilbud-cli"));
-        }
+    if !cfg!(target_os = "macos")
+        && let Some(xdg) = std::env::var_os("XDG_DATA_HOME").filter(|s| !s.is_empty())
+    {
+        return Ok(PathBuf::from(xdg).join("danske-tilbud-cli"));
     }
     let home = std::env::var_os("HOME")
         .ok_or_else(|| invalid("HOME is unset; specify a data directory"))?;

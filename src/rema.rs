@@ -250,7 +250,7 @@ fn map_product(v: &Value, now: DateTime<Utc>) -> Result<RawOffer, String> {
     } else if !v["prices"].is_null() {
         return Err("invalid prices".into());
     }
-    active.sort_by(|a, b| (b.0, b.1).cmp(&(a.0, a.1)));
+    active.sort_by_key(|a| std::cmp::Reverse((a.0, a.1)));
     let selected = active.first();
     let conflict = selected.is_some_and(|first| {
         active
