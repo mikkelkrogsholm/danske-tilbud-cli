@@ -25,7 +25,7 @@ uafhængigt være `instant` med offset, `date` uden tidspunkt eller `unknown`.
 Der antages ikke et tidspunkt eller en tidszone for en dato. `membership` er
 `required`, `not_required` eller `unknown`; ukendt er ikke det samme som nej.
 Null betyder manglende oplysninger for de valgfrie felter. Modellen behandler
-ikke endnu et bestemt tidspunkt som inklusivt eller eksklusivt, og validerer
+ikke et bestemt tidspunkt som inklusivt eller eksklusivt, og validerer
 ikke kilde-ID, intervallers rækkefølge eller schema-version ved deserialisering.
 
 Eksempel med offset og præcis decimalmængde:
@@ -104,6 +104,9 @@ Datoer og tidspunkter valideres hver for sig; rækkefølgen kontrolleres kun nå
 begge grænser har samme præcision. En blanding af dato og tidspunkt vurderes
 ikke kronologisk, da datoen ikke har en tidszone. Tidspunkter indlæses som
 RFC 3339; kildeformater som `+0000` skal mappes af den konkrete adapter.
+Ved gyldighedskontrol er datoers grænser inklusive i Europe/Copenhagen. Præcis
+lighed med et grænsetidspunkt giver ukendt gyldighed, medmindre den anden
+grænses oplysninger allerede viser fremtidig eller udløbet gyldighed.
 Dubletidentitet består af kilde, kilde-ID, kæde, hele butiksobjektet og
 periodegrænserne. Ved samme identitet beholdes den leksikografisk første
 serialiserede normaliserede post, uafhængigt af indlæsningsrækkefølge; andre

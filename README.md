@@ -29,7 +29,8 @@ snapshot efter en fuldført kørsel. `find` søger uden hensyn til store og små
 bogstaver i navn og beskrivelse. Den viser kun tilbud, der er beviseligt
 aktuelle; `--include-unknown` medtager også poster med ukendte datoer, men
 ikke poster der vides at være fremtidige eller udløbne. Datoer bruger
-Europe/Copenhagen og slutdatoen er inklusiv; tidspunkter sammenlignes præcist.
+Europe/Copenhagen og slutdatoen er inklusiv. Ved præcis lighed med en
+tidspunktgrænse er gyldigheden ukendt, medmindre den anden grænse afgør den.
 Resultater indeholder original gyldighed, gyldighedsstatus og enhedspris, når
 den kan beregnes. `total` er antal match før `limit` (standard 20). Katalogpriser
 udelades. `fetched_at` fortæller, hvornår snapshot blev hentet.

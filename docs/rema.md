@@ -16,7 +16,9 @@ Medlemskab er ukendt, og butiksdata er ikke oplyst.
 Kun en pris med begge tidsgrænser, hvor hentetidspunktet ligger strengt mellem
 dem, kan vælges. Kilden dokumenterer ikke, om grænserne er inklusive, så de
 oprindelige tidspunkter bevares uden forlængelse; på selve grænsen er prisen
-ukendt. Manglende eller kun fremtidige/udløbne priser giver en katalogpost med
+ukendt. Den fælles gyldighedskontrol giver også ukendt ved præcis lighed med
+en gemt tidspunktgrænse, medmindre den anden grænse afgør gyldigheden.
+Manglende eller kun fremtidige/udløbne priser giver en katalogpost med
 ukendt pris. Aktive priser markeret `is_campaign` eller `is_advertised`
 prioriteres over almindelige priser; inden for samme prioritet vælges seneste
 start. Modstridende priser med samme prioritet og start giver ukendt pris og

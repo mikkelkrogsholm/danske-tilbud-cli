@@ -309,7 +309,7 @@ fn validity_uses_copenhagen_calendar_and_precise_instants() {
             },
             now
         ),
-        ValidityStatus::Current
+        ValidityStatus::Unknown
     );
     assert_eq!(
         validity_status(
@@ -320,5 +320,57 @@ fn validity_uses_copenhagen_calendar_and_precise_instants() {
             now
         ),
         ValidityStatus::Expired
+    );
+}
+
+#[test]
+fn exact_instant_boundaries_are_unknown_unless_another_bound_decides() {
+    use chrono::{Duration, TimeZone, Utc};
+    use tilbud::{
+        engine::{ValidityStatus, validity_status},
+        offer::{TimeBoundary, Validity},
+    };
+    let now = Utc.with_ymd_and_hms(2026, 1, 1, 12, 0, 0).unwrap();
+    let instant = |ms| TimeBoundary::Instant((now + Duration::milliseconds(ms)).fixed_offset());
+    for (start, end, status) in [
+        (0, 1, ValidityStatus::Unknown),
+        (-1, 0, ValidityStatus::Unknown),
+        (-1, 1, ValidityStatus::Current),
+        (1, 2, ValidityStatus::Future),
+        (-2, -1, ValidityStatus::Expired),
+    ] {
+        assert_eq!(
+            validity_status(
+                &Validity {
+                    starts: instant(start),
+                    ends: instant(end)
+                },
+                now
+            ),
+            status
+        );
+    }
+    // Known date boundaries still decide even if the instant is exactly now.
+    let yesterday = TimeBoundary::Date((now - Duration::days(1)).date_naive());
+    let tomorrow = TimeBoundary::Date((now + Duration::days(1)).date_naive());
+    assert_eq!(
+        validity_status(
+            &Validity {
+                starts: instant(0),
+                ends: yesterday
+            },
+            now
+        ),
+        ValidityStatus::Expired
+    );
+    assert_eq!(
+        validity_status(
+            &Validity {
+                starts: tomorrow,
+                ends: instant(0)
+            },
+            now
+        ),
+        ValidityStatus::Future
     );
 }

@@ -319,7 +319,8 @@ pub fn validate_offer(offer: &Offer) -> Result<(), String> {
 }
 
 /// Classify validity at an instant. Date boundaries use Copenhagen's local date;
-/// the end date includes its entire local day. Unknown boundaries cannot certify currentness.
+/// the end date includes its entire local day. Exact instant boundaries and
+/// unknown boundaries cannot certify currentness.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
 #[serde(rename_all = "snake_case")]
 pub enum ValidityStatus {
@@ -349,6 +350,8 @@ pub fn validity_status(validity: &Validity, now: chrono::DateTime<chrono::Utc>) 
         ValidityStatus::Future
     } else if matches!(validity.starts, TimeBoundary::Unknown)
         || matches!(validity.ends, TimeBoundary::Unknown)
+        || matches!(&validity.starts, TimeBoundary::Instant(v) if *v == now)
+        || matches!(&validity.ends, TimeBoundary::Instant(v) if *v == now)
     {
         ValidityStatus::Unknown
     } else {
