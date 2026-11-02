@@ -98,7 +98,7 @@ fn describe(adapter: &TjekAdapter, dir: &Path) -> Value {
             Err(e) => json!({"error":e.to_string()}),
         }
     };
-    json!({"id":m.id,"name":m.name,"capabilities":{"store_filter":m.capabilities.store_filter,"date_filter":m.capabilities.date_filter},"chains":CHAINS.iter().map(|(id,_)| *id).collect::<Vec<_>>(),"coverage_limitation":"Tjek henter direkte tilbud for de fleste kæder. Bilka bruger katalog-fallback; selvstændige direkte tilbud ud over 1000 udelades. Kædedækning er ikke garanti for fuldstændige tilbud.","snapshot":snapshot})
+    json!({"id":m.id,"name":m.name,"capabilities":{"store_filter":m.capabilities.store_filter,"date_filter":m.capabilities.date_filter},"chains":CHAINS.iter().map(|(id,_)| *id).collect::<Vec<_>>(),"coverage_limitation":m.coverage_limitation,"snapshot":snapshot})
 }
 fn envelope(command: &str, data: Value) -> Value {
     json!({"schema_version":1,"command":command,"data":data})
@@ -124,13 +124,13 @@ async fn execute(command: Command) -> Result<Value, Value> {
             let run = engine::run(&s, &FetchOptions::default()).await;
             if !run.complete {
                 return Err(
-                    json!({"schema_version":1,"command":"hent","error":"incomplete_run","source":a.kilde,"complete":false,"source_errors":run.source_errors,"invalid_records":run.invalid_records.iter().map(|v| &v.reason).collect::<Vec<_>>(),"offer_count":run.offers.len(),"coverage":run.coverage}),
+                    json!({"schema_version":1,"command":"hent","error":"incomplete_run","source":a.kilde,"complete":false,"source_errors":run.source_errors,"invalid_records":run.invalid_records.iter().map(|v| &v.reason).collect::<Vec<_>>(),"offer_count":run.offers.len(),"coverage":run.coverage,"coverage_limitation":run.source.coverage_limitation}),
                 );
             }
             storage::publish(&d, &run, fetched_at).map_err(|e| error(e.to_string()))?;
             Ok(envelope(
                 "hent",
-                json!({"source":a.kilde,"complete":true,"fetched_at":fetched_at,"offer_count":run.offers.len(),"duplicates":run.duplicates,"coverage":run.coverage}),
+                json!({"source":a.kilde,"complete":true,"fetched_at":fetched_at,"offer_count":run.offers.len(),"duplicates":run.duplicates,"coverage":run.coverage,"coverage_limitation":run.source.coverage_limitation}),
             ))
         }
         Command::Find(a) => {

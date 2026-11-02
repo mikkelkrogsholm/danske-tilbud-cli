@@ -7,6 +7,8 @@ use crate::offer::{Membership, PieceCount, PriceKind, Quantity, QuantityBasis, S
 pub struct SourceMetadata {
     pub id: String,
     pub name: String,
+    /// Human-readable limits of this source’s coverage.
+    pub coverage_limitation: String,
     pub capabilities: SourceCapabilities,
 }
 

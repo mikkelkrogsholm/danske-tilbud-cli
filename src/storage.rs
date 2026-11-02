@@ -337,6 +337,7 @@ mod tests {
         let source = SourceMetadata {
             id: "eksempel".into(),
             name: "Eksempel".into(),
+            coverage_limitation: "Eksempeldækning".into(),
             capabilities: SourceCapabilities::default(),
         };
         let mut result = normalize_batch(

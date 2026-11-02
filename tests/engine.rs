@@ -17,6 +17,7 @@ fn metadata() -> SourceMetadata {
     SourceMetadata {
         id: "kilde".into(),
         name: "Kilde".into(),
+        coverage_limitation: "Eksempeldækning".into(),
         capabilities: SourceCapabilities::default(),
     }
 }

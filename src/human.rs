@@ -103,6 +103,7 @@ fn document(value: &Value) -> (String, Vec<String>) {
                     lines.push(format!("Kunne ikke hente eller læse: {prefix}"));
                 }
             }
+            limitation(&value["coverage_limitation"], &mut lines);
             coverage(&value["coverage"], &mut lines);
         } else {
             lines.push(
@@ -130,7 +131,7 @@ fn document(value: &Value) -> (String, Vec<String>) {
                 data["offer_count"],
                 age(&data["fetched_at"])
             ));
-            lines.push("Dækning: Direkte tilbud for de fleste kæder; Bilka bruger kataloger og kan udelade selvstændige tilbud. Dækning garanterer ikke alle tilbud.".into());
+            limitation(&data["coverage_limitation"], &mut lines);
             coverage(&data["coverage"], &mut lines);
         }
         "find" => {
@@ -220,6 +221,11 @@ fn document(value: &Value) -> (String, Vec<String>) {
     }
     (cmd.to_uppercase(), lines)
 }
+fn limitation(v: &Value, lines: &mut Vec<String>) {
+    if let Some(text) = v.as_str().filter(|s| !s.is_empty()) {
+        lines.push(format!("Dækning: {text}"));
+    }
+}
 fn coverage(v: &Value, lines: &mut Vec<String>) {
     if let Some(s) = v.as_str() {
         for item in s.split("; ") {
@@ -273,6 +279,16 @@ pub fn write(value: &Value, error: bool) -> io::Result<()> {
 mod tests {
     use super::*;
     use serde_json::json;
+
+    #[test]
+    fn fetch_uses_the_supplied_source_limitation() {
+        let value = json!({"command":"hent", "data":{"source":"anden", "complete":true, "offer_count":2, "fetched_at":null, "coverage_limitation":"Kun udvalgte lokale butikker", "coverage":null}});
+        let (_, lines) = document(&value);
+        let output = lines.join("\n");
+        assert!(output.contains("Kun udvalgte lokale butikker"));
+        assert!(!output.contains("Tjek"));
+        assert!(!output.contains("Bilka"));
+    }
 
     #[test]
     fn unknown_values_and_partial_errors_are_explained() {
