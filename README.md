@@ -1,137 +1,117 @@
-# Tilbud
+<div align="center">
+  <img src="assets/readme-hero.svg" alt="Tilbud — danske tilbud i din terminal" width="100%">
+  <p><strong>Danske dagligvaretilbud, klar til både mennesker og programmer.</strong></p>
+  <p>Hent lokale snapshots én gang, og søg i dem uden netværkskald.</p>
+  <p><code>Rust</code> &nbsp; · &nbsp; <code>JSON som standard</code> &nbsp; · &nbsp; <code>3 kilder</code> &nbsp; · &nbsp; <code>14 Tjek-kæder</code></p>
+  <p><a href="#kom-godt-i-gang">Kom godt i gang</a> &nbsp; · &nbsp; <a href="#kommandoer">Kommandoer</a> &nbsp; · &nbsp; <a href="#kilder-og-dækning">Kilder og dækning</a> &nbsp; · &nbsp; <a href="#udvikling">Udvikling</a></p>
+</div>
 
-Et dansk dagligvare-CLI med lokale snapshots fra Tjek, REMA 1000 og BilkaToGo. Søgning foretager
-ingen netværkskald; hent først en komplet kilde. Tjek henter direkte tilbud for de fleste angivne kæder, ikke nødvendigvis alle tilbud;
-Tjeks Bilka-dækning bruger katalog-fallback, hvor selvstændige direkte tilbud ud over 1000 udelades. Se [Tjeks begrænsninger](docs/tjek.md), [REMA-kildens begrænsninger](docs/rema.md) og [BilkaToGo-kildens begrænsninger](docs/bilkatogo.md).
+---
 
-## Lokal installation
+## Kom godt i gang
 
-Installér fra en lokal kopi af projektet med Rust og Cargo på `PATH`:
+Du skal have Rust og Cargo på `PATH`. Klon projektet og installér CLI'et:
 
 ```sh
-cd /sti/til/tilbud
+git clone https://github.com/mikkelkrogsholm/danske-tilbud-cli.git
+cd danske-tilbud-cli
 cargo install --locked --path .
+
 tilbud kilder
-```
-
-Cargo installerer normalt binæren i `~/.cargo/bin`, som skal være på `PATH`.
-`cargo install --locked --path . --root /sti/til/installationsmappe` vælger
-en anden destination; binæren ligger da i dens `bin`-undermappe. Projektet
-deklarerer Rust 1.91 som minimum i `Cargo.toml`, men denne version er ikke
-afprøvet; verificeringen nedenfor brugte Rust 1.99.1. Den kompilerede CLI er
-et selvstændigt Rust-program og kræver hverken Cargo, Graphify eller OpenWiki
-ved kørsel. Graphify og OpenWiki er udviklingsværktøjer.
-Se [lokal verifikation](docs/verification.md) for de afprøvede kommandoer og
-en dateret livekontrol.
-
-Kildebeskrivelserne indeholder også tredjepartsreferencer og notitser om den
-undersøgte kode: [Tjek](docs/tjek.md), [REMA](docs/rema.md) og
-[BilkaToGo](docs/bilkatogo.md). Projektets
-Rust-afhængigheder og låste versioner fremgår af [Cargo.toml](Cargo.toml) og
-[Cargo.lock](Cargo.lock); deres egne licenser følger de enkelte pakker.
-
-## Brug
-
-```sh
-tilbud kilder
-tilbud beskriv tjek
-tilbud beskriv bilkatogo
-tilbud hent --kilde bilkatogo
-tilbud find kaffe --kilde bilkatogo --include-unknown
-tilbud beskriv rema
-tilbud hent --kilde rema
-tilbud find kirsebærsauce --kilde rema
 tilbud hent --kilde tjek
-tilbud hent --alle
-tilbud find kaffe --butik netto --limit 20
-tilbud find mælk --include-unknown --data-dir /sti/til/data
-tilbud kilder --human
-tilbud beskriv tjek --human
-tilbud hent --kilde tjek --human
 tilbud find kaffe --butik netto --human
 ```
 
-Som standard giver alle kommandoer et JSON-objekt med `schema_version`, `command` og `data`
-på stdout. Tilføj `--human` efter kommandoen for en læsbar, statisk visning af de samme data. Fejl giver en ikke-nul exitkode og diagnosticering på stderr; delvise resultater vises også på stdout.
-`--data-dir` placeres efter kommandoen og tilsidesætter `TILBUD_DATA_DIR` og
-platformens standardmappe, som beskrevet i [lagerkontrakten](docs/storage.md).
-`kilder` og `beskriv` viser metadata, kendte kæde-ID'er og seneste snapshot,
-hvis det findes. `hent` henter hele kilden og erstatter kun et eksisterende
-snapshot efter en fuldført kørsel. Ved næste vellykkede hentning fjernes
-beviseligt udløbne poster fysisk fra det nye snapshot; fremtidige poster og
-poster uden kendt slutgrænse bevares. Resultatet viser `expired_removed`.
-Der sker ingen automatisk oprydning uden en hentning. Vælg præcis én af `--alle` og `--kilde`: med
-`--alle` publiceres hver fuldført kilde uafhængigt, og et delvist resultat vises
-på stdout med status for hver kilde, fejl på stderr og ikke-nul exitkode.
-`find` søger som standard i alle tilgængelige snapshots uden netværkskald;
-`--kilde` vælger én. Manglende snapshots springes over, mens ulæselige snapshots
-giver et delvist resultat og ikke-nul exitkode. `--butik` filtrerer på kendte
-kæde-ID’er og læser kun kilder, der understøtter kæden; `limit` gælder samlet. Tilbud fra forskellige kilder bevares
-separat, også ved samme navn eller EAN. `find` deler søgeteksten ved whitespace
-og søger efter alle ordene som delstrenge i navn og/eller beskrivelse, uden
-hensyn til store og små bogstaver. Ordstilling er ligegyldig; danske tegn
-bevares, og der anvendes hverken fuzzy matching eller synonymer. Tom søgetekst
-afvises. Navne, der indeholder den sammenhængende søgefrase, rangeres først,
-derefter navne med alle ordene og så match, der kræver beskrivelsen. Inden for
-samme relevans bruges stabil sortering efter navn, kæde, kilde-ID og hele
-posten. Den viser kun tilbud, der er beviseligt
-aktuelle; `--include-unknown` medtager også poster med ukendte datoer, men
-ikke poster der vides at være fremtidige eller udløbne. Datoer bruger
-Europe/Copenhagen og slutdatoen er inklusiv. Ved præcis lighed med en
-tidspunktgrænse er gyldigheden ukendt, medmindre den anden grænse afgør den.
-Resultater indeholder original gyldighed, gyldighedsstatus og enhedspris, når
-den kan beregnes. `total` er antal match før pagination; `--limit` er positiv
-(standard 20), og `--offset` er et ikke-negativt heltal (standard 0). Svaret
-indeholder `offset`, `limit` og `has_more`; et offset efter sidste match giver
-en tom side. Brug f.eks. `tilbud find "økologisk mælk" --compact --limit 10`
-og derefter `--offset 10` for næste side. `--compact` giver fladt JSON med
-identitet, butik, beskrivelse og øvrige vilkår, men samme metadata og udvalg som
-standardens fulde JSON. `--compact` og `--human` kan ikke kombineres. Human
-viser samme side og sidestatus. Katalogpriser
-udelades. `sources` viser hentetid og status for hvert snapshot; en fælles
-hentetid angives kun ved valg af én kilde.
+Hentning kræver netværk; `find` søger efterfølgende i de lokale snapshots. Cargo installerer normalt binæren i `~/.cargo/bin`, som skal være på `PATH`. En alternativ destination kan vælges med `cargo install --locked --path . --root /sti/til/installationsmappe`; binæren ligger i dens `bin`-mappe.
 
-Den fælles serde-model og dokumenterede JSON-eksempler findes i
-[tilbudskontrakten](docs/offer-v1.md). CLI-argumenter og hjælp håndteres af
-`usage-rs`.
+### Til scripts og agenter
 
-## Pladsbesparende udvikling
+JSON er standard på stdout. Her søges efter begge ord, og resultaterne hentes i sider:
 
-Cargo-konfigurationen slår debuginformation og incremental compilation fra for
-dev/test, også for build-afhængigheder. Mindre diskforbrug koster ekstra
-kompileringstid ved gentagne builds.
+```sh
+tilbud find "økologisk mælk" --compact --limit 10
+tilbud find "økologisk mælk" --compact --limit 10 --offset 10
+```
 
-Kør fra projektets rod:
+Svaret indeholder `total`, `offset`, `limit` og `has_more`. `--compact` giver et fladt JSON-format med identitet, butik, beskrivelse og øvrige vilkår; det har samme metadata og udvalg som fuldt JSON. Brug `--human` for en læsbar visning af samme side; det kan ikke kombineres med `--compact`.
+
+```sh
+tilbud find "økologisk mælk" --limit 10 --human
+tilbud find kaffe --kilde bilkatogo --include-unknown --human
+```
+
+## Kommandoer
+
+| Kommando | Formål |
+| --- | --- |
+| `tilbud kilder` | Vis kilder, metadata og seneste snapshots. |
+| `tilbud beskriv tjek` | Vis metadata, kendte kæde-ID'er og snapshot for en kilde. Brug også `rema` eller `bilkatogo`. |
+| `tilbud hent --kilde tjek` | Hent en komplet kilde og erstat dens snapshot ved succes. |
+| `tilbud hent --alle` | Hent alle kilder; hver fuldført kilde publiceres uafhængigt. |
+| `tilbud find kaffe --butik netto` | Søg lokalt; afgræns eventuelt med `--kilde`, `--butik`, `--limit` og `--offset`. |
+
+Alle kommandoer returnerer som standard et JSON-objekt med `schema_version`, `command` og `data`. Tilføj `--human` efter kommandoen for læsbar, statisk tekst. Fejl giver en ikke-nul exitkode og diagnosticering på stderr; delvise resultater vises på stdout. Ved `hent --alle` indeholder resultatet status for hver kilde. Vælg præcis én af `--alle` og `--kilde` ved hentning.
+
+`--data-dir /sti/til/data` placeres efter kommandoen og tilsidesætter `TILBUD_DATA_DIR` og platformens standardmappe. Se [lagerkontrakten](docs/storage.md) for placeringer og format.
+
+## Kilder og dækning
+
+| Kilde | Hvad hentes? | Vigtigt for resultatet |
+| --- | --- | --- |
+| [Tjek](docs/tjek.md) | Tilbud for 14 danske kæder. | Direkte feed for de fleste kæder; dækningen er ikke en garanti for alle tilbud. Bilka rammer en grænse ved 1.000 og bruger katalog-fallback, som udelader selvstændige direkte tilbud ud over grænsen. |
+| [REMA 1000](docs/rema.md) | Det offentlige produktkatalog. | Ikke dokumentation for lager i en bestemt butik. Søgning medtager aktuelle kampagneposter, ikke katalogpriser. |
+| [BilkaToGo](docs/bilkatogo.md) | Tilbudsavisen for varer i sortiment og på lager i valgt scope; CLI bruger leveringslager `1653`. | Ikke hele kataloget eller alle fysiske butikker. Perioder er ukendte, så brug `--include-unknown`; en annonceret vare er ikke nødvendigvis nedsat. |
+
+<details>
+<summary>Se de 14 Tjek-kæder og deres ID'er</summary>
+
+`rema1000`, `netto`, `lidl`, `foetex`, `bilka`, `365discount`, `meny`, `superbrugsen`, `kvickly`, `brugsen`, `spar`, `loevbjerg`, `min-koebmand`, `abc-lavpris`.
+
+Brug ID'et med f.eks. `--butik netto`. Se [Tjek-kilden](docs/tjek.md) for metode og observeret dækning.
+</details>
+
+## Sådan behandles data
+
+Et snapshot erstattes kun efter en fuldført hentning af den enkelte kilde. Ved næste vellykkede hentning fjernes beviseligt udløbne poster fra det nye snapshot; fremtidige poster og poster uden kendt slutgrænse bevares. `expired_removed` viser antallet. Der sker ingen automatisk oprydning uden hentning.
+
+Søgning viser som standard kun beviseligt aktuelle tilbud. `--include-unknown` medtager også ukendt gyldighed, men ikke kendt fremtidige eller udløbne tilbud. Kontroller altid pris, periode og betingelser hos butikken: kilderne kan ændre sig, og et lokalt snapshot kan være forældet.
+
+<details>
+<summary>Søgning, sortering og fejl i detaljer</summary>
+
+`find` søger i alle tilgængelige snapshots, medmindre `--kilde` vælger ét. Manglende snapshots springes over; ulæselige snapshots giver delvise resultater og ikke-nul exitkode. `--butik` læser kun kilder, der understøtter kæden. Tilbud fra forskellige kilder bevares separat, også ved samme navn eller EAN.
+
+Søgeteksten deles ved whitespace. Alle ord skal forekomme som delstrenge i navn og/eller beskrivelse; søgningen ignorerer store og små bogstaver og ordstilling, men bevarer danske tegn. Der bruges hverken fuzzy matching eller synonymer, og tom søgetekst afvises. Sammenhængende frase i navnet rangeres først, derefter alle ord i navnet og til sidst match, der kræver beskrivelsen. Inden for samme relevans sorteres stabilt efter navn, kæde, kilde-ID og hele posten.
+
+Datoer bruger Europe/Copenhagen, og slutdatoen er inklusiv. Ved præcis lighed med en tidspunktgrænse er gyldigheden ukendt, medmindre den anden grænse afgør den. Resultaterne indeholder original gyldighed, gyldighedsstatus og enhedspris, når den kan beregnes. `total` er antal match før pagination; `--limit` er positiv (standard 20), `--offset` er et ikke-negativt heltal (standard 0), og et offset efter sidste match giver en tom side. `limit` gælder samlet. `sources` viser hentetid og status for hvert snapshot; en fælles hentetid angives kun ved valg af én kilde.
+</details>
+
+## Dokumentation
+
+- [Tilbudskontrakt og JSON-eksempler](docs/offer-v1.md) · [Lagerkontrakt og datamapper](docs/storage.md)
+- [Tjek](docs/tjek.md) · [REMA 1000](docs/rema.md) · [BilkaToGo](docs/bilkatogo.md) — kildebegrænsninger og tredjepartsreferencer
+- [Lokal verifikation](docs/verification.md) · [Søgeperformance](docs/search-performance.md)
+- [Cargo.toml](Cargo.toml) og [Cargo.lock](Cargo.lock) viser Rust-afhængigheder og låste versioner; deres licenser følger de enkelte pakker.
+
+Projektet deklarerer Rust 1.91 som minimum, men versionen er ikke afprøvet; den dokumenterede verifikation brugte Rust 1.99.1. Den kompilerede CLI er et selvstændigt Rust-program og kræver hverken Cargo, Graphify eller OpenWiki ved kørsel. Graphify og OpenWiki er udviklingsværktøjer. CLI-argumenter og hjælp håndteres af `usage-rs`.
+
+## Udvikling
+
+Kør testwrapperen fra projektets rod:
 
 ```sh
 ./scripts/test.sh
 ./scripts/test.sh --lib -- --nocapture
 ```
 
-Cargo skal være på `PATH`, eller angives som
-`CARGO=/absolut/sti/til/cargo ./scripts/test.sh`. Argumenter sendes videre til
-`cargo test`; `--target-dir` reserveres af wrapperen. Cargo understøtter ikke
-shell-aliaser i `config.toml`, så wrapperen køres direkte.
+Cargo skal være på `PATH` eller angives med `CARGO=/absolut/sti/til/cargo ./scripts/test.sh`. Wrapperen isolerer og rydder sit eget build-output og sine testdata efter normal afslutning, fejl og håndterede signaler. SIGKILL, nedbrud og strømsvigt kan efterlade midlertidige filer.
 
-Hver kørsel får sin egen mappe via `mktemp` under operativsystemets tempmappe
-(`TMPDIR`, ellers `/tmp`). Både build-output og testdata fjernes efter normal
-afslutning, fejl og håndterede HUP/INT/TERM-signaler. Shellens signalhåndtering
-kan vente på den aktive Cargo-kommando. SIGKILL, nedbrud og strømsvigt kan
-efterlade mappen; der er ingen tidsstyret oprydning eller baggrundsjob.
+<details>
+<summary>Diskforbrug, testdata og Codex-worktrees</summary>
 
-Fremtidige tests skal lægge midlertidige data under `TILBUD_TEST_TMPDIR` eller
-`std::env::temp_dir()` (som følger `TMPDIR`), og vente på egne underprocesser.
-Versionerede fixtures bevares. Almindelig `cargo test` omgår wrapperen og kan
-efterlade både build-output og testdata. Globale Cargo-cacher og andre builds
-ryddes aldrig af wrapperen.
+Cargo-profilerne slår debuginformation og incremental compilation fra for dev/test, også for build-afhængigheder. Det sparer plads mod ekstra kompileringstid. Wrapperen opretter en egen mappe med `mktemp` under `TMPDIR` eller `/tmp`; shellens signalhåndtering kan vente på den aktive Cargo-kommando. Der er ingen tidsstyret oprydning eller baggrundsjob. Argumenter sendes til `cargo test`, mens `--target-dir` er reserveret af wrapperen. Cargo understøtter ikke shell-aliaser i `config.toml`.
 
-## Worktrunk og Codex
+Nye tests skal placere midlertidige data under `TILBUD_TEST_TMPDIR` eller `std::env::temp_dir()` og vente på egne underprocesser. Versionerede fixtures bevares. Almindelig `cargo test` omgår wrapperen og kan efterlade build-output og testdata. Wrapperen rydder ikke globale Cargo-cacher eller andre builds.
 
-Vælg **Worktrunk** som lokalt miljø i Codex. Miljøet kører
-`/opt/homebrew/bin/wt hook post-start --foreground` synkront. Opret, tilknyt og
-arkivér Codex-worktrees gennem Codex. Miljøvalget udføres ikke nødvendigvis
-automatisk for værktøjsoprettede opgaver.
-
-Der er ingen projekt-hooks eller cachekloning tilmeldt: projektet er let, og
-lavt diskforbrug prioriteres. Ingen `.worktreeinclude`, delte skrivbare
-build-mapper eller automatisk oprydning ved worktree-livscyklus er tilføjet.
+Vælg **Worktrunk** som lokalt miljø i Codex; det kører `/opt/homebrew/bin/wt hook post-start --foreground` synkront. Opret, tilknyt og arkivér Codex-worktrees gennem Codex. Miljøvalget udføres ikke nødvendigvis automatisk for værktøjsoprettede opgaver. Projekt-hooks og cachekloning er fravalgt for at spare diskplads; der er ingen `.worktreeinclude`, delte skrivbare build-mapper eller automatisk oprydning ved worktree-livscyklus.
+</details>

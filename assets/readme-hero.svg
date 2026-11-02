@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Tilbud — danske tilbud i din terminal</title>
+  <desc id="desc">En mørk terminalflade med en grøn tilbudsmærkat og et eksempel på en søgekommando.</desc>
+  <rect width="1200" height="420" rx="28" fill="#0b1420"/>
+  <path d="M0 300L370 0h480L340 420H0z" fill="#101f2b"/>
+  <circle cx="80" cy="61" r="6" fill="#b9f66b"/><circle cx="102" cy="61" r="6" fill="#506476"/><circle cx="124" cy="61" r="6" fill="#506476"/>
+  <text x="78" y="151" fill="#b9f66b" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="700" letter-spacing="4">DANSKE DAGLIGVARER / CLI</text>
+  <text x="74" y="234" fill="#f4f7f4" font-family="system-ui,-apple-system,sans-serif" font-size="86" font-weight="750" letter-spacing="-4">Tilbud</text>
+  <text x="78" y="283" fill="#c3d0d1" font-family="system-ui,-apple-system,sans-serif" font-size="26">Find tilbud. Lokalt og i dit eget tempo.</text>
+  <rect x="78" y="322" width="521" height="52" rx="10" fill="#172b36" stroke="#36504b"/>
+  <text x="99" y="356" fill="#b9f66b" font-family="monospace" font-size="19">$</text>
+  <text x="124" y="356" fill="#e8efea" font-family="monospace" font-size="19">tilbud find "økologisk mælk"</text>
+  <g transform="translate(882 84) rotate(9 100 100)">
+    <path d="M0 20Q0 0 20 0H150L206 56V180Q206 200 186 200H20Q0 200 0 180Z" fill="#b9f66b"/>
+    <circle cx="163" cy="43" r="10" fill="#0b1420"/>
+    <text x="26" y="99" fill="#0b1420" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="700" letter-spacing="2">FIND</text>
+    <text x="26" y="145" fill="#0b1420" font-family="system-ui,-apple-system,sans-serif" font-size="38" font-weight="800">mere.</text>
+    <path d="M26 165h86" stroke="#0b1420" stroke-width="4"/>
+  </g>
+</svg>
