@@ -4,6 +4,7 @@ use chrono::Utc;
 use serde_json::{Value, json};
 use std::path::{Path, PathBuf};
 use tilbud::{
+    bilkatogo::BilkaToGoAdapter,
     engine::{self, ValidityStatus},
     offer::PriceKind,
     rema::RemaAdapter,
@@ -80,18 +81,21 @@ struct Find {
 enum Source {
     Tjek(TjekAdapter),
     Rema(RemaAdapter),
+    BilkaToGo(BilkaToGoAdapter),
 }
 impl SourceAdapter for Source {
     fn metadata(&self) -> &SourceMetadata {
         match self {
             Self::Tjek(s) => s.metadata(),
             Self::Rema(s) => s.metadata(),
+            Self::BilkaToGo(s) => s.metadata(),
         }
     }
     async fn fetch(&self, options: &FetchOptions) -> SourceBatch {
         match self {
             Self::Tjek(s) => s.fetch(options).await,
             Self::Rema(s) => s.fetch(options).await,
+            Self::BilkaToGo(s) => s.fetch(options).await,
         }
     }
 }
@@ -99,6 +103,7 @@ fn source(id: &str) -> Result<Source, String> {
     match id {
         "tjek" => Ok(Source::Tjek(TjekAdapter::new())),
         "rema" => Ok(Source::Rema(RemaAdapter::new())),
+        "bilkatogo" => Ok(Source::BilkaToGo(BilkaToGoAdapter::new())),
         _ => Err(format!("Ukendt kilde: {id}")),
     }
 }
@@ -128,7 +133,7 @@ async fn execute(command: Command) -> Result<Value, Value> {
             let d = dir(a.data_dir).map_err(error)?;
             Ok(envelope(
                 "kilder",
-                json!({"sources":[describe(&TjekAdapter::new(), &d), describe(&RemaAdapter::new(), &d)]}),
+                json!({"sources":[describe(&TjekAdapter::new(), &d), describe(&RemaAdapter::new(), &d), describe(&BilkaToGoAdapter::new(), &d)]}),
             ))
         }
         Command::Beskriv(a) => {

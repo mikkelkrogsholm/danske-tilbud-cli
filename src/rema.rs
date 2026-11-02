@@ -296,6 +296,7 @@ fn map_product(v: &Value, now: DateTime<Utc>) -> Result<RawOffer, String> {
         heading: text(&v["name"]),
         description: (!description.is_empty()).then(|| description.join("\n")),
         currency: "DKK".into(),
+        price_unit: crate::source::PriceUnit::Major,
         amount: if conflict {
             None
         } else {

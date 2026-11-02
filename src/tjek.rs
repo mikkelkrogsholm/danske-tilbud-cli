@@ -484,6 +484,7 @@ fn map_offer(v: &Value, chain: &str, dealer: &str, fetched: &str) -> Result<RawO
         },
         description,
         currency: string(pricing, "currency")?.into(),
+        price_unit: crate::source::PriceUnit::Major,
         amount: number(pricing, "price")?,
         before: number(pricing, "pre_price")?,
         quantity,

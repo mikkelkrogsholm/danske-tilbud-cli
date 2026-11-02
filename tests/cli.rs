@@ -271,7 +271,7 @@ fn rema_and_tjek_snapshots_coexist_and_catalog_does_not_leak_into_search() {
     )
     .unwrap();
     let sources = success(dir.run(&["kilder"]));
-    assert_eq!(sources["data"]["sources"].as_array().unwrap().len(), 2);
+    assert_eq!(sources["data"]["sources"].as_array().unwrap().len(), 3);
     let rema = success(dir.run(&["beskriv", "rema"]));
     assert_eq!(rema["data"]["snapshot"]["promotion_count"], 1);
     assert_eq!(rema["data"]["snapshot"]["catalog_count"], 1);

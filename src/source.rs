@@ -48,6 +48,12 @@ pub enum RawBoundary {
     Unknown,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
+pub enum PriceUnit {
+    Major,
+    Minor,
+}
+
 /// Decimal prices are strings in the source currency, never binary floats.
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize)]
 pub struct RawOffer {
@@ -58,6 +64,7 @@ pub struct RawOffer {
     pub heading: Option<String>,
     pub description: Option<String>,
     pub currency: String,
+    pub price_unit: PriceUnit,
     pub amount: Option<String>,
     pub before: Option<String>,
     pub quantity: Option<Quantity>,

@@ -31,6 +31,7 @@ fn raw(id: &str) -> RawOffer {
         heading: Some("Æbler og øl".into()),
         description: None,
         currency: "DKK".into(),
+        price_unit: tilbud::source::PriceUnit::Major,
         amount: Some("10.00".into()),
         before: None,
         quantity: Some(Quantity::Exact {
@@ -373,4 +374,44 @@ fn exact_instant_boundaries_are_unknown_unless_another_bound_decides() {
         ),
         ValidityStatus::Future
     );
+}
+
+#[test]
+fn major_and_minor_price_units_convert_without_float_or_fractional_ore() {
+    use tilbud::source::PriceUnit;
+    let mut a = raw("major");
+    a.amount = Some("10.35".into());
+    let mut b = raw("minor");
+    b.amount = Some("1035".into());
+    b.price_unit = PriceUnit::Minor;
+    let result = normalize_batch(
+        metadata(),
+        SourceBatch {
+            complete: true,
+            records: vec![a.clone(), b.clone()],
+            ..Default::default()
+        },
+    );
+    assert!(result.complete);
+    assert!(
+        result
+            .offers
+            .iter()
+            .all(|o| o.offer.price.amount_ore == Some(1035))
+    );
+    a.amount = Some("10.351".into());
+    b.amount = Some("1035.1".into());
+    let mut overflow = raw("overflow");
+    overflow.amount = Some("18446744073709551616".into());
+    overflow.price_unit = PriceUnit::Minor;
+    let invalid = normalize_batch(
+        metadata(),
+        SourceBatch {
+            complete: true,
+            records: vec![a, b, overflow],
+            ..Default::default()
+        },
+    );
+    assert!(!invalid.complete);
+    assert_eq!(invalid.invalid_records.len(), 3);
 }

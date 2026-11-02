@@ -6,7 +6,9 @@ use rust_decimal::{Decimal, prelude::ToPrimitive};
 
 use crate::{
     offer::{Offer, PieceCount, Price, Quantity, QuantityBasis, TimeBoundary, Validity},
-    source::{FetchOptions, RawBoundary, RawOffer, SourceAdapter, SourceBatch, SourceMetadata},
+    source::{
+        FetchOptions, PriceUnit, RawBoundary, RawOffer, SourceAdapter, SourceBatch, SourceMetadata,
+    },
 };
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -94,14 +96,26 @@ fn identity(offer: &Offer) -> String {
     .expect("identity serializes")
 }
 
-fn money(value: &Option<String>) -> Result<Option<u64>, String> {
+fn money(value: &Option<String>, unit: PriceUnit) -> Result<Option<u64>, String> {
     value
         .as_ref()
         .map(|s| {
             let d = Decimal::from_str_exact(s).map_err(|_| format!("invalid price: {s}"))?;
-            let ore = d.checked_mul(Decimal::from(100)).ok_or("price overflow")?;
+            let ore = d
+                .checked_mul(Decimal::from(match unit {
+                    PriceUnit::Major => 100,
+                    PriceUnit::Minor => 1,
+                }))
+                .ok_or("price overflow")?;
             let rounded = ore.round();
-            if ore.is_sign_negative() || (ore - rounded).abs() > Decimal::new(1, 8) {
+            if ore.is_sign_negative()
+                || (ore - rounded).abs()
+                    > if matches!(unit, PriceUnit::Minor) {
+                        Decimal::ZERO
+                    } else {
+                        Decimal::new(1, 8)
+                    }
+            {
                 return Err("price must be nonnegative whole øre".into());
             }
             rounded.to_u64().ok_or_else(|| "price overflow".into())
@@ -135,8 +149,8 @@ fn normalize(source: &str, r: &RawOffer) -> Result<NormalizedOffer, String> {
         return Err(format!("unsupported currency: {}", r.currency));
     }
     let price = Price {
-        amount_ore: money(&r.amount)?,
-        before_ore: money(&r.before)?,
+        amount_ore: money(&r.amount, r.price_unit)?,
+        before_ore: money(&r.before, r.price_unit)?,
     };
     let starts = boundary(&r.starts)?;
     let ends = boundary(&r.ends)?;
