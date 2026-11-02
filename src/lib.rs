@@ -1,2 +1,4 @@
-//! Shared offer contract for future source adapters, engine and storage.
+//! Shared offer contract, source adapter interface and normalization engine.
+pub mod engine;
 pub mod offer;
+pub mod source;

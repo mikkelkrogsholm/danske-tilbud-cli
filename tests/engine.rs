@@ -1,0 +1,206 @@
+use rust_decimal::Decimal;
+use std::{
+    future::Future,
+    pin::pin,
+    task::{Context, Poll, Waker},
+};
+use tilbud::{
+    engine::{normalize_batch, run},
+    offer::{Membership, PieceCount, PriceKind, Quantity, QuantityBasis, Store},
+    source::{
+        FetchOptions, RawBoundary, RawOffer, SourceAdapter, SourceBatch, SourceCapabilities,
+        SourceMetadata,
+    },
+};
+
+fn metadata() -> SourceMetadata {
+    SourceMetadata {
+        id: "kilde".into(),
+        name: "Kilde".into(),
+        capabilities: SourceCapabilities::default(),
+    }
+}
+fn raw(id: &str) -> RawOffer {
+    RawOffer {
+        schema_version: 1,
+        source_id: id.into(),
+        chain_id: "kæde".into(),
+        store: None,
+        heading: "Æbler og øl".into(),
+        description: None,
+        currency: "DKK".into(),
+        amount: Some("10.00".into()),
+        before: None,
+        quantity: Some(Quantity::Exact {
+            amount: Decimal::from(500),
+            unit: "g".into(),
+        }),
+        quantity_basis: Some(QuantityBasis::Total),
+        pieces: None,
+        starts: RawBoundary::Date("2026-11-02".into()),
+        ends: RawBoundary::Date("2026-11-08".into()),
+        membership: Membership::Unknown,
+        fetched_at: "2026-11-02T12:00:00+01:00".into(),
+        source_reference: "reference".into(),
+        ean: None,
+        product_id: None,
+        price_kind: PriceKind::Offer,
+    }
+}
+fn batch(records: Vec<RawOffer>) -> SourceBatch {
+    SourceBatch {
+        records,
+        coverage: Some("første side".into()),
+        errors: vec!["side to fejlede".into()],
+    }
+}
+struct Offline {
+    meta: SourceMetadata,
+    batch: SourceBatch,
+}
+impl SourceAdapter for Offline {
+    fn metadata(&self) -> &SourceMetadata {
+        &self.meta
+    }
+    async fn fetch(&self, _: &FetchOptions) -> SourceBatch {
+        self.batch.clone()
+    }
+}
+fn block_on<F: Future>(future: F) -> F::Output {
+    let mut future = pin!(future);
+    let mut cx = Context::from_waker(Waker::noop());
+    match future.as_mut().poll(&mut cx) {
+        Poll::Ready(value) => value,
+        Poll::Pending => panic!("offline adapter unexpectedly pending"),
+    }
+}
+#[test]
+fn offline_adapter_normalizes_and_preserves_partial_failure() {
+    let adapter = Offline {
+        meta: metadata(),
+        batch: batch(vec![raw("1")]),
+    };
+    let result = block_on(run(&adapter, &FetchOptions::default()));
+    assert_eq!(result.coverage.as_deref(), Some("første side"));
+    assert_eq!(result.source_errors, ["side to fejlede"]);
+    let o = &result.offers[0];
+    assert_eq!(o.offer.heading, "Æbler og øl");
+    assert_eq!(o.offer.price.amount_ore, Some(1000));
+    assert_eq!(
+        o.offer.quantity,
+        Some(Quantity::Exact {
+            amount: Decimal::new(5, 1),
+            unit: "kg".into()
+        })
+    );
+    assert_eq!(o.unit_price.as_ref().unwrap().ore, Decimal::from(2000));
+}
+#[test]
+fn pack_ranges_missing_and_zero_price() {
+    let mut pack = raw("pack");
+    pack.quantity = Some(Quantity::Exact {
+        amount: Decimal::from(330),
+        unit: "ml".into(),
+    });
+    pack.quantity_basis = Some(QuantityBasis::PerPiece);
+    pack.pieces = Some(PieceCount::Exact { count: 6 });
+    pack.amount = Some("19.80".into());
+    let mut range = pack.clone();
+    range.source_id = "range".into();
+    range.quantity = Some(Quantity::Range {
+        min: Decimal::from(300),
+        max: Decimal::from(330),
+        unit: "ml".into(),
+    });
+    let mut unknown_count = pack.clone();
+    unknown_count.source_id = "unknown".into();
+    unknown_count.pieces = None;
+    let mut missing = pack.clone();
+    missing.source_id = "missing".into();
+    missing.amount = None;
+    let mut zero = pack.clone();
+    zero.source_id = "zero".into();
+    zero.amount = Some("0".into());
+    let r = normalize_batch(
+        metadata(),
+        batch(vec![range, pack, unknown_count, missing, zero]),
+    );
+    let get = |id: &str| r.offers.iter().find(|o| o.offer.source_id == id).unwrap();
+    assert_eq!(
+        get("pack").unit_price.as_ref().unwrap().ore,
+        Decimal::from(1000)
+    );
+    assert!(get("range").unit_price.is_none());
+    assert!(get("unknown").unit_price.is_none());
+    assert_eq!(get("missing").offer.price.amount_ore, None);
+    assert!(get("missing").unit_price.is_none());
+    assert_eq!(get("zero").offer.price.amount_ore, Some(0));
+    assert_eq!(get("zero").unit_price.as_ref().unwrap().ore, Decimal::ZERO);
+}
+#[test]
+fn invalid_records_are_visible_and_do_not_suppress_valid_records() {
+    let mut invalid_date = raw("date");
+    invalid_date.ends = RawBoundary::Date("2026-02-30".into());
+    let mut reversed = raw("reversed");
+    reversed.ends = RawBoundary::Date("2026-01-01".into());
+    let mut currency = raw("currency");
+    currency.currency = "EUR".into();
+    let mut fractional = raw("fractional");
+    fractional.amount = Some("1.001".into());
+    let mut unit = raw("unit");
+    unit.quantity = Some(Quantity::Exact {
+        amount: Decimal::ONE,
+        unit: "pose".into(),
+    });
+    let mut mixed = raw("mixed");
+    mixed.starts = RawBoundary::Instant("2026-12-01T12:00:00Z".into());
+    let result = normalize_batch(
+        metadata(),
+        batch(vec![
+            raw("valid"),
+            invalid_date,
+            reversed,
+            currency,
+            fractional,
+            unit,
+            mixed,
+        ]),
+    );
+    assert_eq!(result.invalid_records.len(), 5);
+    assert_eq!(result.offers.len(), 2);
+    assert!(
+        result
+            .invalid_records
+            .iter()
+            .any(|e| e.record.source_id == "date" && e.reason.contains("invalid date"))
+    );
+}
+#[test]
+fn dedup_is_order_independent_and_keeps_store_and_period_distinct() {
+    let a = raw("same");
+    let mut duplicate = a.clone();
+    duplicate.heading = "Andet".into();
+    let mut store = a.clone();
+    store.store = Some(Store {
+        store_id: Some("1".into()),
+        name: None,
+        location: None,
+    });
+    let mut period = a.clone();
+    period.ends = RawBoundary::Date("2026-11-09".into());
+    let mut records = vec![a, duplicate, store, period];
+    let first = normalize_batch(metadata(), batch(records.clone()));
+    records.reverse();
+    let second = normalize_batch(metadata(), batch(records));
+    assert_eq!(first, second);
+    assert_eq!(first.duplicates, 1);
+    assert_eq!(first.offers.len(), 3);
+    let mut other = metadata();
+    other.id = "anden".into();
+    assert_ne!(
+        first.offers[0].offer.source,
+        normalize_batch(other, batch(vec![raw("same")])).offers[0]
+            .offer
+            .source
+    );
+}

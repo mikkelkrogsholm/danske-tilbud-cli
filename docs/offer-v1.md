@@ -77,3 +77,30 @@ Eksempel med datopræcision, interval og katalogpris:
   "price_kind": "catalog"
 }
 ```
+
+## Kilder og normalisering
+
+En kildeadapter beskriver metadata og filtreringsmuligheder og modtager
+`FetchOptions`. Den henter og mapper kildens svar til `RawOffer` uden at
+omregne priser eller enheder. `SourceBatch` kan indeholde både poster,
+dækningsbeskrivelse og kildefejl, så et delvist resultat ikke ligner et
+fuldstændigt resultat. Engine returnerer gyldige tilbud, afviste råposter med
+årsager, kildefejl og antal dubletter. Netværk og konkrete adaptere indgår ikke
+endnu.
+
+Engine accepterer DKK som eksakte decimalstrenge og kræver hele, ikke-negative
+øre. Den normaliserer gram til kg, ml og cl til liter samt kendte styk-aliaser
+til `stk`; ukendte enheder og valutaer afvises. Enhedsprisen angives i decimal
+øre pr. kg, liter eller stk. og beregnes kun ved kendt pris og præcis, positiv
+samlet mængde. Ved `per_piece` kræves et præcist antal dele. Intervaller og
+ukendt basis giver ingen enhedspris. Decimaldivision kan afrundes til
+`Decimal`-typens præcision.
+
+Datoer og tidspunkter valideres hver for sig; rækkefølgen kontrolleres kun når
+begge grænser har samme præcision. En blanding af dato og tidspunkt vurderes
+ikke kronologisk, da datoen ikke har en tidszone. Tidspunkter indlæses som
+RFC 3339; kildeformater som `+0000` skal mappes af den konkrete adapter.
+Dubletidentitet består af kilde, kilde-ID, kæde, hele butiksobjektet og
+periodegrænserne. Ved samme identitet beholdes den leksikografisk første
+serialiserede normaliserede post, uafhængigt af indlæsningsrækkefølge; andre
+butikker, perioder og kilder sammenlægges ikke.
