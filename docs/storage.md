@@ -2,7 +2,11 @@
 
 Bibliotekets `storage::publish` gemmer et komplet `RunResult` pr. kilde og
 `storage::read` læser det. Den kaldende kode angiver hentetidspunktet eksplicit,
-også for en tom kørsel. Ingen CLI-kommando bruger lagringen endnu. En kørsel
+også for en tom kørsel. CLI-kommandoen `hent` bruger lagringen og fjerner
+beviseligt udløbne poster efter fuld validering før publicering. Slutdatoer
+gælder hele dagen i Europe/Copenhagen; præcis lighed med en tidspunktgrænse
+bevares. Ukendte slutgrænser bevares. Oprydning sker først ved næste
+vellykkede hentning. En kørsel
 skal være eksplicit komplet og uden kilde- eller valideringsfejl; ellers bevares
 sidste snapshot. Dækningen er tekst fra kilden: Tjeks Bilka-katalogdækning er
 komplet inden for det angivne scope, ikke nødvendigvis alle direkte tilbud.

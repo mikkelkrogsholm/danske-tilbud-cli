@@ -103,6 +103,12 @@ fn document(value: &Value) -> (String, Vec<String>) {
                 value["source_errors"].as_array().map_or(0, Vec::len),
                 value["invalid_records"].as_array().map_or(0, Vec::len)
             ));
+            if value["expired_removed"].is_number() {
+                lines.push(format!(
+                    "{} udløbne poster frasorteret.",
+                    value["expired_removed"]
+                ));
+            }
             if let Some(errors) = value["source_errors"].as_array() {
                 for e in errors {
                     let prefix = string(e).split(':').next().unwrap_or("");
@@ -147,6 +153,12 @@ fn document(value: &Value) -> (String, Vec<String>) {
                     source["offer_count"],
                     age(&source["fetched_at"])
                 ));
+                if source["expired_removed"].is_number() {
+                    lines.push(format!(
+                        "{} udløbne poster frasorteret.",
+                        source["expired_removed"]
+                    ));
+                }
                 if let Some(message) = source["message"].as_str() {
                     lines.push(format!("Fejl: {message}"));
                 }
@@ -171,6 +183,12 @@ fn document(value: &Value) -> (String, Vec<String>) {
                 data["offer_count"],
                 age(&data["fetched_at"])
             ));
+            if data["expired_removed"].is_number() {
+                lines.push(format!(
+                    "{} udløbne poster frasorteret.",
+                    data["expired_removed"]
+                ));
+            }
             if data["promotion_count"].is_number() {
                 lines.push(format!(
                     "Heraf {} tilbud og {} katalogposter",
@@ -346,6 +364,21 @@ pub fn write(value: &Value, error: bool) -> io::Result<()> {
 mod tests {
     use super::*;
     use serde_json::json;
+
+    #[test]
+    fn refresh_reports_expired_count_for_single_and_all() {
+        for value in [
+            json!({"command":"hent", "data":{"source":"tjek","offer_count":2,"expired_removed":3}}),
+            json!({"command":"hent", "data":{"sources":[{"source":"tjek","status":"published","offer_count":2,"expired_removed":3}]}}),
+        ] {
+            let (_, lines) = document(&value);
+            assert!(
+                lines
+                    .iter()
+                    .any(|line| line.contains("3 udløbne poster frasorteret"))
+            );
+        }
+    }
 
     #[test]
     fn partial_refresh_renders_each_source_and_failure() {

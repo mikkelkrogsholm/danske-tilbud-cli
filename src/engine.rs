@@ -84,6 +84,18 @@ pub fn normalize_batch(source: SourceMetadata, batch: SourceBatch) -> RunResult 
     }
 }
 
+/// Remove only offers proven expired after the complete batch has been validated.
+/// Incomplete runs remain untouched so cleanup cannot hide invalid input.
+pub fn remove_expired(run: &mut RunResult, now: chrono::DateTime<chrono::Utc>) -> usize {
+    if !run.complete || !run.source_errors.is_empty() || !run.invalid_records.is_empty() {
+        return 0;
+    }
+    let before = run.offers.len();
+    run.offers
+        .retain(|offer| validity_status(&offer.offer.validity, now) != ValidityStatus::Expired);
+    before - run.offers.len()
+}
+
 fn identity(offer: &Offer) -> String {
     // Serialize structured components to avoid delimiter collisions.
     serde_json::to_string(&(

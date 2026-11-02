@@ -57,7 +57,10 @@ på stdout. Tilføj `--human` efter kommandoen for en læsbar, statisk visning a
 platformens standardmappe, som beskrevet i [lagerkontrakten](docs/storage.md).
 `kilder` og `beskriv` viser metadata, kendte kæde-ID'er og seneste snapshot,
 hvis det findes. `hent` henter hele kilden og erstatter kun et eksisterende
-snapshot efter en fuldført kørsel. Vælg præcis én af `--alle` og `--kilde`: med
+snapshot efter en fuldført kørsel. Ved næste vellykkede hentning fjernes
+beviseligt udløbne poster fysisk fra det nye snapshot; fremtidige poster og
+poster uden kendt slutgrænse bevares. Resultatet viser `expired_removed`.
+Der sker ingen automatisk oprydning uden en hentning. Vælg præcis én af `--alle` og `--kilde`: med
 `--alle` publiceres hver fuldført kilde uafhængigt, og et delvist resultat vises
 på stdout med status for hver kilde, fejl på stderr og ikke-nul exitkode.
 `find` søger som standard i alle tilgængelige snapshots uden netværkskald;

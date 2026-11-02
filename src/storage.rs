@@ -488,6 +488,9 @@ mod tests {
         let _serial = TEST_LOCK.lock().unwrap();
         let d = TestDir::new();
         let mut r = run();
+        r.offers[0].offer.validity.starts = crate::offer::TimeBoundary::Unknown;
+        r.offers[0].offer.validity.ends =
+            crate::offer::TimeBoundary::Date(chrono::NaiveDate::from_ymd_opt(2020, 1, 1).unwrap());
         publish(&d.0, &r, time()).unwrap();
         let path = d.0.join("eksempel.jsonl");
         let before = fs::read(&path).unwrap();
@@ -496,7 +499,15 @@ mod tests {
         assert!(publish(&d.0, &r, time()).is_err());
         assert_eq!(fs::read(&path).unwrap(), before);
         r.complete = true;
-        assert!(publish_inner(&d.0, &r, time(), true).is_err());
+        let mut cleaned = run();
+        cleaned.offers[0].offer.validity.starts = crate::offer::TimeBoundary::Unknown;
+        cleaned.offers[0].offer.validity.ends =
+            crate::offer::TimeBoundary::Date(chrono::NaiveDate::from_ymd_opt(2020, 1, 1).unwrap());
+        assert_eq!(
+            crate::engine::remove_expired(&mut cleaned, time().to_utc()),
+            1
+        );
+        assert!(publish_inner(&d.0, &cleaned, time(), true).is_err());
         assert_eq!(fs::read(&path).unwrap(), before);
         assert_eq!(read(&d.0, "eksempel").unwrap().offers.len(), 1);
         assert_eq!(fs::read_dir(&d.0).unwrap().count(), 2);

@@ -416,3 +416,92 @@ fn combined_search_preserves_sources_and_reports_partial_failure() {
     assert!(!text.trim_start().starts_with('{'));
     assert!(!human.stderr.is_empty());
 }
+
+#[tokio::test]
+async fn offline_fetch_pipeline_publishes_files_consumed_by_real_cli() {
+    use tilbud::{
+        engine,
+        offer::{Membership, PriceKind},
+        source::{
+            FetchOptions, PriceUnit, RawBoundary, RawOffer, SourceAdapter, SourceBatch,
+            SourceCapabilities, SourceMetadata,
+        },
+        storage,
+    };
+    struct Offline {
+        metadata: SourceMetadata,
+        batch: SourceBatch,
+    }
+    impl SourceAdapter for Offline {
+        fn metadata(&self) -> &SourceMetadata {
+            &self.metadata
+        }
+        async fn fetch(&self, _: &FetchOptions) -> SourceBatch {
+            self.batch.clone()
+        }
+    }
+    let dir = Temp::new();
+    let now = Utc::now();
+    let today = now
+        .with_timezone(&chrono_tz::Europe::Copenhagen)
+        .date_naive();
+    let raw = |id: &str, end| RawOffer {
+        schema_version: 1,
+        source_id: id.into(),
+        chain_id: "netto".into(),
+        store: None,
+        heading: Some("Kaffe".into()),
+        description: None,
+        currency: "DKK".into(),
+        price_unit: PriceUnit::Major,
+        amount: Some("10".into()),
+        before: None,
+        quantity: None,
+        quantity_basis: None,
+        pieces: None,
+        starts: RawBoundary::Date((today - Duration::days(5)).to_string()),
+        ends: end,
+        membership: Membership::Unknown,
+        fetched_at: now.to_rfc3339(),
+        source_reference: "test".into(),
+        ean: None,
+        product_id: None,
+        price_kind: PriceKind::Offer,
+    };
+    let adapter = Offline {
+        metadata: SourceMetadata {
+            id: "tjek".into(),
+            name: "test".into(),
+            chains: vec!["netto".into()],
+            coverage_limitation: "test".into(),
+            capabilities: SourceCapabilities::default(),
+        },
+        batch: SourceBatch {
+            complete: true,
+            records: vec![
+                raw(
+                    "expired",
+                    RawBoundary::Date((today - Duration::days(1)).to_string()),
+                ),
+                raw(
+                    "current",
+                    RawBoundary::Date((today + Duration::days(1)).to_string()),
+                ),
+            ],
+            ..Default::default()
+        },
+    };
+    let mut run = engine::run(&adapter, &FetchOptions::default()).await;
+    assert!(run.complete);
+    assert_eq!(engine::remove_expired(&mut run, now), 1);
+    storage::publish(&dir.0, &run, now.fixed_offset()).unwrap();
+    let bytes = fs::read_to_string(dir.0.join("tjek.jsonl")).unwrap();
+    assert!(!bytes.contains("expired"));
+    assert!(bytes.contains("current"));
+    let result = success(dir.run(&["find", "kaffe", "--kilde", "tjek"]));
+    assert_eq!(result["data"]["total"], 1);
+    assert_eq!(
+        result["data"]["results"][0]["offer"]["source_id"],
+        "current"
+    );
+}

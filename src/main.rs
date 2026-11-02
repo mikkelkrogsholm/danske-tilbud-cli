@@ -48,7 +48,7 @@ struct Beskriv {
     #[usage(long)]
     data_dir: Option<PathBuf>,
 }
-/// Hent hele kildens datasæt og gem kun et fuldført snapshot.
+/// Hent hele kildens datasæt; udløbne poster fjernes ved næste vellykkede hentning.
 #[derive(Args)]
 struct Hent {
     /// Vis resultatet i et læsbart format.
@@ -156,7 +156,7 @@ async fn execute(command: Command) -> Result<Value, Value> {
                 let result = refresh(&s, &d).await;
                 if result["status"] != "published" {
                     return Err(
-                        json!({"schema_version":1,"command":"hent","error":"incomplete_run","source":id,"complete":false,"source_errors":result["source_errors"],"invalid_records":result["invalid_records"],"offer_count":result["offer_count"],"coverage":result["coverage"],"coverage_limitation":result["coverage_limitation"],"message":result["message"]}),
+                        json!({"schema_version":1,"command":"hent","error":"incomplete_run","source":id,"complete":false,"source_errors":result["source_errors"],"invalid_records":result["invalid_records"],"offer_count":result["offer_count"],"expired_removed":result["expired_removed"],"coverage":result["coverage"],"coverage_limitation":result["coverage_limitation"],"message":result["message"]}),
                     );
                 }
                 return Ok(envelope("hent", result));
@@ -296,15 +296,20 @@ async fn execute(command: Command) -> Result<Value, Value> {
 }
 async fn refresh_all<A: SourceAdapter>(adapters: &[A], dir: &Path) -> Value {
     let mut results = Vec::new();
+    let now = Utc::now();
     for adapter in adapters {
-        results.push(refresh(adapter, dir).await);
+        results.push(refresh_at(adapter, dir, now).await);
     }
     let complete = results.iter().all(|r| r["status"] == "published");
     envelope("hent", json!({"complete":complete,"sources":results}))
 }
 async fn refresh(adapter: &impl SourceAdapter, dir: &Path) -> Value {
-    let fetched_at = Utc::now().fixed_offset();
-    let run = engine::run(adapter, &FetchOptions::default()).await;
+    refresh_at(adapter, dir, Utc::now()).await
+}
+async fn refresh_at(adapter: &impl SourceAdapter, dir: &Path, now: chrono::DateTime<Utc>) -> Value {
+    let fetched_at = now.fixed_offset();
+    let mut run = engine::run(adapter, &FetchOptions::default()).await;
+    let expired_removed = engine::remove_expired(&mut run, now);
     let (status, message) = if !run.complete {
         ("incomplete", None)
     } else {
@@ -313,7 +318,7 @@ async fn refresh(adapter: &impl SourceAdapter, dir: &Path) -> Value {
             Err(e) => ("failed", Some(e.to_string())),
         }
     };
-    json!({"source":run.source.id,"status":status,"complete":status == "published","message":message,"fetched_at":fetched_at,"offer_count":run.offers.len(),"promotion_count":run.offers.iter().filter(|o| o.offer.price_kind == PriceKind::Offer).count(),"catalog_count":run.offers.iter().filter(|o| o.offer.price_kind == PriceKind::Catalog).count(),"duplicates":run.duplicates,"source_errors":run.source_errors,"invalid_records":run.invalid_records.iter().map(|v| &v.reason).collect::<Vec<_>>(),"coverage":run.coverage,"coverage_limitation":run.source.coverage_limitation})
+    json!({"source":run.source.id,"status":status,"complete":status == "published","message":message,"fetched_at":fetched_at,"offer_count":run.offers.len(),"promotion_count":run.offers.iter().filter(|o| o.offer.price_kind == PriceKind::Offer).count(),"catalog_count":run.offers.iter().filter(|o| o.offer.price_kind == PriceKind::Catalog).count(),"duplicates":run.duplicates,"expired_removed":expired_removed,"source_errors":run.source_errors,"invalid_records":run.invalid_records.iter().map(|v| &v.reason).collect::<Vec<_>>(),"coverage":run.coverage,"coverage_limitation":run.source.coverage_limitation})
 }
 fn partial(mut value: Value, message: &str) -> Value {
     value["error"] = json!("partial_result");
@@ -400,6 +405,135 @@ mod orchestration_tests {
             },
         }
     }
+    fn record(
+        id: &str,
+        starts: tilbud::source::RawBoundary,
+        ends: tilbud::source::RawBoundary,
+    ) -> tilbud::source::RawOffer {
+        use tilbud::{
+            offer::Membership,
+            source::{PriceUnit, RawOffer},
+        };
+        RawOffer {
+            schema_version: 1,
+            source_id: id.into(),
+            chain_id: "netto".into(),
+            store: None,
+            heading: Some("Kaffe".into()),
+            description: None,
+            currency: "DKK".into(),
+            price_unit: PriceUnit::Major,
+            amount: Some("10".into()),
+            before: None,
+            quantity: None,
+            quantity_basis: None,
+            pieces: None,
+            starts,
+            ends,
+            membership: Membership::Unknown,
+            fetched_at: "2026-01-01T00:00:00Z".into(),
+            source_reference: "ref".into(),
+            ean: None,
+            product_id: None,
+            price_kind: PriceKind::Offer,
+        }
+    }
+
+    #[tokio::test]
+    async fn refresh_filters_validated_batches_and_atomically_replaces_actual_snapshots() {
+        use chrono::TimeZone;
+        use tilbud::source::RawBoundary::{Date, Instant, Unknown};
+        let base = std::env::var_os("TILBUD_TEST_TMPDIR")
+            .map(PathBuf::from)
+            .unwrap_or_else(std::env::temp_dir);
+        let dir = base.join(format!("tilbud-expiry-test-{}", std::process::id()));
+        std::fs::create_dir(&dir).unwrap();
+        let now = Utc.with_ymd_and_hms(2026, 1, 1, 23, 30, 0).unwrap(); // Jan 2 in Copenhagen
+        let mut source = fake("tjek", true, "test");
+        source.batch.records = vec![
+            record("past", Unknown, Date("2026-01-01".into())),
+            record(
+                "today",
+                Date("2026-01-01".into()),
+                Date("2026-01-02".into()),
+            ),
+            record(
+                "future",
+                Date("2026-01-03".into()),
+                Date("2026-01-04".into()),
+            ),
+            record("unknown", Unknown, Unknown),
+            record("equal", Unknown, Instant(now.to_rfc3339())),
+            record(
+                "instant-past",
+                Unknown,
+                Instant((now - chrono::Duration::seconds(1)).to_rfc3339()),
+            ),
+            record("discontinued", Unknown, Unknown),
+        ];
+        let other = fake("rema", true, "other");
+        refresh_at(&other, &dir, now).await;
+        let other_bytes = std::fs::read(dir.join("rema.jsonl")).unwrap();
+        let first = refresh_at(&source, &dir, now).await;
+        assert_eq!(first["expired_removed"], 2);
+        assert_eq!(first["offer_count"], 5);
+        let path = dir.join("tjek.jsonl");
+        let bytes = std::fs::read_to_string(&path).unwrap();
+        assert!(!bytes.contains("\"source_id\":\"past\""));
+        assert!(!bytes.contains("instant-past"));
+        assert!(bytes.contains("discontinued"));
+        assert_eq!(storage::read(&dir, "tjek").unwrap().manifest.offer_count, 5);
+        source
+            .batch
+            .records
+            .retain(|r| r.source_id != "discontinued");
+        let second = refresh_at(&source, &dir, now + chrono::Duration::days(1)).await;
+        assert_eq!(second["expired_removed"], 4);
+        let bytes = std::fs::read_to_string(&path).unwrap();
+        assert!(!bytes.contains("discontinued"));
+        assert!(!bytes.contains("\"source_id\":\"today\""));
+        assert!(bytes.contains("future"));
+        assert!(bytes.contains("unknown"));
+        assert_eq!(storage::read(&dir, "tjek").unwrap().manifest.offer_count, 2);
+        assert_eq!(std::fs::read(dir.join("rema.jsonl")).unwrap(), other_bytes);
+        // A previous snapshot may itself contain expired offers: failures must
+        // leave its exact bytes untouched, not opportunistically clean it.
+        let old_source = Fake {
+            metadata: source.metadata.clone(),
+            batch: SourceBatch {
+                complete: true,
+                records: vec![record("old-expired", Unknown, Date("2026-01-01".into()))],
+                ..Default::default()
+            },
+        };
+        let old_run = engine::run(&old_source, &FetchOptions::default()).await;
+        storage::publish(&dir, &old_run, now.fixed_offset()).unwrap();
+        let before = std::fs::read(&path).unwrap();
+        assert!(String::from_utf8_lossy(&before).contains("old-expired"));
+        source.batch.complete = false;
+        assert_eq!(refresh_at(&source, &dir, now).await["status"], "incomplete");
+        assert_eq!(std::fs::read(&path).unwrap(), before);
+        source.batch.complete = true;
+        let mut invalid = record("invalid-expired", Unknown, Date("2026-01-01".into()));
+        invalid.currency = "EUR".into();
+        source.batch.records.push(invalid);
+        let failed = refresh_at(&source, &dir, now).await;
+        assert_eq!(failed["status"], "incomplete");
+        assert_eq!(failed["expired_removed"], 0);
+        assert_eq!(std::fs::read(&path).unwrap(), before);
+        source.batch.records = vec![record("expired", Unknown, Date("2026-01-01".into()))];
+        let empty = refresh_at(&source, &dir, now).await;
+        assert_eq!(empty["expired_removed"], 1);
+        let snapshot = storage::read(&dir, "tjek").unwrap();
+        assert_eq!(snapshot.manifest.offer_count, 0);
+        assert!(snapshot.offers.is_empty());
+        assert_eq!(std::fs::read_dir(&dir).unwrap().count(), 4);
+        for name in ["tjek.jsonl", "tjek.lock", "rema.jsonl", "rema.lock"] {
+            std::fs::remove_file(dir.join(name)).unwrap();
+        }
+        std::fs::remove_dir(dir).unwrap();
+    }
+
     #[tokio::test]
     async fn independent_publish_preserves_timed_out_snapshot_and_replaces_history() {
         let base = std::env::var_os("TILBUD_TEST_TMPDIR")
