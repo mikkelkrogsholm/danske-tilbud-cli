@@ -1,48 +1,51 @@
 ---
 type: guide
 title: Kom godt i gang
-description: Sådan køres den tidlige CLI-grundversion, og sådan bygges og testes projektet med begrænset diskforbrug.
+description: Installation og brug af tre lokale kilder samt test med begrænset diskforbrug.
 tags: [quickstart, cli, testing]
 sources:
   - id: openwiki-source-4905fab56ecf9fa5e1ebbf3f
     resource: repo://.cargo/config.toml
   - id: openwiki-source-651d1fb6c9e49916a916ab51
     resource: repo://Cargo.toml
+  - id: openwiki-source-0b3c9083504c39afdb61ad7c
+    resource: repo://docs/verification.md
   - id: openwiki-source-2161525089da862e880baf7a
     resource: repo://scripts/test.sh
   - id: openwiki-source-ccfe8cc4504f25c304787a46
     resource: repo://src/engine.rs
+  - id: openwiki-source-35aa34ef351101676460f475
+    resource: repo://src/human.rs
   - id: openwiki-source-b55a21a31ede1b56cd31a6a6
     resource: repo://src/main.rs
-generated: { by: "codex", at: "2026-11-02T15:16:00.359Z" }
+generated: { by: "codex", at: "2026-11-02T15:43:42.669Z" }
 verified:
   - by: openwiki/0.7.3
-    at: 2026-11-02T15:16:00.359Z
+    at: 2026-11-02T15:45:43.206Z
 ---
 
 # Kom godt i gang
 
-Tilbud henter Tjek- og REMA-data til lokale snapshots og søger derefter uden netværkskald. Byg og prøv fra projektets rod (Rust 1.91 eller nyere):
+Tilbud henter Tjek, REMA og BilkaToGo til lokale snapshots og søger derefter uden netværkskald. Installér fra en lokal kopi med Rust og Cargo på PATH:
 
 ```sh
-cargo build
-cargo run -- --help
-cargo run -- kilder
-cargo run -- beskriv tjek
-cargo run -- beskriv rema
-cargo run -- hent --kilde rema
-cargo run -- find kirsebærsauce --kilde rema
-cargo run -- kilder --human
-cargo run -- hent --kilde tjek
-cargo run -- find kaffe --butik netto --limit 20
-cargo run -- find mælk --include-unknown --data-dir /sti/til/data
+cd /sti/til/tilbud
+cargo install --locked --path .
+tilbud kilder
+tilbud beskriv bilkatogo
+tilbud hent --alle
+tilbud find kaffe
+tilbud find kaffe --kilde bilkatogo --include-unknown
+tilbud kilder --human
 ```
 
-`kilder` og `beskriv` viser metadata og eventuelt seneste snapshot; `hent` erstatter kun et snapshot efter en komplet kørsel. `find` søger uden hensyn til store og små bogstaver i navn og beskrivelse og udelader katalogpriser. `--butik` vælger et kæde-id; `--kilde` vælger kilde og standarden er `tjek`. `total` er match før `--limit`, som er 20 som standard. `offer_count` er antal rækker, også katalogposter; `promotion_count` og `catalog_count` viser fordelingen ved hentning. Resultaterne indeholder original gyldighed, status og beregnet enhedspris, når den kan beregnes.
+Cargo installerer normalt binæren i `~/.cargo/bin`, som skal være på PATH. `--root /sti/til/installationsmappe` vælger en anden destination. `Cargo.toml` deklarerer minimum Rust 1.91, men denne version er ikke afprøvet; [verifikationen](../docs/verification.md) brugte 1.99.1. Den installerede CLI kræver ikke Cargo, Graphify eller OpenWiki ved kørsel.
+
+`kilder` og `beskriv` viser metadata og eventuelt seneste snapshot; `hent` erstatter kun et snapshot efter en komplet kørsel. `find` søger uden hensyn til store og små bogstaver i navn og beskrivelse og udelader katalogpriser. `--butik` vælger et kæde-id; `--kilde` vælger kilde; som standard søger `find` i alle tilgængelige snapshots. `total` er match før `--limit`, som er 20 som standard. `offer_count` er antal rækker, også katalogposter; `promotion_count` og `catalog_count` viser fordelingen ved hentning. Resultaterne indeholder original gyldighed, status og beregnet enhedspris, når den kan beregnes.
 
 Som standard vises kun beviseligt aktuelle tilbud. `--include-unknown` medtager også ukendt gyldighed, men ikke poster der vides at være fremtidige eller udløbne. Datogrænser vurderes efter Europe/Copenhagen med inklusiv slutdato; ved præcis lighed med en tidspunktgrænse er status ukendt, medmindre den anden grænse afgør fremtid eller udløb.
 
-Som standard skriver succesfulde kommandoer et JSON-objekt med `schema_version`, `command` og `data` til stdout. Tilføj `--human` efter kommandoen for en læsbar visning af de samme resultater; fejl giver ikke-nul exitkode og diagnostik på stderr. `--data-dir` står efter kommandoen og tilsidesætter `TILBUD_DATA_DIR` og platformens standard. Se [snapshot-lagring](operations/storage.md) for placering, format og fejlhåndtering. Dækningen er begrænset som beskrevet på siderne for [Tjek](sources/tjek.md) og [REMA](sources/rema.md).
+Som standard skriver succesfulde kommandoer et JSON-objekt med `schema_version`, `command` og `data` til stdout. Tilføj `--human` efter kommandoen for en læsbar visning af de samme resultater; fejl giver ikke-nul exitkode og diagnostik på stderr. `--data-dir` står efter kommandoen og tilsidesætter `TILBUD_DATA_DIR` og platformens standard. Se [snapshot-lagring](operations/storage.md) for placering, format og fejlhåndtering. `hent --alle` publicerer fuldførte kilder uafhængigt og rapporterer delvise fejl med ikke-nul exitkode. Manglende snapshots springes over ved `find`, mens ulæselige snapshots giver delresultat og ikke-nul exitkode. Dækningen er begrænset som beskrevet på siderne for [Tjek](sources/tjek.md), [REMA](sources/rema.md) og [BilkaToGo](sources/bilkatogo.md).
 
 ## Test
 
@@ -59,4 +62,4 @@ Udviklings- og testprofilerne slår debug-information og incremental compilation
 
 ## Find videre
 
-Læs [tilbudsdata og normalisering](architecture/data-pipeline.md) for flow, validering og begrænsninger og kildesiderne for [Tjek](sources/tjek.md) og [REMA](sources/rema.md) for hentning og dækning. [Tilbudskontrakten](../docs/offer-v1.md) beskriver JSON-formatet med eksempler; [README](../README.md) beskriver også Worktrunk-miljøet.
+Læs [tilbudsdata og normalisering](architecture/data-pipeline.md) for flow, validering og begrænsninger og kildesiderne for [Tjek](sources/tjek.md), [REMA](sources/rema.md) og [BilkaToGo](sources/bilkatogo.md) for hentning og dækning. [Tilbudskontrakten](../docs/offer-v1.md) beskriver JSON-formatet med eksempler; [README](../README.md) beskriver også Worktrunk-miljøet.

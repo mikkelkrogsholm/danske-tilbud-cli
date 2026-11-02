@@ -1,8 +1,8 @@
 # Tjek-kilden
 
 `TjekAdapter::new()` vælger alle 14 kæder; `select_chains(&["rema1000"])`
-vælger et udsnit og afviser ukendte ID'er. Hentningen er en biblioteksfunktion,
-ikke en CLI-kommando. `engine::run` returnerer både normaliserede tilbud,
+vælger et udsnit og afviser ukendte ID'er. CLI tilbyder `hent --kilde tjek`; valg af kædeudsnit samt butiks- og datofilter
+ved hentning er biblioteksfunktioner. `engine::run` returnerer både normaliserede tilbud,
 afviste poster, kildefejl og dækning.
 
 Kilden er `https://squid-api.tjek.com/v2`. Adapteren henter `/offers` med

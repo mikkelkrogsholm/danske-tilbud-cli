@@ -4,7 +4,7 @@ okf_version: "0.2"
 
 # Filer
 
-- [Kom godt i gang](quickstart.md) - Sådan køres den tidlige CLI-grundversion, og sådan bygges og testes projektet med begrænset diskforbrug.
+- [Kom godt i gang](quickstart.md) - Installation og brug af tre lokale kilder samt test med begrænset diskforbrug.
 
 # Mapper
 

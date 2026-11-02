@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e984856a46686a4caf90cb1db18a396b5b9d3a5bb606504e97d572dfa8e29656",
+  "claims": [
+    {
+      "id": "claim_dfd9d7314159454895e689b16d2820ae",
+      "statement": "BilkaToGo søger den aktuelle tilbudsavis for varer i sortiment og på lager i et valgt scope, som som standard er 1653.",
+      "evidence": [
+        {
+          "resource": "repo://src/bilkatogo.rs#L132-L157",
+          "version": "repo-lines-v1:sha256:7ee802e3df7d899a21fe6ae1018f0e60b506c762aed095be83e69df41f9f1c43:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQzNzkxZGNiOGM4NTFlYjlhNGUxZmZiNTUxNDU4Zjc3NmE0N2EwOWU0NWNmMjE1YWY5MDA1ODJjM2FlYmU5NGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0MTkzNDk0MzhkN2FjOWQ1ZWNkYmY5NGNiMzQ5Yjc1NzNkYjUxY2I3MTUyYWM2YTVlOWY5YTVjM2EyZmQ4YmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjczZjBiZTllYjRjNTQxZjI4ZmRkNjkxNzA2Y2E2NTE5NDM1MGNkNTVlODgzNjkyYTZmMzg3YTZlNjc0M2M5ODEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEyZGZjYTA4MTAxMzk5NzI5MjhiYzg4MmMwMzJjZWE1ZmQ3NTAzNjcxODE0MDA0NzgzMmViZWUyYTkwNzgzYTYifQ"
+        },
+        {
+          "resource": "repo://src/bilkatogo.rs#L32-L40",
+          "version": "repo-lines-v1:sha256:bcc98160e0f1bdb88416bd8091a89dff6a3463c3d7ed3e2cf8b9ad9067047d90:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDAzN2Q4NjI4NzU5YzM4N2E2MjljZWQ5ZDcxNTgzZWE5YzY2OWQ3MTg5YTQwMDcxM2U4MTExNDczNzhkYTJkYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWJkMWNmZjQzNDI2MTVlYzcyNGU1ZTM2YjgxNzVmNmQ2YjQ2ZmI0MzJjMzNmZDJmY2I0Y2Y2NmM5YjQyZThmMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDIzYjdkMTdkODYzYTdjNWQzZjlmNWRhYmM0M2YzMDljODVhMjMzYjBhNDFmOGNlMzk0YWM5ZWRmMDFmYTc4NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2VkZDIwZjMyY2MwYTM1Njg4YWZhMzZhYTM1MDI5YTEzMTQzNTUxY2E3OGQzNDY4ODc2NmQyMzNkZGM2Y2NmOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_93a0c8b1e83e4dcb86affb3875dbe6be",
+      "statement": "Adapteren henter offentlig søgekonfiguration ved hver kørsel og genindlæser den højst én gang ved 401 eller 403.",
+      "evidence": [
+        {
+          "resource": "repo://src/bilkatogo.rs#L144-L185",
+          "version": "repo-lines-v1:sha256:b6b97302b42f6043e40a263ceddd0c6cd1c22c20182459424316b63f1003b0d1:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0NjQ5MjQ0ZDliOGJlOTU0NjgxYmQ0NDY1YWYxNjQ2YzFiZTBmMzk5ZWMwZDFiNGIxZDgxNTc1Y2E4NzI0MzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3YTVmZmEzZTA5NWRmMDViNmIzMzMzODcxYWJhMWMxYjNlMjVhYjNkYmYxZDQ5MmYxNTRjMmNjMmIxMjJmNTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJkNTUzMWI0YjY3ZDc0MjFiMzBjODY5MDdjNmY1N2Y2YjZiN2QwYmU3N2U2YjQxZmM5ZDljODdmNjk2YzBjYzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhYmZlMDFiN2EzNjQ3MzJmYTNhZDMzZjVmY2QwNWUwMDJhOTM4MjQzZWFhZTIzNDQ1NDM3YmE2NjFkYTJjYjIifQ"
+        },
+        {
+          "resource": "repo://src/bilkatogo.rs#L59-L93",
+          "version": "repo-lines-v1:sha256:d896351f44d9ff027bfd67ebafcf42c0566f689cf8180628ebd8f9da78f813af:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM0ZTNjYjk1ZDhlNGJiMWUxNzI4Y2ZhOTRiODc0ZGE3MTc1YmI1NzhlYmI5MzMwZDBlNTJkMDFmZjY0YTE3MTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmMWUxNDU0ZWJhZGNiOGY4MGVhNmE1Y2JmNTFmN2RmM2RkZGU2N2Y1NTVkNmYwNzU2OThlOGVjNDM0ZDkyMWYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkMWVlNTAxN2VmMDJkZDlkNjA5NTQxNDBmZjY3MDI3ODY0ZjQzY2U4OWY1Y2MxNmQ3MDc2MjMyNzc2MmM4ODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNjY2UyODlmNzc3M2U4NTVjNjFiMDRjZjMxYjI4YmI4MWFmNzJkZTc4ZTI4MjQ0NzI4ZmZhOGVmOTFiZTcxMzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5fdecb5ef9e44573b03599896fad48b6",
+      "statement": "BilkaToGo kræver udtømmende, konsistent paginering og entydige produkt-id'er; fejl forhindrer publicering af nyt snapshot.",
+      "evidence": [
+        {
+          "resource": "repo://src/bilkatogo.rs#L205-L262",
+          "version": "repo-lines-v1:sha256:81e222824ff5c062fffa2f04d4ea2d5a4fe26a6124a0b695b09b75a511af7590:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlMjMxMGEyMjJiYzYzMzQ1ZThlN2U1ZWM4YWFlNWNhODYwNjhkYWNlODU4MWJmOWVmZDJjOTAwZGE4MWY0YTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljZTc1YTNkOWE4MDViMWViMmJhZWY5YzJhYmYxNTI3YzE2MDQ3YmRjNmM3ODQzMDc2ZDYzYTIzNTMxYjAzY2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZlODFkOWFhNmFhMWQwZjc2OTMxZTAxZmJjZjBmOWNlOGQyNTk2NDI0MzgwZDdkM2U2MDA0YTM2Y2MxODk4Y2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc0NTM2MDFkMGMzNWQ2ZDZkNDA3ZDI2NzBlZTk4ZThmNzAyZjUwYTM5NDc5OTZhNTE1Y2Y5ZmM2NGRlYzgzYjgifQ"
+        },
+        {
+          "resource": "repo://src/storage.rs#L226-L240",
+          "version": "repo-lines-v1:sha256:c3023095caa86ba54b4b7f1c4626417811c0c1a267d2c5137c0812ff19457e11:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhNmNjMzI3Y2Q3ZjBkYmE4MGFmYTEzOWJkMzg2ZDdjYjM3NzViN2YzZTZjMDAxMWVjYmUwODc4NjBkNWY1MDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1YzcxYTgyYjRlYjIwYTI1OTUwZGJmYjE5Y2MwNjJjYzY2MTE5ZjA1NzFlYTA5MDJmYjdmZjRlNjczMzI5ZmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI0Njc5YWMyNDUyNWZmZjNmYzhjMjQyNzI0Njg1N2Q3NTNiZjEwODdlODg0NWE3MTA2MTgyNDM1MGIxMTA5ZmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZhYmRlYWYyMTRiZWY0NTJiNDBiZTA2MzAyYTg1MjY3ZGUyYmEzODRkMzEzMjI2MTNmZGVmZjE4YWQzNzEyYjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1bead91e673b4e19ac00229482dd3671",
+      "statement": "Pris og førpris kommer fra valgt storeData i øre, og en førpris på nul behandles som ukendt; periode og medlemskab antages ikke.",
+      "evidence": [
+        {
+          "resource": "repo://src/bilkatogo.rs#L304-L320",
+          "version": "repo-lines-v1:sha256:a0fa121bdc44e4d445a8fb16bf68cd58104f74f60910c3b375514e922b1afbfa:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5MjU4NjZhMmNhNzY1M2ZkMjIxMjBhMjNiYmRkZGVmOTc5MzNmYmFkODJiOWQ5NGMyYTVkZDc4NDUxZTVlM2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYwYzQ0YWEyNWE4ZGFjNzNkYTc0MDgxZTZiMzMwODU3NWZmYzg1OGNiNGVmOGJmYWFhNTRhMDZmMWZhNTQwZWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFlZTRkYWNmNDQ0YmFiY2NmZTAzNGFiOGIwMjcyMDQxMDVmOWM3YThhMDNhZTA5YWZkNTMzMmI0ZTg4MTEzNzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRhYjNhNWQ4MGU4MzA4ZTI4NDVjYjdlZWQxODBjY2M5NDMyNGJjYTIzMWNmNTQwNDgxNWYxNjQ1NWUxY2Q5MDIifQ"
+        },
+        {
+          "resource": "repo://src/bilkatogo.rs#L350-L374",
+          "version": "repo-lines-v1:sha256:4e43b8fecaa028d8f7454195175809e307b8d372d9fb52f2f6f383b3815597ae:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkMWNhMmQzYTNkYzlhYjllMDUzMmJmYmQzYWZmNjZiZWJlZWYxOTI4ZDIyOTAwYTcwZDg3ZDBlNjM1NWYwZGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3ZmI0ZTY2MTE4ZGFlOTA4YWRkMThiZWFmOTg3ZDJjOGUxN2EyZDc0NWVkYWQ1MTA2ODgzMmExODJmZGRkOWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5ZWQ5ZmExNDhiOGUwNTk0Yzg3M2Q4M2MyZTUwYWI4NTViZGQ3MjMyZDc2YjczYzAzMzc1ZGZmY2YwNjg5OWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUyYzE0YmRmM2FhYmQ2MGJjYWEzMjcxMjhhMTkyNWIxNzllNzkxMDAyZThmNTYxNGRjMjA5YTdjZDc1NTdlNzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_82763fedd7cd453ea279d99fdf647f0b",
+      "statement": "Den 2. november 2026 blev 2.959 BilkaToGo-poster hentet i scope 1653, og kaffesøgningen fandt 37 poster med include-unknown.",
+      "evidence": [
+        {
+          "resource": "repo://docs/verification.md",
+          "version": "repo-file-v1:sha256:91f488695735277024c636533430fcd436fae5853f6cca89ce73a5e619e65315"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-02T15:45:43.206Z"
+  }
+}

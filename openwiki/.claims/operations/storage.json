@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:f55b1dbe0460289a86646f5e898e6b4ead9758ea9d9b78c4feee231704988f89",
+  "pageVersion": "sha256:b0c4974af27809116e4ef5b794bf8501b60c73475f07c8f00edda6dbe8333f68",
   "claims": [
     {
       "id": "claim_5d406d857fc84279bedaca4f2421668a",
@@ -57,8 +57,8 @@
       "statement": "Datamappen vælges ved eksplicit override, derefter TILBUD_DATA_DIR og til sidst platformens standard.",
       "evidence": [
         {
-          "resource": "repo://src/storage.rs#L52-L72",
-          "version": "repo-lines-v1:sha256:be72f544586b14bd5ce365c358a620d9d5db1eff2856fd899ac3df7e141402f1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkODcwYzRhZmQ3ODc1NWQwNjE3N2QzNzA1YjY1YzA5ODJmMzBiMWE3YWJkOGQ3MWJjYTMwZjBjYWU5ODExZDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1ZjZmNDY2ZTU5Y2ZjMzA3MDNjNDVmNzJhZjY1ZGU1NGFjMzYzZDM1NGNjMWEzMzMwMzUwYWNkNDUyNDM0YzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxNDM3MzQyNjE3NTYxYzgzNjk3YTFjYjk1MjJjMWI4NjRhODAwNDg4ZWViYzE4MGI0Zjg0MDJmZDZiN2MwYWIifQ"
+          "resource": "repo://src/storage.rs#L52-L75",
+          "version": "repo-lines-v1:sha256:9b693a1131396cfcd374b70c9c9a5e8dfd5c628988f7960f51d71e1203eeca3a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkODcwYzRhZmQ3ODc1NWQwNjE3N2QzNzA1YjY1YzA5ODJmMzBiMWE3YWJkOGQ3MWJjYTMwZjBjYWU5ODExZDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1ZjczMGU3ZTc0MDk1NDE3MDk1NTkzMTVjZjQ0YzQ3N2VmZTYwMThhNTdmZDhmNDQyMDc3OWY4NGQ2NmFhOTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1ZjZmNDY2ZTU5Y2ZjMzA3MDNjNDVmNzJhZjY1ZGU1NGFjMzYzZDM1NGNjMWEzMzMwMzUwYWNkNDUyNDM0YzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzNjhmMWViMjk3YjljYmMxY2VlMTJjODI2OGJlMjhiMmJkZmQzOGFkMzAxODE2NjA2MTNjN2M4OGIzZTQ3ZTgifQ"
         }
       ]
     },
@@ -67,18 +67,42 @@
       "statement": "Snapshotmanifestets offer_count tæller gemte rækker inklusive katalogrækker; CLI hent oplyser særskilt promotion_count og catalog_count.",
       "evidence": [
         {
-          "resource": "repo://src/main.rs#L139-L153",
-          "version": "repo-lines-v1:sha256:f6db4a169fdb748395dcbbf5f751bf5d9fed395e3c4ef0c7145e130f5b73fc7d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkYWQyOTkxZDhiYzJhZjliZTkyYzJmMmQzY2I0MTRkYjY2Nzk2MmNkYmM1NmU1MWIyOTM3MGQ0ZDkxZGRkZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJkNWYxMjI0YzZkNDJlNjVhZWMzNmY2ZGNiMGIxNzZjYWQwYmNiNTQzZTVmMzcwMzM4ZDhmNjNmOTRkYTBlYzciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUzYjdjZmIwMzY3Yjk5NDY1YWFmNjliYWIyZDU2NzdhMTdiNDc1MDI3OGY3NzM2YzFhYzdhYTM2MTlmMWQ2MmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhlYmJkNjdhM2VlYTkzZjMzNzM2NjhkNTQwN2NkM2E3ODA4OTgxMjA3NjQ4ODI5Y2Q1MmQ3NmJhYWZhMzc2ZDEifQ"
+          "resource": "repo://src/main.rs#L308-L316",
+          "version": "repo-lines-v1:sha256:534a7f790096f0ca3ea19b150011bfd7b6f7f3154f735fb48f3651a6371c6c4c:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGYxOTY1OWY4NzJmOWY2OTRkNjVlNWU1YzJjYTQyOGRmMThkZmQ5NzI3NDQzMzcyZmVmYTM0ZTA0ZGRiMjEwNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2M1MTg4MDU2ZTNhZTExZGM0Zjc4OTFkNWNiYzdmMWI1YzI1ZGZkYjNlZWRhMjgwODI2ZmE5ZDlhMDcyZTgwZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTVhZDBlNmNhODA4NDFlNTljMWE0NGU1NTY1NTZmYzEzMGNlZGRkMDk2ZTJiNDAyMjhjZDcyN2Y2YjYxOGQ2MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjYwNzJiNmQ1ODkzNTU5NTk2YjFiYzVjOGE1YjEyYWE1M2E3N2E1ZjA3ZTBhMjM0NWJiM2IxOWUxYmFhYzM1NCJ9"
         },
         {
-          "resource": "repo://src/storage.rs#L240-L269",
-          "version": "repo-lines-v1:sha256:a89d6e408059dc6f8007f11a559b0e8d0a6e1c7cce0b5a8ff78b4c741811654f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1YzcxYTgyYjRlYjIwYTI1OTUwZGJmYjE5Y2MwNjJjYzY2MTE5ZjA1NzFlYTA5MDJmYjdmZjRlNjczMzI5ZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2MTRhMmM1OTA0ZmZlODg5ZjM4ODc3ZGQ2NTBkMjJiODBmYzM2NDgxNzM1N2Y1NDNjNTQ3M2JhN2Q3NGM0N2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJiNWJjOTM0YzEyMTFjMWZlYTA0ZGQ5ZjA4YzY2NmI3MjE1NGJhOThiOWQxMmY4NTMzMjEyMzIxMDc0NzkzNGQifQ"
+          "resource": "repo://src/storage.rs#L240-L250",
+          "version": "repo-lines-v1:sha256:fb43b4851fcf9c2d59e2d1934c8173785291c19b18336dba7b47e237d7a23741:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1YzcxYTgyYjRlYjIwYTI1OTUwZGJmYjE5Y2MwNjJjYzY2MTE5ZjA1NzFlYTA5MDJmYjdmZjRlNjczMzI5ZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyOGE0MDE2ZWY0YzY3Y2E3MThjNjUyZmZhNGFiMDlhMDk2OTIxZmNkMDY0ZWFhMTYxZTlmYmE2NTUwMWZhNDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2MTRhMmM1OTA0ZmZlODg5ZjM4ODc3ZGQ2NTBkMjJiODBmYzM2NDgxNzM1N2Y1NDNjNTQ3M2JhN2Q3NGM0N2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQwNGU4ZDNiZGMzN2IzNjQ1NmZmY2NhYzVkOGQ4MTdmY2ZmZWU0YzNlZDAyMTU4ZmJjNWMzY2M4ZmJlYzMxMTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f03c69120c73498fa8217711280a54bd",
+      "statement": "Ved hent --alle publiceres komplette kilder uafhængigt, mens en fejlet kilde bevarer sit eksisterende snapshot.",
+      "evidence": [
+        {
+          "resource": "repo://src/main.rs#L292-L316",
+          "version": "repo-lines-v1:sha256:207dcabd06708d3f210a90f9bb9285d0849ee48bdf4266e49d9ab80c0aeab81e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdiMTYyMzMyYWU1MGM2Y2M5YzVmNDUwODg5OWQ2NDNkYWUyNTVlNDM2OGUxZjg5ZTVhZTYxNzBhNWY4NzYyZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjNTE4ODA1NmUzYWUxMWRjNGY3ODkxZDVjYmM3ZjFiNWMyNWRmZGIzZWVkYTI4MDgyNmZhOWQ5YTA3MmU4MGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZiNmM0YzgzNjliZWE4NzViMDUwZDI3OTU1NTY1MTViMjIzODYzMmQ3NDlmNjIzMTJmNDMzZDk4ODczZDc4M2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2MDcyYjZkNTg5MzU1OTU5NmIxYmM1YzhhNWIxMmFhNTNhNzdhNWYwN2UwYTIzNDViYjNiMTllMWJhYWMzNTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a19080eb19c244ea93fb3ed595f13f61",
+      "statement": "Testwrapperen isolerer build og testdata i en midlertidig mappe, mens håndterede afslutninger rydder egne data; SIGKILL kan efterlade dem.",
+      "evidence": [
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:0861512831466f9b6e1e62b855d50d18c2df401bdb0e71c63a2ca1d665c845c0"
+        },
+        {
+          "resource": "repo://scripts/test.sh",
+          "version": "repo-file-v1:sha256:b5e5c8233c91b01fff74aed83603ad9a681d6789a4c14c6797f6a546891c8cee"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.3",
-    "at": "2026-11-02T15:16:00.359Z"
+    "at": "2026-11-02T15:45:43.206Z"
   }
 }

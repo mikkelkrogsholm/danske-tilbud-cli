@@ -3,13 +3,15 @@ type: integration
 title: REMA 1000-kilden
 description: Det offentlige produktfeed, paginering, prisvalg og kildens begrænsninger.
 tags: [rema, source-adapter, pricing]
-verified:
-  - by: openwiki/0.7.3
-    at: 2026-11-02T15:16:00.359Z
 sources:
+  - id: openwiki-source-0b3c9083504c39afdb61ad7c
+    resource: repo://docs/verification.md
   - id: openwiki-source-836b4d70d3eac35c620705c6
     resource: repo://src/rema.rs
-generated: { by: "codex", at: "2026-11-02T15:16:00.359Z" }
+generated: { by: "codex", at: "2026-11-02T15:43:42.669Z" }
+verified:
+  - by: openwiki/0.7.3
+    at: 2026-11-02T15:45:43.206Z
 ---
 
 # REMA 1000-kilden
@@ -22,12 +24,12 @@ Sider hentes med 100 produkter, højst 200 sider. Adapteren kontrollerer sidenum
 
 ## Prisvalg og mængder
 
-Kun priser med begge gyldighedsgrænser, hvor hentetidspunktet ligger strengt mellem dem, kan vælges. Præcis lighed med grænsen giver ikke en aktuel pris; kilden dokumenterer ikke grænsernes inklusivitet. Kampagne- eller annoncerede priser prioriteres over almindelige priser; inden for samme prioritet vælges seneste start. Modstridende beløb med samme prioritet og start giver ukendt pris og en forklaring. Ingen fremtidig eller udløbet pris anvendes som førpris; førpris sættes ukendt. Uden aktiv pris bliver posten en katalogpost med ukendt pris.
+Kun priser med begge gyldighedsgrænser, hvor hentetidspunktet ligger strengt mellem dem, kan vælges. Kildens tidsgrænser bevares som instanter. Præcis lighed med grænsen giver ikke en aktuel pris; kilden dokumenterer ikke grænsernes inklusivitet. Kampagne- eller annoncerede priser prioriteres over almindelige priser; inden for samme prioritet vælges seneste start. Modstridende beløb med samme prioritet og start giver ukendt pris og en forklaring. Ingen fremtidig eller udløbet pris anvendes som førpris; førpris sættes ukendt. Uden aktiv pris bliver posten en katalogpost med ukendt pris.
 
 Den oprindelige `underline` bevares i beskrivelsen. Parseren accepterer en entydig indledende positiv decimal og understøttet enhed med separator eller slutning; andre former forbliver ukendte. Maksimumsantal, pris over maksimum og pant fra den valgte pris føjes til beskrivelsen, når de er angivet. Den fælles motor normaliserer mængden og beregner enhedspris, når oplysningerne rækker.
 
 ## Observeret live
 
-Endpoint og dataformat blev ifølge [kildedokumentationen](../../docs/rema.md) verificeret 2. november 2026. En livekontrol rapporteret i denne arbejdsgang omkring kl. 15:10 UTC samme dag gav 3.943 rækker: 271 kampagner og 3.672 katalogposter. Et eksempel var produkt 100021 til 20 kr. for 530 g. Det er tidsbundne observationer, ikke garantier for aktuel pris eller fuldstændig butikstilgængelighed.
+Endpoint og dataformat blev ifølge [kildedokumentationen](../../docs/rema.md) verificeret 2. november 2026. En livekontrol dokumenteret i [verifikation](../../docs/verification.md) samme dag gav 3.943 rækker: 271 kampagner og 3.672 katalogposter. Det er tidsbundne observationer, ikke garantier for aktuel pris eller fuldstændig butikstilgængelighed.
 
-Brug `cargo run -- hent --kilde rema` og derefter `cargo run -- find kirsebærsauce --kilde rema`. [Kom godt i gang](../quickstart.md) forklarer CLI, `--human` og datamappen; [Tjek-kilden](tjek.md) har en anden dækningsmodel. [Offline tests](../../tests/rema.rs) dækker prisvalg og fejl.
+Brug `cargo run -- hent --kilde rema` og derefter `cargo run -- find kirsebærsauce --kilde rema`. [Kom godt i gang](../quickstart.md) forklarer CLI, `--human` og datamappen; [Tjek-kilden](tjek.md) og [BilkaToGo](bilkatogo.md) har andre dækningsmodeller. [Offline tests](../../tests/rema.rs) dækker prisvalg og fejl.

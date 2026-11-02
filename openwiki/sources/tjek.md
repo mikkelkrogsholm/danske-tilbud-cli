@@ -10,15 +10,15 @@ sources:
     resource: repo://src/main.rs
   - id: openwiki-source-dc57eb67cb7ae0022f82d3af
     resource: repo://src/tjek.rs
-generated: { by: "codex", at: "2026-11-02T15:16:00.359Z" }
+generated: { by: "codex", at: "2026-11-02T15:43:42.669Z" }
 verified:
   - by: openwiki/0.7.3
-    at: 2026-11-02T15:16:00.359Z
+    at: 2026-11-02T15:45:43.206Z
 ---
 
 # Tjek-kilden
 
-`TjekAdapter` er en biblioteksadapter for `https://squid-api.tjek.com/v2`; CLI-kommandoen `hent --kilde tjek` bruger den til at hente og gemme et komplet snapshot. `new()` vælger alle 14 kendte kæder. `select_chains` vælger et udsnit og afviser en tom liste eller ukendte kæde-id'er. `with_base` og en timeout kan bruges til offline fixtures. Adapteren leverer `SourceBatch` til [motoren](../architecture/data-pipeline.md), hvor poster normaliseres og ugyldige poster rapporteres.
+`TjekAdapter` er en biblioteksadapter for `https://squid-api.tjek.com/v2`; CLI-kommandoen `hent --kilde tjek` bruger den til at hente og gemme et komplet snapshot. `new()` vælger alle 14 kendte kæder. `select_chains` vælger et udsnit og afviser en tom liste eller ukendte kæde-id'er. `with_base` og en timeout kan bruges til offline fixtures. Kædeudsnit samt butiks- og datofilter ved hentning er biblioteksvalg; CLI henter hele Tjek-kilden. Adapteren leverer `SourceBatch` til [motoren](../architecture/data-pipeline.md), hvor poster normaliseres og ugyldige poster rapporteres.
 
 ## Hentning og dækning
 
@@ -32,10 +32,10 @@ Adapteren kontrollerer dealer og dansk land på hver post, samt katalogtilhørsf
 
 Standardtimeout er 10 sekunder og højst tre forsøg. Netværksfejl og 5xx genforsøges med kort stigende ventetid. Ved 429 kræves en gyldig `Retry-After`; forsinkelser over fem sekunder returnerer fejl frem for et for tidligt genforsøg. Mangelfulde svar og afvigende dealer, land, katalog eller butiksrelation bliver kildefejl frem for tavs succes.
 
-JSON-priser læses uden binære flydende kommatal. Kildens `pre_price` er en sammenligningspris, ikke nødvendigvis en tidligere normalpris. Størrelse og antal bevares separat, og `pieces.max` behandles ikke som pakkeantal. Medlemskab er ukendt, da kilden ikke giver en verificeret struktureret markering.
+JSON-priser læses uden binære flydende kommatal. Kildens `pre_price` er en sammenligningspris, ikke nødvendigvis en tidligere normalpris. Størrelse og antal bevares separat, og `pieces.max` behandles ikke som pakkeantal. Medlemskab er ukendt, da kilden ikke giver en verificeret struktureret markering. Beskrivelsen bevares, men øvrige vilkår kan ikke altid udledes struktureret.
 
 ## Dokumenteret liveobservation
 
 En fuld hybridkørsel den 2. november 2026 ca. 14:44 UTC gav ifølge [kildedokumentationen](../../docs/tjek.md) 5.568 normaliserede tilbud, ingen dubletter, afvisninger eller kildefejl. Bilka brugte katalogvejen med ovenstående dækningsgrænse; tre føtex-poster uden overskrift blev bevaret. En separat stikprøve samme dag omfattede 14 kæder. Observationerne er tidsbundne, ikke garantier for aktuel eller fuld dækning.
 
-Kør `cargo run --example tjek_smoke` for en ny livekørsel eller tilføj `-- rema1000` for én kæde. Se [REMA-kilden](rema.md) for et separat produktfeed og [kom godt i gang](../quickstart.md) for almindelig build og test; [offline tests](../../tests/tjek.rs) dækker adapterens grænser og fejlveje.
+Kør `cargo run --example tjek_smoke` for en ny livekørsel eller tilføj `-- rema1000` for én kæde. Se [REMA-kilden](rema.md) og [BilkaToGo](bilkatogo.md) for andre kilder og [kom godt i gang](../quickstart.md) for almindelig build og test; [offline tests](../../tests/tjek.rs) dækker adapterens grænser og fejlveje.

@@ -2,39 +2,46 @@
   "schemaVersion": 1,
   "pages": {
     "/openwiki/architecture/data-pipeline.md": {
-      "pageVersion": "sha256:a1f8c2a0d223bf9c46d315adfb0f48f6a9c78258add80ca9c7497ff1a9fcedbe",
+      "gitHead": "140f4b776a88963c7df2d9dfe724daf49fd9b0db",
+      "sourceFingerprint": "sha256:a75e72f83b3744c476f02c25159663b233033a4df3a7db04e46322ef38c82f8a",
+      "pageVersion": "sha256:768d369460c673c67546292249ac7901c6299660d02b09c675f257b747315c1a",
       "completedBy": "codex",
-      "completedRunId": "711283ff-c0ef-4517-bc3f-6a676ae2fce0",
-      "gitHead": "7809dd1d44bfb2ec6b20eefc1b6156479d2f71ff",
-      "sourceFingerprint": "sha256:752e9ef8bfe1261e972840dfd440785b30769f6e3262ba645b426a9f8588c3f9"
+      "completedRunId": "09322833-0f42-42d4-82ad-530b0f2f3c33"
     },
     "/openwiki/operations/storage.md": {
-      "pageVersion": "sha256:f55b1dbe0460289a86646f5e898e6b4ead9758ea9d9b78c4feee231704988f89",
+      "gitHead": "140f4b776a88963c7df2d9dfe724daf49fd9b0db",
+      "sourceFingerprint": "sha256:a75e72f83b3744c476f02c25159663b233033a4df3a7db04e46322ef38c82f8a",
+      "pageVersion": "sha256:b0c4974af27809116e4ef5b794bf8501b60c73475f07c8f00edda6dbe8333f68",
       "completedBy": "codex",
-      "completedRunId": "711283ff-c0ef-4517-bc3f-6a676ae2fce0",
-      "gitHead": "7809dd1d44bfb2ec6b20eefc1b6156479d2f71ff",
-      "sourceFingerprint": "sha256:752e9ef8bfe1261e972840dfd440785b30769f6e3262ba645b426a9f8588c3f9"
+      "completedRunId": "09322833-0f42-42d4-82ad-530b0f2f3c33"
     },
     "/openwiki/quickstart.md": {
-      "pageVersion": "sha256:d7da5400bfceb11dee82b2a3ab79a3e6e33a7c14a4d261eccf92a1dab8bfcc6b",
+      "gitHead": "140f4b776a88963c7df2d9dfe724daf49fd9b0db",
+      "sourceFingerprint": "sha256:a75e72f83b3744c476f02c25159663b233033a4df3a7db04e46322ef38c82f8a",
+      "pageVersion": "sha256:da68ceaab9d45f1f46b9330f240c1a393212c51de9c17346b371dc182dce0472",
       "completedBy": "codex",
-      "completedRunId": "711283ff-c0ef-4517-bc3f-6a676ae2fce0",
-      "gitHead": "7809dd1d44bfb2ec6b20eefc1b6156479d2f71ff",
-      "sourceFingerprint": "sha256:752e9ef8bfe1261e972840dfd440785b30769f6e3262ba645b426a9f8588c3f9"
+      "completedRunId": "09322833-0f42-42d4-82ad-530b0f2f3c33"
+    },
+    "/openwiki/sources/bilkatogo.md": {
+      "gitHead": "140f4b776a88963c7df2d9dfe724daf49fd9b0db",
+      "sourceFingerprint": "sha256:a75e72f83b3744c476f02c25159663b233033a4df3a7db04e46322ef38c82f8a",
+      "pageVersion": "sha256:e984856a46686a4caf90cb1db18a396b5b9d3a5bb606504e97d572dfa8e29656",
+      "completedBy": "codex",
+      "completedRunId": "09322833-0f42-42d4-82ad-530b0f2f3c33"
     },
     "/openwiki/sources/rema.md": {
-      "pageVersion": "sha256:ba2cf9cd1e5ebcde944eecc7c779dcca14a74db68fce252444d8752f6d8bfca3",
+      "gitHead": "140f4b776a88963c7df2d9dfe724daf49fd9b0db",
+      "sourceFingerprint": "sha256:a75e72f83b3744c476f02c25159663b233033a4df3a7db04e46322ef38c82f8a",
+      "pageVersion": "sha256:93f2564e8d5674ec832449759d64b786ea6eb17b09b7f0a3254dac7afba6aabb",
       "completedBy": "codex",
-      "completedRunId": "711283ff-c0ef-4517-bc3f-6a676ae2fce0",
-      "gitHead": "7809dd1d44bfb2ec6b20eefc1b6156479d2f71ff",
-      "sourceFingerprint": "sha256:752e9ef8bfe1261e972840dfd440785b30769f6e3262ba645b426a9f8588c3f9"
+      "completedRunId": "09322833-0f42-42d4-82ad-530b0f2f3c33"
     },
     "/openwiki/sources/tjek.md": {
-      "pageVersion": "sha256:31b36d994595ec81b92e5d3a6f8d8dc0581b2ab0dcc8d924b191035e9b481876",
+      "gitHead": "140f4b776a88963c7df2d9dfe724daf49fd9b0db",
+      "sourceFingerprint": "sha256:a75e72f83b3744c476f02c25159663b233033a4df3a7db04e46322ef38c82f8a",
+      "pageVersion": "sha256:ac1acbd016f65613cb01c0d55c698f89bc5cb7d24cdaf03bef9086a223537302",
       "completedBy": "codex",
-      "completedRunId": "711283ff-c0ef-4517-bc3f-6a676ae2fce0",
-      "gitHead": "7809dd1d44bfb2ec6b20eefc1b6156479d2f71ff",
-      "sourceFingerprint": "sha256:752e9ef8bfe1261e972840dfd440785b30769f6e3262ba645b426a9f8588c3f9"
+      "completedRunId": "09322833-0f42-42d4-82ad-530b0f2f3c33"
     }
   }
 }
