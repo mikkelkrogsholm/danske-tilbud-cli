@@ -126,6 +126,22 @@ fn local_search_filters_and_reports_snapshot() {
             .iter()
             .any(|r| r["validity_status"] == "unknown")
     );
+    let compact_unknown = success(dir.run(&[
+        "find",
+        "KAFFE",
+        "--butik",
+        "netto",
+        "--include-unknown",
+        "--compact",
+    ]));
+    let compact_rows = compact_unknown["data"]["results"].as_array().unwrap();
+    let full_rows = unknown["data"]["results"].as_array().unwrap();
+    for (compact, full) in compact_rows.iter().zip(full_rows) {
+        assert_eq!(compact["source_id"], full["offer"]["source_id"]);
+        assert_eq!(compact["membership"], full["offer"]["membership"]);
+        assert_eq!(compact["validity"], full["offer"]["validity"]);
+        assert_eq!(compact["validity_status"], full["validity_status"]);
+    }
     let limited = success(dir.run(&["find", "kaffe", "--limit", "1"]));
     assert_eq!(limited["data"]["total"], 2);
     assert_eq!(limited["data"]["results"].as_array().unwrap().len(), 1);
@@ -408,6 +424,25 @@ fn combined_search_preserves_sources_and_reports_partial_failure() {
     assert_eq!(value["error"], "partial_result");
     assert_eq!(value["data"]["total"], 3);
     assert_eq!(value["data"]["sources"][1]["status"], "failed");
+    let compact = dir.run(&[
+        "find",
+        "kaffe",
+        "--compact",
+        "--limit",
+        "1",
+        "--offset",
+        "1",
+    ]);
+    assert!(!compact.status.success());
+    let compact: Value = serde_json::from_slice(&compact.stdout).unwrap();
+    assert_eq!(compact["error"], "partial_result");
+    assert_eq!(compact["data"]["total"], 3);
+    assert_eq!(compact["data"]["offset"], 1);
+    assert_eq!(compact["data"]["has_more"], true);
+    assert_eq!(
+        compact["data"]["results"][0]["source_id"],
+        value["data"]["results"][1]["offer"]["source_id"]
+    );
     let human = dir.run(&["find", "kaffe", "--human"]);
     assert!(!human.status.success());
     let text = String::from_utf8_lossy(&human.stdout);
@@ -504,4 +539,128 @@ async fn offline_fetch_pipeline_publishes_files_consumed_by_real_cli() {
         result["data"]["results"][0]["offer"]["source_id"],
         "current"
     );
+}
+
+#[test]
+fn agent_search_ranks_pages_and_preserves_compact_terms() {
+    let dir = Temp::new();
+    dir.seed();
+    let text = fs::read_to_string(dir.0.join("tjek.jsonl")).unwrap();
+    let mut lines = text.lines();
+    let mut manifest: Value = serde_json::from_str(lines.next().unwrap()).unwrap();
+    let base: Value = serde_json::from_str(lines.next().unwrap()).unwrap();
+    let mut rows = Vec::new();
+    for (id, heading, description) in [
+        ("phrase", "Økologisk mælk", "Maks. 6; pant; kun medlemmer"),
+        ("name", "Økologisk letmælk", ""),
+        ("description", "Mælk", "Økologisk"),
+        ("missing", "Mælk", "konventionel"),
+        ("tie-b", "Økologisk letmælk", ""),
+    ] {
+        let mut row = base.clone();
+        row["source_id"] = json!(id);
+        row["heading"] = json!(heading);
+        row["description"] = json!(description);
+        row["membership"] = json!("required");
+        row["quantity"] = json!({"kind":"exact","amount":"0.33","unit":"l"});
+        row["quantity_basis"] = json!("per_piece");
+        row["pieces"] = json!({"kind":"exact","count":6});
+        row["store"] = json!({"store_id":"42","name":"Butik","location":null});
+        rows.push(row);
+    }
+    manifest["offer_count"] = json!(rows.len());
+    manifest["coverage"] = json!("landsdækkende");
+    fs::write(
+        dir.0.join("tjek.jsonl"),
+        format!(
+            "{manifest}\n{}",
+            rows.iter().map(|r| format!("{r}\n")).collect::<String>()
+        ),
+    )
+    .unwrap();
+    let full = success(dir.run(&["find", "ØKOLOGISK mælk", "--kilde", "tjek", "--limit", "20"]));
+    let results = full["data"]["results"].as_array().unwrap();
+    let ids: Vec<_> = results
+        .iter()
+        .map(|r| r["offer"]["source_id"].as_str().unwrap())
+        .collect();
+    assert_eq!(ids, ["phrase", "name", "tie-b", "description"]);
+    let reversed =
+        success(dir.run(&["find", "mælk økologisk", "--kilde", "tjek", "--limit", "20"]));
+    let mut reversed_ids: Vec<_> = reversed["data"]["results"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|r| r["offer"]["source_id"].as_str().unwrap())
+        .collect();
+    reversed_ids.sort();
+    let mut sorted = ids.clone();
+    sorted.sort();
+    assert_eq!(reversed_ids, sorted);
+    let mut pages = Vec::new();
+    for offset in ["0", "2"] {
+        let page = success(dir.run(&[
+            "find",
+            "ØKOLOGISK mælk",
+            "--kilde",
+            "tjek",
+            "--limit",
+            "2",
+            "--offset",
+            offset,
+            "--compact",
+        ]));
+        assert_eq!(page["data"]["total"], 4);
+        assert_eq!(page["data"]["has_more"], offset == "0");
+        assert_eq!(page["data"]["sources"][0]["coverage"], "landsdækkende");
+        pages.extend(page["data"]["results"].as_array().unwrap().iter().cloned());
+    }
+    for (compact, full) in pages.iter().zip(results) {
+        for field in [
+            "source",
+            "source_id",
+            "chain_id",
+            "store",
+            "heading",
+            "description",
+            "price",
+            "quantity",
+            "quantity_basis",
+            "pieces",
+            "validity",
+            "membership",
+        ] {
+            assert_eq!(compact[field], full["offer"][field], "{field}");
+        }
+        assert_eq!(compact["unit_price"], full["unit_price"]);
+        assert_eq!(compact["validity_status"], full["validity_status"]);
+    }
+    let empty = success(dir.run(&["find", "mælk", "--offset", "999"]));
+    assert_eq!(empty["data"]["results"].as_array().unwrap().len(), 0);
+    assert_eq!(empty["data"]["has_more"], false);
+    let human = dir.run(&[
+        "find",
+        "ØKOLOGISK mælk",
+        "--kilde",
+        "tjek",
+        "--limit",
+        "1",
+        "--offset",
+        "3",
+        "--human",
+    ]);
+    let text = String::from_utf8(human.stdout).unwrap();
+    assert!(text.contains("Mælk") && text.contains("offset 3") && text.contains("flere: nej"));
+    assert!(!text.contains("Økologisk letmælk") && !text.trim_start().starts_with('{'));
+    for args in [
+        &["find", " "][..],
+        &["find", "mælk", "--offset", "-1"],
+        &["find", "mælk", "--offset", "x"],
+        &["find", "mælk", "--compact", "--human"],
+    ] {
+        let out = dir.run(args);
+        assert!(!out.status.success());
+        assert!(out.stdout.is_empty());
+        assert!(!out.stderr.is_empty());
+    }
 }

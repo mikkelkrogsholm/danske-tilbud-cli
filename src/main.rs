@@ -73,8 +73,15 @@ struct Find {
     butik: Option<String>,
     #[usage(long)]
     kilde: Option<String>,
+    /// Maksimalt antal resultater (standard: 20).
     #[usage(long)]
     limit: Option<usize>,
+    /// Spring dette antal match over (standard: 0).
+    #[usage(long)]
+    offset: Option<usize>,
+    /// Vis kompakt JSON til agenter; kan ikke kombineres med --human.
+    #[usage(long)]
+    compact: bool,
     #[usage(long)]
     data_dir: Option<PathBuf>,
     /// Medtag tilbud med ukendt gyldighed, når de ikke vides at være udløbet eller fremtidige.
@@ -193,7 +200,11 @@ async fn execute(command: Command) -> Result<Value, Value> {
                 }
                 ids.retain(|id| source(id).unwrap().metadata().chains.contains(chain));
             }
+            if a.compact && a.human {
+                return Err(error("--compact kan ikke kombineres med --human".into()));
+            }
             let limit = a.limit.unwrap_or(20);
+            let offset = a.offset.unwrap_or(0);
             if limit == 0 {
                 return Err(error("Limit skal være større end 0".into()));
             }
@@ -233,6 +244,8 @@ async fn execute(command: Command) -> Result<Value, Value> {
                 None
             };
             let query = a.tekst.to_lowercase();
+            let words: Vec<_> = query.split_whitespace().collect();
+            let phrase = words.join(" ");
             let now = Utc::now();
             let mut offers = snapshots
                 .into_iter()
@@ -243,21 +256,21 @@ async fn execute(command: Command) -> Result<Value, Value> {
                     {
                         return None;
                     }
-                    if !offer
-                        .heading
-                        .as_deref()
-                        .unwrap_or("")
-                        .to_lowercase()
-                        .contains(&query)
-                        && !offer
-                            .description
-                            .as_deref()
-                            .unwrap_or("")
-                            .to_lowercase()
-                            .contains(&query)
+                    let heading = offer.heading.as_deref().unwrap_or("").to_lowercase();
+                    let description = offer.description.as_deref().unwrap_or("").to_lowercase();
+                    if !words
+                        .iter()
+                        .all(|word| heading.contains(word) || description.contains(word))
                     {
                         return None;
                     }
+                    let rank = if heading.contains(&phrase) {
+                        0
+                    } else if words.iter().all(|word| heading.contains(word)) {
+                        1
+                    } else {
+                        2
+                    };
                     let status = engine::validity_status(&offer.validity, now);
                     if status != ValidityStatus::Current
                         && !(a.include_unknown && status == ValidityStatus::Unknown)
@@ -266,11 +279,12 @@ async fn execute(command: Command) -> Result<Value, Value> {
                     }
                     let unit_price = engine::unit_price(&offer)
                         .map(|u| json!({"ore":u.ore.to_string(),"unit":u.unit}));
-                    Some((offer, status, unit_price))
+                    Some((offer, status, unit_price, rank))
                 })
                 .collect::<Vec<_>>();
-            offers.sort_by_cached_key(|(o, _, _)| {
+            offers.sort_by_cached_key(|(o, _, _, rank)| {
                 (
+                    *rank,
                     o.heading.as_deref().unwrap_or("").to_lowercase(),
                     o.chain_id.clone(),
                     o.source_id.clone(),
@@ -278,10 +292,17 @@ async fn execute(command: Command) -> Result<Value, Value> {
                 )
             });
             let total = offers.len();
-            let results = offers.into_iter().take(limit).map(|(offer,status,unit_price)| json!({"offer":offer,"validity_status":status,"unit_price":unit_price})).collect::<Vec<_>>();
+            let has_more = offset.saturating_add(limit) < total;
+            let results = offers.into_iter().skip(offset).take(limit).map(|(offer,status,unit_price,_)| {
+                if a.compact {
+                    json!({"source":offer.source,"source_id":offer.source_id,"chain_id":offer.chain_id,"store":offer.store,"heading":offer.heading,"description":offer.description,"price":offer.price,"quantity":offer.quantity,"quantity_basis":offer.quantity_basis,"pieces":offer.pieces,"validity":offer.validity,"validity_status":status,"membership":offer.membership,"unit_price":unit_price})
+                } else {
+                    json!({"offer":offer,"validity_status":status,"unit_price":unit_price})
+                }
+            }).collect::<Vec<_>>();
             let value = envelope(
                 "find",
-                json!({"query":a.tekst,"source":a.kilde,"sources":sources,"complete":!failures,"chain":a.butik,"fetched_at":fetched_at,"total":total,"limit":limit,"results":results}),
+                json!({"query":a.tekst,"source":a.kilde,"sources":sources,"complete":!failures,"chain":a.butik,"fetched_at":fetched_at,"total":total,"offset":offset,"limit":limit,"has_more":has_more,"results":results}),
             );
             if failures {
                 Err(partial(

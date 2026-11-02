@@ -67,14 +67,27 @@ på stdout med status for hver kilde, fejl på stderr og ikke-nul exitkode.
 `--kilde` vælger én. Manglende snapshots springes over, mens ulæselige snapshots
 giver et delvist resultat og ikke-nul exitkode. `--butik` filtrerer på kendte
 kæde-ID’er og læser kun kilder, der understøtter kæden; `limit` gælder samlet. Tilbud fra forskellige kilder bevares
-separat, også ved samme navn eller EAN. `find` søger uden hensyn til store og små
-bogstaver i navn og beskrivelse. Den viser kun tilbud, der er beviseligt
+separat, også ved samme navn eller EAN. `find` deler søgeteksten ved whitespace
+og søger efter alle ordene som delstrenge i navn og/eller beskrivelse, uden
+hensyn til store og små bogstaver. Ordstilling er ligegyldig; danske tegn
+bevares, og der anvendes hverken fuzzy matching eller synonymer. Tom søgetekst
+afvises. Navne, der indeholder den sammenhængende søgefrase, rangeres først,
+derefter navne med alle ordene og så match, der kræver beskrivelsen. Inden for
+samme relevans bruges stabil sortering efter navn, kæde, kilde-ID og hele
+posten. Den viser kun tilbud, der er beviseligt
 aktuelle; `--include-unknown` medtager også poster med ukendte datoer, men
 ikke poster der vides at være fremtidige eller udløbne. Datoer bruger
 Europe/Copenhagen og slutdatoen er inklusiv. Ved præcis lighed med en
 tidspunktgrænse er gyldigheden ukendt, medmindre den anden grænse afgør den.
 Resultater indeholder original gyldighed, gyldighedsstatus og enhedspris, når
-den kan beregnes. `total` er antal match før `limit` (standard 20). Katalogpriser
+den kan beregnes. `total` er antal match før pagination; `--limit` er positiv
+(standard 20), og `--offset` er et ikke-negativt heltal (standard 0). Svaret
+indeholder `offset`, `limit` og `has_more`; et offset efter sidste match giver
+en tom side. Brug f.eks. `tilbud find "økologisk mælk" --compact --limit 10`
+og derefter `--offset 10` for næste side. `--compact` giver fladt JSON med
+identitet, butik, beskrivelse og øvrige vilkår, men samme metadata og udvalg som
+standardens fulde JSON. `--compact` og `--human` kan ikke kombineres. Human
+viser samme side og sidestatus. Katalogpriser
 udelades. `sources` viser hentetid og status for hvert snapshot; en fælles
 hentetid angives kun ved valg af én kilde.
 

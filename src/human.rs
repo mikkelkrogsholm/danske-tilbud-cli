@@ -206,6 +206,16 @@ fn document(value: &Value) -> (String, Vec<String>) {
                 data["total"],
                 results.map_or(0, Vec::len)
             ));
+            lines.push(format!(
+                "Side: offset {} · limit {} · flere: {}",
+                data["offset"],
+                data["limit"],
+                if data["has_more"] == true {
+                    "ja"
+                } else {
+                    "nej"
+                }
+            ));
             if let Some(sources) = data["sources"].as_array() {
                 for source in sources {
                     match string(&source["status"]) {
@@ -231,9 +241,14 @@ fn document(value: &Value) -> (String, Vec<String>) {
             }
             if let Some(results) = results {
                 if results.is_empty() {
-                    lines.push(
-                        "Ingen tilbud fundet. Prøv en anden søgning eller ændr filtrene.".into(),
-                    );
+                    if data["total"].as_u64().unwrap_or(0) > 0 {
+                        lines.push("Ingen tilbud på denne side.".into());
+                    } else {
+                        lines.push(
+                            "Ingen tilbud fundet. Prøv en anden søgning eller ændr filtrene."
+                                .into(),
+                        );
+                    }
                 }
                 for result in results {
                     let o = &result["offer"];
