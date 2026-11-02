@@ -10,10 +10,14 @@ cargo run -- beskriv tjek
 cargo run -- hent --kilde tjek
 cargo run -- find kaffe --butik netto --limit 20
 cargo run -- find mælk --include-unknown --data-dir /sti/til/data
+cargo run -- kilder --human
+cargo run -- beskriv tjek --human
+cargo run -- hent --kilde tjek --human
+cargo run -- find kaffe --butik netto --human
 ```
 
-Alle kommandoer giver et JSON-objekt med `schema_version`, `command` og `data`
-på stdout. Fejl giver en ikke-nul exitkode og diagnosticering på stderr.
+Som standard giver alle kommandoer et JSON-objekt med `schema_version`, `command` og `data`
+på stdout. Tilføj `--human` efter kommandoen for en læsbar, statisk visning af de samme data. Fejl giver en ikke-nul exitkode og diagnosticering på stderr.
 `--data-dir` placeres efter kommandoen og tilsidesætter `TILBUD_DATA_DIR` og
 platformens standardmappe, som beskrevet i [lagerkontrakten](docs/storage.md).
 `kilder` og `beskriv` viser metadata, kendte kæde-ID'er og seneste snapshot,

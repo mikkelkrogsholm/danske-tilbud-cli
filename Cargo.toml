@@ -13,3 +13,5 @@ chrono-tz = "0.10"
 reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
 tokio = { version = "1", features = ["rt", "macros", "time"] }
 usage-rs = "7"
+iocraft = "0.9.3"
+terminal_size = "0.4"

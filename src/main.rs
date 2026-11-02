@@ -1,3 +1,5 @@
+mod human;
+
 use chrono::Utc;
 use serde_json::{Value, json};
 use std::path::{Path, PathBuf};
@@ -27,6 +29,9 @@ enum Command {
 /// Vis tilgængelige kilder.
 #[derive(Args)]
 struct Kilder {
+    /// Vis resultatet i et læsbart format.
+    #[usage(long)]
+    human: bool,
     /// Datamappe (ellers TILBUD_DATA_DIR eller platformens standard).
     #[usage(long)]
     data_dir: Option<PathBuf>,
@@ -34,6 +39,9 @@ struct Kilder {
 /// Beskriv en kilde.
 #[derive(Args)]
 struct Beskriv {
+    /// Vis resultatet i et læsbart format.
+    #[usage(long)]
+    human: bool,
     kilde: String,
     #[usage(long)]
     data_dir: Option<PathBuf>,
@@ -41,6 +49,9 @@ struct Beskriv {
 /// Hent hele kildens datasæt og gem kun et fuldført snapshot.
 #[derive(Args)]
 struct Hent {
+    /// Vis resultatet i et læsbart format.
+    #[usage(long)]
+    human: bool,
     #[usage(long)]
     kilde: String,
     #[usage(long)]
@@ -49,6 +60,9 @@ struct Hent {
 /// Søg lokalt i aktuelle tilbud.
 #[derive(Args)]
 struct Find {
+    /// Vis resultatet i et læsbart format.
+    #[usage(long)]
+    human: bool,
     tekst: String,
     #[usage(long)]
     butik: Option<String>,
@@ -200,10 +214,26 @@ fn error(message: String) -> Value {
 #[tokio::main(flavor = "current_thread")]
 async fn main() {
     let args = Tilbud::parse();
+    let human = match &args.command {
+        Command::Kilder(a) => a.human,
+        Command::Beskriv(a) => a.human,
+        Command::Hent(a) => a.human,
+        Command::Find(a) => a.human,
+    };
     match execute(args.command).await {
-        Ok(value) => println!("{value}"),
+        Ok(value) => {
+            if human {
+                human::write(&value, false).expect("kunne ikke skrive resultat");
+            } else {
+                println!("{value}");
+            }
+        }
         Err(value) => {
-            eprintln!("{value}");
+            if human {
+                human::write(&value, true).expect("kunne ikke skrive fejl");
+            } else {
+                eprintln!("{value}");
+            }
             std::process::exit(1);
         }
     }

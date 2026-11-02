@@ -152,3 +152,96 @@ fn missing_and_corrupt_snapshots_fail_usefully() {
     assert!(!corrupt.status.success());
     assert!(String::from_utf8_lossy(&corrupt.stderr).contains("snapshot"));
 }
+
+#[test]
+fn human_uses_same_filtered_results_and_is_plain_when_piped() {
+    let dir = Temp::new();
+    dir.seed();
+    let json_out = dir.run(&["find", "kaffe", "--butik", "netto", "--include-unknown"]);
+    assert!(!json_out.stdout.contains(&27));
+    let json = success(json_out);
+    let human = Command::new(env!("CARGO_BIN_EXE_tilbud"))
+        .args([
+            "find",
+            "kaffe",
+            "--butik",
+            "netto",
+            "--include-unknown",
+            "--human",
+        ])
+        .env("TILBUD_DATA_DIR", &dir.0)
+        .env("NO_COLOR", "1")
+        .env("COLUMNS", "32")
+        .output()
+        .unwrap();
+    assert!(
+        human.status.success(),
+        "{}",
+        String::from_utf8_lossy(&human.stderr)
+    );
+    assert!(!human.stdout.contains(&27));
+    let text = String::from_utf8(human.stdout).unwrap();
+    assert_eq!(
+        text.matches("ØKO Kaffe").count(),
+        json["data"]["results"].as_array().unwrap().len()
+    );
+    assert!(text.contains("Medlemskab:"));
+    assert!(text.contains("Gyldig:"));
+    assert!(text.contains("ukendt"));
+    assert!(text.contains("Kildedata hentet:"));
+    assert!(!text.contains("normalpris"));
+    assert!(!text.contains("besparelse"));
+    let empty = dir.run(&["find", "findes-ikke", "--human"]);
+    assert!(empty.status.success());
+    assert!(String::from_utf8_lossy(&empty.stdout).contains("Ingen tilbud fundet"));
+    let described = dir.run(&["beskriv", "tjek", "--human"]);
+    let description = String::from_utf8(described.stdout).unwrap();
+    assert!(description.contains("Dækning:"));
+    assert!(description.contains("Bilka"));
+    let missing = dir.run(&["find", "kaffe", "--kilde", "ukendt", "--human"]);
+    assert!(!missing.status.success());
+    assert!(missing.stdout.is_empty());
+    assert!(!missing.stderr.contains(&27));
+    assert!(String::from_utf8_lossy(&missing.stderr).contains("Ukendt kilde"));
+}
+
+#[test]
+fn human_narrow_search_keeps_long_names_conditions_and_unknown_prices() {
+    let dir = Temp::new();
+    dir.seed();
+    let path = dir.0.join("tjek.jsonl");
+    let contents = fs::read_to_string(&path).unwrap();
+    let mut rows: Vec<Value> = contents
+        .lines()
+        .map(|line| serde_json::from_str(line).unwrap())
+        .collect();
+    rows[1]["heading"] = json!("Økologisk jordbærmarmelade med ekstra lange danske navne");
+    rows[1]["description"] = json!("Gælder kun ved køb af to varer og særlige medlemsbetingelser");
+    rows[1]["membership"] = json!("required");
+    rows[1]["price"]["amount_ore"] = Value::Null;
+    fs::write(
+        &path,
+        rows.iter().map(|r| format!("{r}\n")).collect::<String>(),
+    )
+    .unwrap();
+    let human = Command::new(env!("CARGO_BIN_EXE_tilbud"))
+        .args(["find", "jordbær", "--human"])
+        .env("TILBUD_DATA_DIR", &dir.0)
+        .env("COLUMNS", "32")
+        .output()
+        .unwrap();
+    assert!(human.status.success());
+    assert!(!human.stdout.contains(&27));
+    let text = String::from_utf8(human.stdout).unwrap();
+    for term in [
+        "Økologisk",
+        "jordbærmarmelade",
+        "lange danske navne",
+        "Gælder kun ved køb",
+        "medlemsbetingelser",
+        "Medlemskab: kræves",
+        "ukendt pris",
+    ] {
+        assert!(text.contains(term), "{text}");
+    }
+}
