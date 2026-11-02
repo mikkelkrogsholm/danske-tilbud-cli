@@ -33,3 +33,20 @@ reviewer; én worker ad gangen implementerer i et isoleret arbejdsområde.
   andre projekters data eller aktive builds. Ingen periodisk baggrundsoprydning.
 - SIGKILL, strømsvigt og systemnedbrud kan efterlade midlertidige filer; lov ikke
   ubetinget oprydning. Undersøg ejerskab og aktive jobs før manuel oprydning.
+
+## Graphify og OpenWiki
+
+- Graphify er installeret på brugerniveau. Ved `/graphify` skal den installerede
+  skill følges. Projektet har endnu ingen genereret graf.
+- Brug en eksisterende `graphify-out/graph.json` til relevante spørgsmål om
+  arkitektur og relationer; verificér vigtige fund i den aktuelle kildekode.
+  Almindelige lokale kodeopslag kan bruge direkte søgning og læsning.
+- Opret eller opdatér ikke en graf alene på grund af denne vejledning. Byg og
+  opdatér kun inden for en konkret autoriseret opgave. Ingen automatiske
+  Git-hooks, watcher eller baggrundsjob er installeret til grafgenerering.
+- OpenWiki er installeret som Codex-integration på brugerniveau via
+  `openwiki integrations install codex`. Integrationen omfatter skill og MCP;
+  Codex skal genstartes for at indlæse den nye integration.
+- Projektet har endnu ingen genereret OpenWiki. Ved initialisering eller
+  opdatering skal den installerede OpenWiki-skill og dens MCP-livscyklus følges.
+  Eksisterende wiki bruges ved relevante spørgsmål og kontrolleres mod kilder.
