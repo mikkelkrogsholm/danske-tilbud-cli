@@ -6,9 +6,10 @@ use std::path::{Path, PathBuf};
 use tilbud::{
     engine::{self, ValidityStatus},
     offer::PriceKind,
-    source::{FetchOptions, SourceAdapter},
+    rema::RemaAdapter,
+    source::{FetchOptions, SourceAdapter, SourceBatch, SourceMetadata},
     storage,
-    tjek::{CHAINS, TjekAdapter},
+    tjek::TjekAdapter,
 };
 use usage_rs::{Args, Cli, Subcommands};
 
@@ -76,29 +77,47 @@ struct Find {
     #[usage(long)]
     include_unknown: bool,
 }
-fn source(id: &str) -> Result<TjekAdapter, String> {
-    if id == "tjek" {
-        Ok(TjekAdapter::new())
-    } else {
-        Err(format!("Ukendt kilde: {id}"))
+enum Source {
+    Tjek(TjekAdapter),
+    Rema(RemaAdapter),
+}
+impl SourceAdapter for Source {
+    fn metadata(&self) -> &SourceMetadata {
+        match self {
+            Self::Tjek(s) => s.metadata(),
+            Self::Rema(s) => s.metadata(),
+        }
+    }
+    async fn fetch(&self, options: &FetchOptions) -> SourceBatch {
+        match self {
+            Self::Tjek(s) => s.fetch(options).await,
+            Self::Rema(s) => s.fetch(options).await,
+        }
+    }
+}
+fn source(id: &str) -> Result<Source, String> {
+    match id {
+        "tjek" => Ok(Source::Tjek(TjekAdapter::new())),
+        "rema" => Ok(Source::Rema(RemaAdapter::new())),
+        _ => Err(format!("Ukendt kilde: {id}")),
     }
 }
 fn dir(path: Option<PathBuf>) -> Result<PathBuf, String> {
     storage::data_dir(path.as_deref()).map_err(|e| e.to_string())
 }
-fn describe(adapter: &TjekAdapter, dir: &Path) -> Value {
+fn describe(adapter: &impl SourceAdapter, dir: &Path) -> Value {
     let m = adapter.metadata();
-    let snapshot = if !dir.join("tjek.jsonl").exists() {
+    let snapshot = if !dir.join(format!("{}.jsonl", m.id)).exists() {
         json!(null)
     } else {
-        match storage::read(dir, "tjek") {
+        match storage::read(dir, &m.id) {
             Ok(s) => {
-                json!({"fetched_at":s.manifest.fetched_at,"offer_count":s.manifest.offer_count,"coverage":s.manifest.coverage})
+                json!({"fetched_at":s.manifest.fetched_at,"offer_count":s.manifest.offer_count,"promotion_count":s.offers.iter().filter(|o| o.price_kind == PriceKind::Offer).count(),"catalog_count":s.offers.iter().filter(|o| o.price_kind == PriceKind::Catalog).count(),"coverage":s.manifest.coverage})
             }
             Err(e) => json!({"error":e.to_string()}),
         }
     };
-    json!({"id":m.id,"name":m.name,"capabilities":{"store_filter":m.capabilities.store_filter,"date_filter":m.capabilities.date_filter},"chains":CHAINS.iter().map(|(id,_)| *id).collect::<Vec<_>>(),"coverage_limitation":m.coverage_limitation,"snapshot":snapshot})
+    json!({"id":m.id,"name":m.name,"capabilities":{"store_filter":m.capabilities.store_filter,"date_filter":m.capabilities.date_filter},"chains":m.chains,"coverage_limitation":m.coverage_limitation,"snapshot":snapshot})
 }
 fn envelope(command: &str, data: Value) -> Value {
     json!({"schema_version":1,"command":command,"data":data})
@@ -109,7 +128,7 @@ async fn execute(command: Command) -> Result<Value, Value> {
             let d = dir(a.data_dir).map_err(error)?;
             Ok(envelope(
                 "kilder",
-                json!({"sources":[describe(&TjekAdapter::new(), &d)]}),
+                json!({"sources":[describe(&TjekAdapter::new(), &d), describe(&RemaAdapter::new(), &d)]}),
             ))
         }
         Command::Beskriv(a) => {
@@ -130,14 +149,14 @@ async fn execute(command: Command) -> Result<Value, Value> {
             storage::publish(&d, &run, fetched_at).map_err(|e| error(e.to_string()))?;
             Ok(envelope(
                 "hent",
-                json!({"source":a.kilde,"complete":true,"fetched_at":fetched_at,"offer_count":run.offers.len(),"duplicates":run.duplicates,"coverage":run.coverage,"coverage_limitation":run.source.coverage_limitation}),
+                json!({"source":a.kilde,"complete":true,"fetched_at":fetched_at,"offer_count":run.offers.len(),"promotion_count":run.offers.iter().filter(|o| o.offer.price_kind == PriceKind::Offer).count(),"catalog_count":run.offers.iter().filter(|o| o.offer.price_kind == PriceKind::Catalog).count(),"duplicates":run.duplicates,"coverage":run.coverage,"coverage_limitation":run.source.coverage_limitation}),
             ))
         }
         Command::Find(a) => {
             let id = a.kilde.as_deref().unwrap_or("tjek");
-            source(id).map_err(error)?;
+            let selected_source = source(id).map_err(error)?;
             if let Some(chain) = &a.butik {
-                if !CHAINS.iter().any(|(id, _)| id == chain) {
+                if !selected_source.metadata().chains.contains(chain) {
                     return Err(error(format!("Ukendt butik: {chain}")));
                 }
             }

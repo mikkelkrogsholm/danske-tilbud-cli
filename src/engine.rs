@@ -204,13 +204,13 @@ fn exact_product(value: Decimal, factor: Decimal) -> Option<Decimal> {
 
 fn normalize_quantity(q: &Quantity) -> Result<Quantity, String> {
     let convert = |unit: &str| -> Result<(&'static str, Decimal), String> {
-        match unit.trim().to_lowercase().as_str() {
+        match unit.trim().trim_end_matches('.').to_lowercase().as_str() {
             "kg" | "kilogram" => Ok(("kg", Decimal::ONE)),
-            "g" | "gram" => Ok(("kg", Decimal::new(1, 3))),
-            "l" | "liter" | "litre" => Ok(("l", Decimal::ONE)),
+            "g" | "gr" | "gram" => Ok(("kg", Decimal::new(1, 3))),
+            "l" | "ltr" | "liter" | "litre" => Ok(("l", Decimal::ONE)),
             "cl" => Ok(("l", Decimal::new(1, 2))),
             "ml" => Ok(("l", Decimal::new(1, 3))),
-            "stk" | "stk." | "styk" | "stykker" | "pcs" => Ok(("stk", Decimal::ONE)),
+            "stk" | "styk" | "stykker" | "pcs" => Ok(("stk", Decimal::ONE)),
             _ => Err(format!("unsupported unit: {unit}")),
         }
     };

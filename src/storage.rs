@@ -335,6 +335,7 @@ mod tests {
     }
     fn run() -> RunResult {
         let source = SourceMetadata {
+            chains: vec![],
             id: "eksempel".into(),
             name: "Eksempel".into(),
             coverage_limitation: "Eksempeldækning".into(),

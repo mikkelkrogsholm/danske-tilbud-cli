@@ -1,12 +1,15 @@
 # Tilbud
 
-Et dansk dagligvare-CLI med lokale snapshots fra Tjek. Søgning foretager
+Et dansk dagligvare-CLI med lokale snapshots fra Tjek og REMA 1000. Søgning foretager
 ingen netværkskald; hent først en komplet kilde. Kilden henter direkte tilbud for de fleste angivne kæder, ikke nødvendigvis alle tilbud;
-Bilka bruger katalog-fallback, hvor selvstændige direkte tilbud ud over 1000 udelades. Se [kildens begrænsninger](docs/tjek.md).
+Bilka bruger katalog-fallback, hvor selvstændige direkte tilbud ud over 1000 udelades. Se [Tjeks begrænsninger](docs/tjek.md) og [REMA-kildens begrænsninger](docs/rema.md).
 
 ```sh
 cargo run -- kilder
 cargo run -- beskriv tjek
+cargo run -- beskriv rema
+cargo run -- hent --kilde rema
+cargo run -- find kirsebærsauce --kilde rema
 cargo run -- hent --kilde tjek
 cargo run -- find kaffe --butik netto --limit 20
 cargo run -- find mælk --include-unknown --data-dir /sti/til/data

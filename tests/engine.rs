@@ -15,6 +15,7 @@ use tilbud::{
 
 fn metadata() -> SourceMetadata {
     SourceMetadata {
+        chains: vec![],
         id: "kilde".into(),
         name: "Kilde".into(),
         coverage_limitation: "Eksempeldækning".into(),

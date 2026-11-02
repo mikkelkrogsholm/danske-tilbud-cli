@@ -55,6 +55,7 @@ impl TjekAdapter {
             metadata: SourceMetadata {
                 id: "tjek".into(),
                 name: "Tjek".into(),
+                chains: CHAINS.iter().map(|(id, _)| (*id).to_owned()).collect(),
                 coverage_limitation: "Tjek henter direkte tilbud for de fleste kæder. Bilka bruger katalog-fallback; selvstændige direkte tilbud ud over 1000 udelades. Kædedækning er ikke garanti for fuldstændige tilbud.".into(),
                 capabilities: SourceCapabilities {
                     store_filter: true,

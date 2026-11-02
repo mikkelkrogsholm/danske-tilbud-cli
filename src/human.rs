@@ -75,10 +75,16 @@ fn description(data: &Value, lines: &mut Vec<String>) {
         lines.push("Snapshot: kan ikke læses".into());
     } else {
         lines.push(format!(
-            "Snapshot: {} tilbud, hentet {}",
+            "Snapshot: {} poster, hentet {}",
             snap["offer_count"],
             age(&snap["fetched_at"])
         ));
+        if snap["promotion_count"].is_number() {
+            lines.push(format!(
+                "Heraf {} tilbud og {} katalogposter",
+                snap["promotion_count"], snap["catalog_count"]
+            ));
+        }
     }
 }
 fn document(value: &Value) -> (String, Vec<String>) {
@@ -92,7 +98,7 @@ fn document(value: &Value) -> (String, Vec<String>) {
                 string(&value["source"])
             ));
             lines.push(format!(
-                "{} tilbud modtaget; {} kildefejl og {} ugyldige poster.",
+                "{} poster modtaget; {} kildefejl og {} ugyldige poster.",
                 value["offer_count"],
                 value["source_errors"].as_array().map_or(0, Vec::len),
                 value["invalid_records"].as_array().map_or(0, Vec::len)
@@ -127,10 +133,16 @@ fn document(value: &Value) -> (String, Vec<String>) {
         "hent" => {
             lines.push(format!("{}: hentning fuldført", string(&data["source"])));
             lines.push(format!(
-                "{} tilbud gemt; hentet {}",
+                "{} poster gemt; hentet {}",
                 data["offer_count"],
                 age(&data["fetched_at"])
             ));
+            if data["promotion_count"].is_number() {
+                lines.push(format!(
+                    "Heraf {} tilbud og {} katalogposter",
+                    data["promotion_count"], data["catalog_count"]
+                ));
+            }
             limitation(&data["coverage_limitation"], &mut lines);
             coverage(&data["coverage"], &mut lines);
         }

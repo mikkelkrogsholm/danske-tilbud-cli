@@ -245,3 +245,46 @@ fn human_narrow_search_keeps_long_names_conditions_and_unknown_prices() {
         assert!(text.contains(term), "{text}");
     }
 }
+
+#[test]
+fn rema_and_tjek_snapshots_coexist_and_catalog_does_not_leak_into_search() {
+    let dir = Temp::new();
+    dir.seed();
+    let tjek_before = fs::read(dir.0.join("tjek.jsonl")).unwrap();
+    let rows = String::from_utf8(tjek_before.clone()).unwrap();
+    let mut lines = rows.lines();
+    let mut manifest: Value = serde_json::from_str(lines.next().unwrap()).unwrap();
+    let first: Value = serde_json::from_str(lines.next().unwrap()).unwrap();
+    manifest["source"] = json!("rema");
+    manifest["offer_count"] = json!(2);
+    let mut offer = first.clone();
+    offer["source"] = json!("rema");
+    offer["chain_id"] = json!("rema1000");
+    offer["source_id"] = json!("rema-offer");
+    offer["product_id"] = json!("rema-offer");
+    let mut catalog = offer.clone();
+    catalog["source_id"] = json!("rema-catalog");
+    catalog["price_kind"] = json!("catalog");
+    fs::write(
+        dir.0.join("rema.jsonl"),
+        format!("{manifest}\n{offer}\n{catalog}\n"),
+    )
+    .unwrap();
+    let sources = success(dir.run(&["kilder"]));
+    assert_eq!(sources["data"]["sources"].as_array().unwrap().len(), 2);
+    let rema = success(dir.run(&["beskriv", "rema"]));
+    assert_eq!(rema["data"]["snapshot"]["promotion_count"], 1);
+    assert_eq!(rema["data"]["snapshot"]["catalog_count"], 1);
+    let found = success(dir.run(&["find", "kaffe", "--kilde", "rema"]));
+    assert_eq!(found["data"]["total"], 1);
+    assert_eq!(
+        found["data"]["results"][0]["offer"]["source_id"],
+        "rema-offer"
+    );
+    let human = dir.run(&["beskriv", "rema", "--human"]);
+    assert!(human.status.success());
+    let text = String::from_utf8(human.stdout).unwrap();
+    assert!(text.contains("2 poster"));
+    assert!(text.contains("1 tilbud"));
+    assert_eq!(fs::read(dir.0.join("tjek.jsonl")).unwrap(), tjek_before);
+}
