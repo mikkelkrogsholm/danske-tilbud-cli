@@ -1,0 +1,5 @@
+version = 1
+name = "Worktrunk"
+
+[setup]
+script = "/opt/homebrew/bin/wt hook post-start --foreground"
