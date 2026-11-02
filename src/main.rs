@@ -177,7 +177,7 @@ async fn execute(command: Command) -> Result<Value, Value> {
             }
         }
         Command::Find(a) => {
-            let ids: Vec<&str> = match a.kilde.as_deref() {
+            let mut ids: Vec<&str> = match a.kilde.as_deref() {
                 Some(id) => {
                     source(id).map_err(error)?;
                     vec![id]
@@ -191,6 +191,7 @@ async fn execute(command: Command) -> Result<Value, Value> {
                 {
                     return Err(error(format!("Ukendt butik: {chain}")));
                 }
+                ids.retain(|id| source(id).unwrap().metadata().chains.contains(chain));
             }
             let limit = a.limit.unwrap_or(20);
             if limit == 0 {
@@ -341,10 +342,7 @@ async fn main() {
         }
         Err(value) => {
             if value["error"] == "partial_result" {
-                if human && value["command"] == "hent" {
-                    println!("{value}");
-                    human::write(&value, true).expect("kunne ikke skrive resultat");
-                } else if human {
+                if human {
                     human::write(&value, false).expect("kunne ikke skrive resultat");
                 } else {
                     println!("{value}");

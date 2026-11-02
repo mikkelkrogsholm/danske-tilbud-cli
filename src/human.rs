@@ -138,7 +138,12 @@ fn document(value: &Value) -> (String, Vec<String>) {
                 lines.push(format!(
                     "{}: {} · {} poster · forsøgt {}",
                     string(&source["source"]),
-                    string(&source["status"]),
+                    match string(&source["status"]) {
+                        "published" => "gemt",
+                        "incomplete" => "ufuldstændig",
+                        "failed" => "fejlede",
+                        other => other,
+                    },
                     source["offer_count"],
                     age(&source["fetched_at"])
                 ));
@@ -342,6 +347,26 @@ pub fn write(value: &Value, error: bool) -> io::Result<()> {
 mod tests {
     use super::*;
     use serde_json::json;
+
+    #[test]
+    fn partial_refresh_renders_each_source_and_failure() {
+        let value = json!({"command":"hent", "error":"partial_result", "data":{"complete":false,"sources":[
+            {"source":"tjek","status":"published","offer_count":3},
+            {"source":"rema","status":"incomplete","offer_count":1,"source_errors":["timeout"]},
+            {"source":"bilkatogo","status":"failed","offer_count":2,"message":"locked"}
+        ]}});
+        let (_, lines) = document(&value);
+        let output = lines.join("\n");
+        for term in [
+            "tjek: gemt",
+            "rema: ufuldstændig",
+            "timeout",
+            "bilkatogo: fejlede",
+            "locked",
+        ] {
+            assert!(output.contains(term), "{output}");
+        }
+    }
 
     #[test]
     fn fetch_uses_the_supplied_source_limitation() {

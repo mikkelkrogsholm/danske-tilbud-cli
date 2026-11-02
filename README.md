@@ -32,12 +32,10 @@ hvis det findes. `hent` henter hele kilden og erstatter kun et eksisterende
 snapshot efter en fuldført kørsel. Vælg præcis én af `--alle` og `--kilde`: med
 `--alle` publiceres hver fuldført kilde uafhængigt, og et delvist resultat vises
 på stdout med status for hver kilde, fejl på stderr og ikke-nul exitkode.
-Ved delvis `hent --alle --human` vises JSON på stdout og den læsbare
-kildeoversigt på stderr, så resultatet også kan behandles maskinelt.
 `find` søger som standard i alle tilgængelige snapshots uden netværkskald;
 `--kilde` vælger én. Manglende snapshots springes over, mens ulæselige snapshots
 giver et delvist resultat og ikke-nul exitkode. `--butik` filtrerer på kendte
-kæde-ID’er, og `limit` gælder samlet. Tilbud fra forskellige kilder bevares
+kæde-ID’er og læser kun kilder, der understøtter kæden; `limit` gælder samlet. Tilbud fra forskellige kilder bevares
 separat, også ved samme navn eller EAN. `find` søger uden hensyn til store og små
 bogstaver i navn og beskrivelse. Den viser kun tilbud, der er beviseligt
 aktuelle; `--include-unknown` medtager også poster med ukendte datoer, men

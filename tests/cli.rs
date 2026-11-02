@@ -389,6 +389,18 @@ fn combined_search_preserves_sources_and_reports_partial_failure() {
         2
     );
     fs::write(dir.0.join("rema.jsonl"), "broken\n").unwrap();
+    let scoped = success(dir.run(&["find", "kaffe", "--butik", "netto"]));
+    assert_eq!(scoped["data"]["total"], 1);
+    assert_eq!(scoped["data"]["complete"], true);
+    assert!(
+        !scoped["data"]["sources"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|s| s["source"] == "rema")
+    );
+    let invalid = dir.run(&["find", "kaffe", "--kilde", "rema", "--butik", "netto"]);
+    assert!(!invalid.status.success());
     let out = dir.run(&["find", "kaffe"]);
     assert!(!out.status.success());
     assert!(!out.stderr.is_empty());
@@ -398,5 +410,9 @@ fn combined_search_preserves_sources_and_reports_partial_failure() {
     assert_eq!(value["data"]["sources"][1]["status"], "failed");
     let human = dir.run(&["find", "kaffe", "--human"]);
     assert!(!human.status.success());
-    assert!(String::from_utf8_lossy(&human.stdout).contains("rema"));
+    let text = String::from_utf8_lossy(&human.stdout);
+    assert!(text.contains("rema"));
+    assert!(text.contains("Søgning:"));
+    assert!(!text.trim_start().starts_with('{'));
+    assert!(!human.stderr.is_empty());
 }
