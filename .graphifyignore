@@ -1,0 +1,6 @@
+openwiki/
+docs/
+graphify-out/
+target/
+.git/
+*.md

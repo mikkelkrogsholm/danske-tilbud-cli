@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:23298004a4b8cc44d8ecf2a235126493df959dc26f509260ff7ab88f32aca5cf",
+  "claims": [
+    {
+      "id": "claim_7653593113bb43aba908b4699d3b6ed1",
+      "statement": "TjekAdapter vælger 14 kendte kæder som standard, og kædevalg afviser tomme og ukendte IDer.",
+      "evidence": [
+        {
+          "resource": "repo://src/tjek.rs#L14-L29",
+          "version": "repo-lines-v1:sha256:c0b9654fef173611e06384b86f0515113da23c9f0524862a0e8d4a099bc26c04:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNkMzg3MjRkZDhkZTRhNmRmNzA2MDk0NTU2MGU5MzM4ZmYwYjI3NDcyZWFmNDEwYmNkYjUzODg3ZmZmZGFlYzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwMmQyYzBkNmRjNWU3NGQ5MmZhMTRiOTFkYmVhMjY0MDkwYmViMzVmZGI5MTg4ZDliMzQxMTgxZGNlOWY0Y2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU5ODU1NTk3ZGJiN2FjOTNkMzVlNDNkY2I3MTc0NTMwYTIxNzI1NmRiNDA0ODlkMzdhNzdmM2M4Y2RhM2Y2ZDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE5YTI0OTYxNjdiOGQ1YWMxZDdhOGU5NTY2ZjQ1OWM0NjE1NWE1YjhmYjkyNzFiZmYxMzIwZjhhNjlkYjFkYWUifQ"
+        },
+        {
+          "resource": "repo://src/tjek.rs#L39-L82",
+          "version": "repo-lines-v1:sha256:81b5265fede9dc34794be37da5771176d8282c44485075c76ec5e434b50392ea:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyYTgwNDdiMjU5ZGZhZDZiNjRhY2FjZWU4MWFkYTNmZWFkZTEyM2U2NWFiMzBkOWNlNjY0ZDdhMzQ2MDE3NjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2MzQwN2VmNzQ2MGRkYWVhMGFmNTRjMDZlYjhlOTRkMDdkOTVkOTAyM2I5NmRiMWZmZjg5MGQ3NTJkOWVkNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU5NmVhZGEwNjNlNmI4OTY1NzBkMjJkOGRjMTRlMzQ3Y2FhNGU5MzQ1NTM1NmUxN2YyY2ZiZDc4YTI2YmEwMmQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3799c20b8e894062b3aa5ba6a8881915",
+      "statement": "Tjek henter direkte sider og skifter ved PAGINATION_MAX_REACHED til kataloger; katalogvejen udelader fritstående tilbud efter den direkte grænse.",
+      "evidence": [
+        {
+          "resource": "repo://src/tjek.rs#L160-L188",
+          "version": "repo-lines-v1:sha256:a4f19995b35d07e41b27061bc246f78a14f89a9372ccc0881ba4e4d03859ea6a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyYTgwNDdiMjU5ZGZhZDZiNjRhY2FjZWU4MWFkYTNmZWFkZTEyM2U2NWFiMzBkOWNlNjY0ZDdhMzQ2MDE3NjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmOWRjNDM0YjJkNWEyMjZmNmNiMDM3YzkzNzc4YjZlOTdhOWY2NDNkNmYyNmY1MTU3OWM1N2I1ODI5MzQzMDYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg4MmVhY2IwMjIzYWMwMDMwMjA3YTM1ZWJhNzIxZjExMzFhODRjZmU3YzZhNDM4YzczNmZjNjBlYWYyM2NlYzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkwOGYzOTcxODdlNGNmMTMxZGMxNDM4OTAwMDVlNTkwY2RjNzY4M2RlZjlkZjZlYzMyNWE0ZDAzMjYxMmEwNzkifQ"
+        },
+        {
+          "resource": "repo://src/tjek.rs#L195-L258",
+          "version": "repo-lines-v1:sha256:c59438376629f84900cf2d53fa3504249c9cc19d159f80dee8ff58a4fd1b4f06:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJlM2VmNTY5NTEwMjMzNzMzN2E4MjEwZWRhNzk2ZmNhYjVjM2NiMjkyZGFiODQzYThlYTI3NjE5ZGFhMTIxYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4ZWI5NTlkZDFkM2E5ZWYyNjE5MDRiZTRiNmUwZjc2NDJkZTQ5MTA3OTJlNWM4NmZjN2VhZmRmYmVmYjE3ZTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRlNjk2YTE0NTlmOTYyNDNiNzFmMTc4NmE5Y2IzZmQyNTU1Y2JjODFmODY5NWEzMjc1MWUzMDkyYjdhNGJhMjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc2ODA4NWJiNGE4YTE5ODZhMTdmNDJkZDgzYTQwY2YxNTI5ZjdkYTUwMTQ0MDE4YmE0ZjVhNDlhNTBjZTgyN2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7e65b895f3ee4e1b89c63484eaa4fb30",
+      "statement": "Butiksfilter medtager landsdækkende og valgte lokale tilbud; datofilteret anvender overlap med dagen i Europe/Copenhagen på hentede poster.",
+      "evidence": [
+        {
+          "resource": "repo://src/tjek.rs#L260-L315",
+          "version": "repo-lines-v1:sha256:9917662894285ca05763c3220e1245b144e0713a40dd651084f616125fc8eb57:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiYWM3ODYwZDkzOWFkOTI1MDEyNjQ4Zjg2OTNkY2Q0OGMxOTZmOTAwN2ZhMDFiZjZmODEzZmVjZTY3ODQxOTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxOTg3ZjA1MjAzYTQ5NDRhNDI0ODM5NzQ0NjRkMzdkZmM0MzdhNWZlY2JhOTk2M2M3NDEzNDE1ZGE3NzFjMTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU0NjFjM2Q2ZTBlOTg1MzVjZjI2YTc3ZGYyODg4NWQ1MGViZWNlMGZmN2FjMGU1NGZhNzYwMzUxOWQzODkwYjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY4NjM5YTEzM2E3MDhjZDg2Y2I2Y2I4ZThhNDcyMGM4ZWZkMTZiMzY4NWNhNmJjM2IzNTZlZDIyOTViZDI1YTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7dd1cdaa5ee9464d8e16a77972ae551a",
+      "statement": "HTTP anvender standardtimeout på 10 sekunder og højst tre forsøg, med Retry-After for 429 og synlig fejl ved forsinkelser over fem sekunder.",
+      "evidence": [
+        {
+          "resource": "repo://src/tjek.rs#L39-L50",
+          "version": "repo-lines-v1:sha256:2abb1a494400f03865aaa999dc6fbcc1067593080ea0a554b263bd96aca2cc82:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyYTgwNDdiMjU5ZGZhZDZiNjRhY2FjZWU4MWFkYTNmZWFkZTEyM2U2NWFiMzBkOWNlNjY0ZDdhMzQ2MDE3NjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzOTMyYzA3NGM3NTZhY2FlNDNjYzM3MmE2OGFmM2MwYzM5ZWY4YjBkMDdkM2Y5YzJlZDcwMWQ4NWQ0NjdiYTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2MzQwN2VmNzQ2MGRkYWVhMGFmNTRjMDZlYjhlOTRkMDdkOTVkOTAyM2I5NmRiMWZmZjg5MGQ3NTJkOWVkNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ0ODRiMTJjNDI0ZjhmZGM2YjdiODBmNjc4NzNiZDAyODNjMzQwYTZkMWY0YWM0NjY4MWUzZmU0OTlhMTM0MzAifQ"
+        },
+        {
+          "resource": "repo://src/tjek.rs#L83-L152",
+          "version": "repo-lines-v1:sha256:7c41ebb7f98b33c09fe86ff885530c7285c608a7ccd45ff1bc824ba16bbdc87f:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmYTgxM2E5NTlmODY0NmJlMDA3ZmE5ZTNiNjA0MTAwMDBmNTY3ZTAwNjU0ODlmNGQ2ZGM1YmVlNTVhMmJjYzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjOWZlYjczNzk0MGU4ZGFkNDNjNmVkMzBiNjY1YzllMDlkNWIxNWM0OWM5ZjgwMWE2ZmI5Zjc4MmRiOTk0NGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUyYmJjZjBhMjQ1ZDkxMWFhOWI5OGQ5YjIxYWJmODdiYjFmMzA0ZTRiZDY2MWMxNzdmOTczZWM0NjlhN2FjZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE2ODE2Y2M3NmNmNjFkMGY0YjcwNTY5NTVkMTkyOTkzYmUwODcxZmViNjVmM2NkZjA5ZWE2MjgwZWQxNmE3OTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f2eec6a4cfe144e1ba0cad303a90044a",
+      "statement": "Den dokumenterede livekørsel 2. november 2026 ca. 14:44 UTC gav 5.568 normaliserede tilbud uden dubletter, afvisninger eller kildefejl; Bilkas dækning var begrænset til kataloger.",
+      "evidence": [
+        {
+          "resource": "repo://docs/tjek.md#L34-L38",
+          "version": "repo-lines-v1:sha256:19add51a92c0e67fc22988424dc6b1a0a7852c9228bec1b3b1c6c8f9431cc0fa:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmQ5MmQ2ZGQxNmRiYmU1OWRmNmY5YTY5NDU4YWVhNDNlZjc4OWU5MTExZTZhYTMzOTQ3NmQ5YTc0NjVkZmYyNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg0YmM2NTU1YzdlZTMwMWY1NGEwZTY5MTVjYmQzM2IwNTU0ZmEyZTgwMWE2N2U3ZjdmMmIzY2I2ZmZmZTUxYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDBjNjQzMzI5NmExNTRkYTc1NWU3YTQ0MDNmZWJjZjEyYWFlZGJmMjlhNGFlNTVhODhkMTJjM2JhYjUzYWFmYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODJkZjYwMjBiMGFhMjc0MGU2ZjY1YmJiZGQyNjAzMmUzZTAxZmRmMGM1MmY0YTgyYjdlNGRlYTcyZWM3OTY5NSJ9"
+        },
+        {
+          "resource": "repo://docs/tjek.md#L40-L46",
+          "version": "repo-lines-v1:sha256:d5bf557d7213ad1b184d55c799aa19f9f6b2d4f3f20dbc26b59e120421b7f6d1:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWU1OTkxMDgxZGU4NWRlOTcxYmU0NTIzMzZjNjNlODgyODM0NTAyOWRjODZjZGQwNjYzYjNjNmRmYTczNTY0MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTBiN2FiNjQxYjlmYmRhYjc1ODkzMjdkZTQ1MWM0ZmRkYzE5Y2M4YzBmYzUyODE2YWI0N2I2NzA5MmE3MGU5YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjg3YWRjNTZlZDIzOTQ4M2E3ZDZjODkwNzZlMTQzMmExMWRmMTNmYmFlNTI5NzVmZDU4ODc5NjNiOWVkNjE3OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODkzOWU5NDdiYjkwMDNlNjkzZmE4ZTVjMWJiYWU1MjMwMjRmMjc2ZjQ1ZmNlNDUyNDJiYjRiZjI2ZmVmMGM4YSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.3",
+    "at": "2026-11-02T14:48:25.742Z"
+  }
+}

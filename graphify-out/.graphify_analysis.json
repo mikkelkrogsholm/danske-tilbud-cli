@@ -1,61 +1,124 @@
 {
   "communities": {
     "0": [
-      "context",
-      "decimal",
-      "f",
-      "normalize_batch",
-      "piececount",
-      "pin",
-      "poll",
-      "quantitybasis",
-      "run",
-      "sourcecapabilities",
-      "src_engine_normalize_batch",
-      "src_source_rawoffer",
-      "src_source_sourcebatch",
-      "tests_engine",
-      "tests_engine_batch",
-      "tests_engine_block_on",
-      "tests_engine_dedup_is_order_independent_and_keeps_store_and_period_distinct",
-      "tests_engine_invalid_records_are_visible_and_do_not_suppress_valid_records",
-      "tests_engine_metadata",
-      "tests_engine_offline_adapter_normalizes_and_preserves_partial_failure",
-      "tests_engine_pack_ranges_missing_and_zero_price",
-      "tests_engine_raw",
-      "tests_engine_rs_output",
-      "waker"
-    ],
-    "1": [
-      "datetime",
       "deserialize",
-      "fixedoffset",
+      "quantity",
       "serialize",
       "src_offer",
+      "src_offer_membership",
+      "src_offer_membership_notrequired",
+      "src_offer_membership_required",
+      "src_offer_membership_unknown",
       "src_offer_offer",
       "src_offer_piececount",
       "src_offer_piececount_exact",
       "src_offer_piececount_range",
       "src_offer_price",
-      "src_offer_pricekind",
-      "src_offer_pricekind_catalog",
-      "src_offer_pricekind_offer",
-      "src_offer_quantitybasis",
-      "src_offer_quantitybasis_perpiece",
-      "src_offer_quantitybasis_total",
+      "src_offer_quantity",
+      "src_offer_quantity_exact",
+      "src_offer_quantity_range",
+      "src_offer_rs_datetime",
+      "src_offer_rs_decimal",
+      "src_offer_rs_fixedoffset",
       "src_offer_rs_naivedate",
-      "src_offer_store",
       "src_offer_timeboundary",
       "src_offer_timeboundary_date",
       "src_offer_timeboundary_instant",
       "src_offer_timeboundary_unknown",
-      "src_offer_validity"
+      "src_offer_validity",
+      "tests_contract",
+      "tests_contract_documented_examples_round_trip_without_losing_precision_or_unknowns",
+      "tests_contract_unknown_membership_is_distinct_from_required_and_not_required",
+      "tests_contract_unknown_price_and_package_count_round_trip_without_becoming_zero"
+    ],
+    "1": [
+      "context",
+      "f",
+      "normalize_batch",
+      "pin",
+      "poll",
+      "rawboundary",
+      "run",
+      "src_engine_normalize_batch",
+      "src_source_sourceadapter",
+      "src_source_sourceadapter_metadata",
+      "src_source_sourcecapabilities",
+      "src_source_sourcemetadata",
+      "tests_engine",
+      "tests_engine_batch",
+      "tests_engine_block_on",
+      "tests_engine_dedup_is_order_independent_and_keeps_store_and_period_distinct",
+      "tests_engine_fractional_ore_noise_has_a_small_exact_tolerance",
+      "tests_engine_invalid_records_are_visible_and_do_not_suppress_valid_records",
+      "tests_engine_metadata",
+      "tests_engine_offline",
+      "tests_engine_offline_adapter_normalizes_and_preserves_partial_failure",
+      "tests_engine_offline_metadata",
+      "tests_engine_pack_ranges_missing_and_zero_price",
+      "tests_engine_raw",
+      "tests_engine_rs_output",
+      "tests_engine_unknown_heading_preserves_the_identified_offer",
+      "waker"
     ],
     "2": [
+      "decimal",
+      "duration",
+      "hashset",
+      "piececount",
+      "quantitybasis",
+      "sourcecapabilities",
+      "src_tjek",
+      "src_tjek_boundary",
+      "src_tjek_chains",
+      "src_tjek_limit",
+      "src_tjek_map_offer",
+      "src_tjek_max_pages",
+      "src_tjek_nullable_string",
+      "src_tjek_number",
+      "src_tjek_parse_time",
+      "src_tjek_rs_datetime",
+      "src_tjek_rs_fixedoffset",
+      "src_tjek_rs_value",
+      "src_tjek_string",
+      "src_tjek_tjekadapter_fetch",
+      "src_tjek_tjekadapter_page",
+      "src_tjek_tjekadapter_pages",
+      "timezone",
+      "utc"
+    ],
+    "3": [
+      "joinhandle",
+      "json",
+      "read",
+      "tcplistener",
+      "tests_tjek",
+      "tests_tjek_adapter",
+      "tests_tjek_bad_row_is_reported_but_following_offer_is_kept",
+      "tests_tjek_capped_prefix",
+      "tests_tjek_catalog_pages_are_traversed_before_offer_pages",
+      "tests_tjek_catalog_store_is_preserved_and_dates_filter_in_copenhagen",
+      "tests_tjek_empty_catalogs_are_not_claimed_as_offer_coverage",
+      "tests_tjek_filtering_store_date_and_country",
+      "tests_tjek_fixture_server",
+      "tests_tjek_ok",
+      "tests_tjek_pagination_and_engine_preserve_exact_source_values",
+      "tests_tjek_pcs_is_normalized_by_engine",
+      "tests_tjek_raw_server",
+      "tests_tjek_retry_after_and_bad_responses_are_visible",
+      "tests_tjek_retry_after_is_not_retried_early",
+      "tests_tjek_row",
+      "tests_tjek_rs_value",
+      "tests_tjek_timeouts_and_repeated_pages_are_partial_errors",
+      "thread",
+      "write"
+    ],
+    "4": [
       "a",
       "btreemap",
+      "datetime",
       "naivedate",
       "price",
+      "sourceadapter",
       "src_engine",
       "src_engine_boundary",
       "src_engine_calculate_unit_price",
@@ -73,56 +136,54 @@
       "toprimitive",
       "validity"
     ],
-    "3": [
+    "5": [
       "future",
+      "src_offer_pricekind",
+      "src_offer_pricekind_catalog",
+      "src_offer_pricekind_offer",
+      "src_offer_quantitybasis",
+      "src_offer_quantitybasis_perpiece",
+      "src_offer_quantitybasis_total",
+      "src_offer_store",
       "src_source",
       "src_source_fetchoptions",
+      "src_source_rawboundary",
+      "src_source_rawboundary_date",
+      "src_source_rawboundary_instant",
+      "src_source_rawboundary_unknown",
+      "src_source_rawoffer",
       "src_source_rs_naivedate",
       "src_source_rs_output",
-      "src_source_sourceadapter",
       "src_source_sourceadapter_fetch",
-      "src_source_sourceadapter_metadata",
-      "src_source_sourcecapabilities",
-      "src_source_sourcemetadata",
-      "tests_engine_offline",
-      "tests_engine_offline_fetch",
-      "tests_engine_offline_metadata"
+      "src_source_sourcebatch",
+      "tests_engine_offline_fetch"
     ],
-    "4": [
-      "quantity",
-      "src_offer_membership",
-      "src_offer_membership_notrequired",
-      "src_offer_membership_required",
-      "src_offer_membership_unknown",
-      "tests_contract",
-      "tests_contract_documented_examples_round_trip_without_losing_precision_or_unknowns",
-      "tests_contract_unknown_membership_is_distinct_from_required_and_not_required",
-      "tests_contract_unknown_price_and_package_count_round_trip_without_becoming_zero"
+    "6": [
+      "chains",
+      "client",
+      "engine",
+      "examples_tjek_smoke",
+      "examples_tjek_smoke_main",
+      "fetchoptions",
+      "src_tjek_tjekadapter",
+      "src_tjek_tjekadapter_default",
+      "src_tjek_tjekadapter_metadata",
+      "src_tjek_tjekadapter_new",
+      "src_tjek_tjekadapter_select_chains",
+      "src_tjek_tjekadapter_with_base"
     ],
-    "5": [
+    "7": [
       "scripts_test",
       "scripts_test_cleanup",
       "scripts_test_sh__entry",
       "scripts_test_tilbud_test_tmpdir",
       "scripts_test_tmpdir"
     ],
-    "6": [
+    "8": [
       "cli",
       "src_main",
       "src_main_main",
       "src_main_tilbud"
-    ],
-    "7": [
-      "src_offer_quantity",
-      "src_offer_quantity_exact",
-      "src_offer_quantity_range",
-      "src_offer_rs_decimal"
-    ],
-    "8": [
-      "src_source_rawboundary",
-      "src_source_rawboundary_date",
-      "src_source_rawboundary_instant",
-      "src_source_rawboundary_unknown"
     ],
     "9": [
       "command",
@@ -137,14 +198,14 @@
     ]
   },
   "cohesion": {
-    "0": 0.15217391304347827,
-    "1": 0.13438735177865613,
-    "2": 0.16842105263157894,
-    "3": 0.23076923076923078,
-    "4": 0.2222222222222222,
-    "5": 0.4,
-    "6": 0.5,
-    "7": 0.5,
+    "0": 0.10344827586206896,
+    "1": 0.15384615384615385,
+    "2": 0.14492753623188406,
+    "3": 0.2210144927536232,
+    "4": 0.1471861471861472,
+    "5": 0.1368421052631579,
+    "6": 0.19696969696969696,
+    "7": 0.4,
     "8": 0.5,
     "9": 0.6666666666666666,
     "10": 1.0,
@@ -152,14 +213,34 @@
   },
   "gods": [
     {
+      "id": "src_source_rawoffer",
+      "label": "RawOffer",
+      "degree": 17
+    },
+    {
       "id": "src_offer_offer",
       "label": "Offer",
       "degree": 15
     },
     {
-      "id": "src_source_rawoffer",
-      "label": "RawOffer",
+      "id": "src_tjek_tjekadapter",
+      "label": "TjekAdapter",
       "degree": 15
+    },
+    {
+      "id": "src_source_sourcemetadata",
+      "label": "SourceMetadata",
+      "degree": 13
+    },
+    {
+      "id": "src_engine_normalize_batch",
+      "label": "normalize_batch()",
+      "degree": 12
+    },
+    {
+      "id": "tests_tjek_adapter",
+      "label": "adapter()",
+      "degree": 12
     },
     {
       "id": "src_offer_timeboundary",
@@ -167,44 +248,35 @@
       "degree": 11
     },
     {
-      "id": "src_engine_normalize_batch",
-      "label": "normalize_batch()",
-      "degree": 10
-    },
-    {
-      "id": "src_offer_quantity",
-      "label": "Quantity",
-      "degree": 10
-    },
-    {
-      "id": "src_source_sourcemetadata",
-      "label": "SourceMetadata",
-      "degree": 10
-    },
-    {
       "id": "src_offer_membership",
       "label": "Membership",
-      "degree": 9
+      "degree": 11
     },
     {
       "id": "src_source_sourcebatch",
       "label": "SourceBatch",
-      "degree": 9
+      "degree": 11
     },
     {
-      "id": "src_offer_quantitybasis",
-      "label": "QuantityBasis",
-      "degree": 8
-    },
-    {
-      "id": "src_offer_piececount",
-      "label": "PieceCount",
-      "degree": 8
+      "id": "tests_tjek_fixture_server",
+      "label": "fixture_server()",
+      "degree": 11
     }
   ],
   "surprises": [
     {
       "source": "dedup_is_order_independent_and_keeps_store_and_period_distinct()",
+      "target": "normalize_batch()",
+      "source_files": [
+        "tests/engine.rs",
+        "src/engine.rs"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "fractional_ore_noise_has_a_small_exact_tolerance()",
       "target": "normalize_batch()",
       "source_files": [
         "tests/engine.rs",
@@ -237,53 +309,52 @@
       "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
     },
     {
-      "source": "metadata()",
-      "target": "SourceMetadata",
+      "source": "unknown_heading_preserves_the_identified_offer()",
+      "target": "normalize_batch()",
       "source_files": [
         "tests/engine.rs",
-        "src/source.rs"
+        "src/engine.rs"
       ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories; bridges separate communities"
-    },
-    {
-      "source": "Offline",
-      "target": "SourceBatch",
-      "source_files": [
-        "tests/engine.rs",
-        "src/source.rs"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories; bridges separate communities"
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
     }
   ],
   "questions": [
     {
       "type": "bridge_node",
-      "question": "Why does `RawOffer` connect `Batch processing and tests` to `Offer data contract`, `Normalization and validation`, `Source adapter interface`, `Membership contract tests`, `Quantity representation`, `Source time boundaries`?",
-      "why": "High betweenness centrality (0.087) - this node is a cross-community bridge."
+      "question": "Why does `TjekAdapter` connect `Tjek adapter and smoke` to `Batch normalization tests`, `Tjek fetch and mapping`, `Tjek adapter tests`?",
+      "why": "High betweenness centrality (0.128) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 5 inferred relationships involving `normalize_batch()` (e.g. with `dedup_is_order_independent_and_keeps_store_and_period_distinct()` and `fractional_ore_noise_has_a_small_exact_tolerance()`) actually correct?",
+      "why": "`normalize_batch()` has 5 INFERRED edges - model-reasoned connections that need verification."
     },
     {
       "type": "isolated_nodes",
-      "question": "What connects `Exact`, `Range`, `Catalog` to the rest of the system?",
+      "question": "What connects `NotRequired`, `Required`, `Unknown` to the rest of the system?",
       "why": "20 weakly-connected nodes found - possible documentation gaps or missing edges."
     },
     {
       "type": "low_cohesion",
-      "question": "Should `Offer data contract` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.13438735177865613 - nodes in this community are weakly interconnected."
+      "question": "Should `Offer contract and tests` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.10344827586206896 - nodes in this community are weakly interconnected."
     },
     {
       "type": "bridge_node",
-      "question": "Why does `Membership` connect `Membership contract tests` to `Batch processing and tests`, `Offer data contract`, `Source adapter interface`?",
-      "why": "High betweenness centrality (0.077) - this node is a cross-community bridge."
+      "question": "Why does `Membership` connect `Offer contract and tests` to `Batch normalization tests`, `Tjek fetch and mapping`, `Tjek adapter tests`, `Source and offer types`?",
+      "why": "High betweenness centrality (0.128) - this node is a cross-community bridge."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Tjek fetch and mapping` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.14492753623188406 - nodes in this community are weakly interconnected."
     },
     {
       "type": "bridge_node",
-      "question": "Why does `TimeBoundary` connect `Offer data contract` to `Normalization and validation`, `Membership contract tests`?",
-      "why": "High betweenness centrality (0.073) - this node is a cross-community bridge."
+      "question": "Why does `SourceMetadata` connect `Batch normalization tests` to `Tjek fetch and mapping`, `Normalization and validation`, `Source and offer types`, `Tjek adapter and smoke`?",
+      "why": "High betweenness centrality (0.083) - this node is a cross-community bridge."
     }
   ]
 }
